@@ -3,7 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const questions = [
+interface QuestionOption {
+  label: string;
+  value: string;
+  emoji?: string;
+}
+
+interface Question {
+  id: string;
+  question: string;
+  options: QuestionOption[];
+}
+
+const questions: Question[] = [
   {
     id: "destination",
     question: "Which country are you hoping to move to?",
