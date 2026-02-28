@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Primary brand palette — centered on #0C3C60 */
+  --color-brand-50: #eef4f9;
+  --color-brand-100: #d5e3f0;
+  --color-brand-200: #abc7e1;
+  --color-brand-300: #7ba6cd;
+  --color-brand-400: #4f85b5;
+  --color-brand-500: #2d659a;
+  --color-brand-600: #0C3C60;
+  --color-brand-700: #0a3352;
+  --color-brand-800: #082a44;
+  --color-brand-900: #1B1B4F;
+  --color-brand-950: #121237;
+
+  /* Accent palette — based on #1B1B4F */
+  --color-accent: #1B1B4F;
+  --color-accent-50: #f0f0f8;
+  --color-accent-100: #dddde8;
+  --color-accent-200: #bbbbd5;
+  --color-accent-300: #9292bb;
+  --color-accent-400: #6b6b9f;
+  --color-accent-500: #494983;
+  --color-accent-600: #363672;
+  --color-accent-700: #2a2a5c;
+  --color-accent-800: #1B1B4F;
+  --color-accent-900: #151541;
+  --color-accent-950: #0D0D2E;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #0C3C60;
+  color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

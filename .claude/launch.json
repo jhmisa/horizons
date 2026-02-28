@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "next-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "static-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "-p", "8000", "-c-1"],
+      "port": 8000
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx create-next-app@latest horizons-next --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --no-turbopack)",
+      "Bash(npx create-next-app@latest horizons-next --typescript --tailwind --eslint --app --import-alias=\"@/*\" --use-npm --no-turbopack)",
+      "Bash(npm install)",
+      "mcp__supabase__search_docs",
+      "Bash(lsof -i :3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:3000/)",
+      "Bash(git init)",
+      "Bash(git -C /Users/joeymisa/Documents/HorizonsWebsite add .)",
+      "Bash(git -C /Users/joeymisa/Documents/HorizonsWebsite status)"
+    ]
+  }
+}

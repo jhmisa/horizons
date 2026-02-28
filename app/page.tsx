@@ -1,0 +1,528 @@
+import Link from "next/link";
+import Image from "next/image";
+
+export default function Home() {
+  return (
+    <>
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-brand-900">
+        {/* Solid Color Background */}
+        <div className="absolute inset-0 z-0" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center text-center lg:text-left text-white">
+            {/* Left Column: Text */}
+            <div>
+              <span className="inline-block py-1 px-3 rounded-2xl bg-brand-500/20 text-brand-100 border border-brand-400/30 text-sm font-semibold tracking-wide mb-6 fade-in-up">
+                EXPERT IMMIGRATION ADVISERS
+              </span>
+              <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight mb-6 leading-tight fade-in-up delay-100">
+                1-on-1 Guidance from Licensed Immigration Experts.
+              </h1>
+              <p className="mt-4 text-lg md:text-xl text-accent-200 mb-6 leading-relaxed fade-in-up delay-200">
+                Creating personalized pathways for families for over 20 years.
+              </p>
+
+              {/* Social Trust Badges */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 mb-10 fade-in-up delay-200">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-lg cursor-default">
+                  <i className="fa-brands fa-google text-white" />
+                  <div className="flex text-yellow-400 text-xs">
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star-half-stroke" />
+                  </div>
+                  <span className="text-white text-sm font-bold">4.7</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-lg cursor-default">
+                  <i className="fa-brands fa-facebook text-blue-400" />
+                  <span className="text-white text-sm font-bold">
+                    12.5k+ Likes
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 fade-in-up delay-300">
+                <Link
+                  href="/how-it-works"
+                  className="bg-white hover:bg-slate-50 text-brand-600 text-lg font-bold py-4 px-8 rounded-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                >
+                  Book Session
+                  <i className="fa-solid fa-arrow-right" />
+                </Link>
+                <a
+                  href="#how-it-works"
+                  className="bg-white/10 hover:bg-white/20 text-white text-lg font-bold py-4 px-8 rounded-2xl transition-all border-2 border-white/30 hover:border-white/50 flex items-center justify-center gap-2"
+                >
+                  Learn More
+                  <i className="fa-solid fa-chevron-down" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Video */}
+            <div className="fade-in-up delay-300 relative mt-10 lg:mt-0">
+              <div className="relative w-full aspect-video rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 bg-accent-950">
+                <iframe
+                  src="https://www.youtube.com/embed/ASbMvKQrHJ8?rel=0"
+                  title="Horizons Immigration Consulting"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full absolute inset-0"
+                />
+              </div>
+              <div className="absolute -inset-10 bg-brand-500/20 blur-3xl rounded-2xl -z-10 pointer-events-none hidden lg:block" />
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Bar */}
+        <div className="relative z-10 mt-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-up delay-300">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl py-6 px-4 shadow-2xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-white/20">
+              <div className="flex flex-col items-center px-4">
+                <i className="fa-solid fa-calendar-check text-2xl text-brand-400 mb-2" />
+                <span className="font-bold text-white text-lg">20 Years</span>
+                <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
+                  Of Service
+                </span>
+              </div>
+              <div className="flex flex-col items-center px-4">
+                <i className="fa-solid fa-plane-arrival text-2xl text-brand-400 mb-2" />
+                <span className="font-bold text-white text-lg">850+</span>
+                <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
+                  Successful Migrations
+                </span>
+              </div>
+              <div className="flex flex-col items-center px-4">
+                <i className="fa-solid fa-id-card-clip text-2xl text-brand-400 mb-2" />
+                <span className="font-bold text-white text-lg">Licensed</span>
+                <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
+                  Immigration Advisers
+                </span>
+              </div>
+              <div className="flex flex-col items-center px-4">
+                <div className="flex gap-1 text-yellow-400 mb-2 text-xl">
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star-half-stroke" />
+                </div>
+                <span className="font-bold text-white text-lg">4.7★</span>
+                <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
+                  Google Reviews
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS SECTION */}
+      <section id="how-it-works" className="py-20 bg-[#FAFAFA] border-t border-accent-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
+              Four Simple Steps to Your New Life
+            </h2>
+            <p className="text-lg text-accent-600">
+              We&apos;ve streamlined the complex immigration process into a
+              straightforward, transparent journey.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                num: 1,
+                icon: "fa-circle-play",
+                title: "Watch",
+                desc: "Start with a short video that explains everything — what it takes to migrate to New Zealand or Australia, how the process works, and why having the right pathway matters.",
+              },
+              {
+                num: 2,
+                icon: "fa-clipboard-check",
+                title: "Test",
+                desc: "Take our free 2-minute eligibility test. You'll get instant results showing whether you may qualify — and which pathways could work for your situation.",
+              },
+              {
+                num: 3,
+                icon: "fa-calendar-check",
+                title: "Book",
+                desc: "Ready to go deeper? Book a one-on-one consultation with a Licensed Immigration Adviser for $190 USD. They'll study your background and craft a tailored plan.",
+                iconPrefix: "fa-regular",
+              },
+              {
+                num: 4,
+                icon: "fa-plane-departure",
+                title: "Proceed",
+                desc: "If you decide to move forward with Horizons, your $190 consultation fee is credited toward the $2,000 USD processing fee. No wasted money. No hidden costs.",
+              },
+            ].map((step) => (
+              <div
+                key={step.num}
+                className="bg-white rounded-2xl p-8 shadow-md border border-accent-100 relative group hover:-translate-y-2 transition-transform duration-300"
+              >
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 w-12 h-12 bg-accent-50 rounded-2xl flex items-center justify-center text-accent-400 font-bold text-xl border-4 border-white group-hover:bg-brand-100 group-hover:text-brand-600 transition-colors">
+                  {step.num}
+                </div>
+                <div className="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 text-2xl mb-6">
+                  <i
+                    className={`${step.iconPrefix || "fa-solid"} ${step.icon}`}
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-accent mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-accent-600 text-sm leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/how-it-works"
+              className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-10 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              Explore the Full 4-Step Process{" "}
+              <i className="fa-solid fa-arrow-right ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY A LICENSED IMMIGRATION ADVISER */}
+      <section
+        id="why-lia"
+        className="py-24 bg-brand-900 text-white relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-600/15 rounded-full blur-3xl -mr-20 -mt-20" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-800/30 rounded-full blur-3xl -ml-20 -mb-20" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section header */}
+          <div className="text-center mb-14">
+            <span className="text-brand-300 font-semibold tracking-wider uppercase text-sm mb-3 block">
+              Why It Matters
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white max-w-3xl mx-auto">
+              Getting There Is Only the Beginning
+            </h2>
+          </div>
+
+          {/* Unified content card */}
+          <div className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+              {/* Image column */}
+              <div className="relative min-h-[320px] lg:min-h-full order-2 lg:order-1">
+                <img
+                  src="/images/Rowel-zoom-meeting-consultation.png"
+                  alt="Horizons Immigration Consultation"
+                  className="w-full h-full object-cover absolute inset-0"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-accent-950/90 to-transparent p-6 pt-20">
+                  <div className="flex items-center gap-3">
+                    <i className="fa-solid fa-shield-halved text-brand-400 text-2xl" />
+                    <div>
+                      <div className="font-bold text-white">
+                        Registered &amp; Licensed
+                      </div>
+                      <div className="text-xs text-brand-200">
+                        Guaranteed Professional Standards
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Text column */}
+              <div className="p-8 lg:p-12 xl:p-14 order-1 lg:order-2">
+                <div className="space-y-5 text-brand-100 text-[17px] leading-relaxed">
+                  <p>
+                    Anyone can help you complete forms. But forming the best strategy for your case — the one that protects your family&apos;s future and gives you the strongest chance of approval — takes real expertise.
+                  </p>
+                  <p>
+                    Choosing the right visa pathway isn&apos;t paperwork. It&apos;s positioning. It&apos;s timing. It&apos;s knowing which options strengthen your case — and which ones put it at risk.
+                  </p>
+                  <p className="text-white font-semibold">
+                    In New Zealand and Australia, only a Licensed Immigration Adviser can legally provide that level of advice.
+                  </p>
+                  <p>
+                    At Horizons, every consultation is with an LIA. We assess your qualifications, experience, family circumstances, and long-term goals — then build a strategy designed for approval, not guesswork.
+                  </p>
+                  <p>
+                    Because there&apos;s a big difference between simply arriving in New Zealand… and arriving with a plan to build a life there.
+                  </p>
+                </div>
+
+                {/* Bottom trust strip */}
+                <div className="mt-10 pt-8 border-t border-white/10 flex flex-wrap items-center gap-8">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-green-500/20 text-green-400 w-10 h-10 rounded-xl flex items-center justify-center text-lg">
+                      <i className="fa-solid fa-check" />
+                    </div>
+                    <div className="font-bold text-white text-sm">
+                      100% Legal Representation
+                    </div>
+                  </div>
+                  <div className="text-sm text-brand-200 border-l border-brand-700 pl-4">
+                    Strictly regulated by the <br />
+                    <strong className="text-white">
+                      Immigration Advisers Authority (IAA)
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL PROOF SECTION */}
+      <section id="success-stories" className="py-20 bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
+              Trusted by Hundreds of Families Since 2005
+            </h2>
+            <p className="text-lg text-accent-600 max-w-2xl mx-auto">
+              Don&apos;t just take our word for it. Hear directly from the
+              families who have successfully made the move with Horizons.
+            </p>
+          </div>
+
+          {/* Video Testimonials */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              {
+                img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "The Smith Family",
+                title: '"From South Africa to Auckland"',
+                subtitle: "The Smith Family — Skilled Migrant Category",
+              },
+              {
+                img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "Sarah M.",
+                title: '"Horizons made the complex simple."',
+                subtitle: "Sarah M. — Work to Residence Visa",
+              },
+              {
+                img: "https://images.unsplash.com/photo-1543269664-56d74c65a6c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "The Chen Family",
+                title: '"We couldn\'t have done it without them."',
+                subtitle: "The Chen Family — Partner Sponsorship",
+              },
+            ].map((testimonial, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl shadow-md overflow-hidden border border-accent-100"
+              >
+                <div className="aspect-video bg-accent-100 relative group cursor-pointer">
+                  <img
+                    src={testimonial.img}
+                    alt={testimonial.alt}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-accent-950/30 flex items-center justify-center group-hover:bg-accent-950/10 transition-colors">
+                    <i className="fa-brands fa-youtube text-5xl text-red-600 opacity-90 group-hover:scale-110 transition-transform shadow-sm" />
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h4 className="font-bold text-accent text-lg">
+                    {testimonial.title}
+                  </h4>
+                  <p className="text-sm text-accent-500 mt-1">
+                    {testimonial.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats & Reviews */}
+          <div className="bg-white rounded-2xl shadow-sm border border-accent-100 p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center divide-y md:divide-y-0 md:divide-x divide-accent-100">
+              <div className="flex flex-col items-center text-center">
+                <div className="flex text-yellow-400 text-2xl mb-2">
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star" />
+                  <i className="fa-solid fa-star-half-stroke" />
+                </div>
+                <h4 className="text-2xl font-bold text-accent mb-1">
+                  4.7 Out of 5
+                </h4>
+                <p className="text-accent-500 mb-4">Based on 142 reviews</p>
+                <p className="italic text-accent-600 text-sm max-w-sm">
+                  &ldquo;Absolutely stellar service. The team was transparent
+                  about costs and realistic about timelines from day one.&rdquo;
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center text-center md:pl-12 pt-12 md:pt-0">
+                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-4">
+                  <i className="fa-brands fa-facebook-f" />
+                </div>
+                <h4 className="text-3xl font-bold text-accent mb-2">
+                  12,500+
+                </h4>
+                <p className="text-accent-600 font-medium mb-2">
+                  Active Community Members
+                </p>
+                <p className="text-sm text-accent-500 max-w-sm">
+                  Join our private Facebook group to connect with others on the
+                  same journey, ask questions, and share milestones.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/success-stories"
+              className="text-brand-600 font-bold hover:text-brand-800 transition-colors border-b-2 border-brand-600 hover:border-brand-800 pb-1"
+            >
+              Read More Success Stories
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOG PREVIEW SECTION */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
+                Guides &amp; Insights from Our Team
+              </h2>
+              <p className="text-lg text-accent-600 max-w-2xl">
+                Expert advice, policy updates, and practical tips to navigate
+                your migration journey.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="hidden md:inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-800 transition-colors"
+            >
+              View All Articles{" "}
+              <i className="fa-solid fa-arrow-right text-sm" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                img: "https://images.unsplash.com/photo-1490642914619-7955a3fd483c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "New Zealand landscape",
+                category: "Eligibility",
+                title: "Am I Eligible to Migrate to New Zealand?",
+                excerpt:
+                  "Understanding the points system, skill shortages, and age requirements. A complete breakdown of current NZ visa criteria.",
+              },
+              {
+                img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "Sydney Opera House",
+                category: "Comparison",
+                title: "NZ vs Australia: Which Is Right for Your Family?",
+                excerpt:
+                  "Comparing cost of living, healthcare, education systems, and work-life balance between the two Down Under destinations.",
+              },
+              {
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "Consultation desk",
+                category: "Process",
+                title:
+                  "What Does a Licensed Immigration Adviser Actually Do?",
+                excerpt:
+                  "Behind the scenes of an LIA's role. Why their regulatory status protects you and dramatically increases your chance of success.",
+              },
+            ].map((post, idx) => (
+              <article
+                key={idx}
+                className="bg-white rounded-2xl shadow-sm border border-accent-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              >
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={post.img}
+                    alt={post.alt}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2">
+                    {post.category}
+                  </div>
+                  <h3 className="text-xl font-bold text-accent mb-3 leading-snug hover:text-brand-600 transition-colors cursor-pointer">
+                    {post.title}
+                  </h3>
+                  <p className="text-accent-600 text-sm mb-6 flex-1">
+                    {post.excerpt}
+                  </p>
+                  <Link
+                    href="/blog"
+                    className="font-semibold text-accent text-sm flex items-center gap-2 hover:text-brand-600 transition-colors group"
+                  >
+                    Read Article{" "}
+                    <i className="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center md:hidden">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-800 transition-colors"
+            >
+              View All Articles{" "}
+              <i className="fa-solid fa-arrow-right text-sm" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA SECTION */}
+      <section
+        id="eligibility"
+        className="py-24 bg-brand-900 text-center relative overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            Your family&apos;s next chapter is waiting.
+          </h2>
+          <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
+            Take the free eligibility test and find out if New Zealand or
+            Australia could be your new home.
+          </p>
+          <Link
+            href="/eligibility-test"
+            className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+          >
+            Check My Eligibility — Free
+          </Link>
+          <p className="text-brand-300 text-sm mt-6">
+            <i className="fa-solid fa-lock mr-1" /> 100% Confidential. Results
+            delivered instantly.
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}
