@@ -47,6 +47,12 @@ export default function Navbar() {
               Success Stories
             </Link>
             <Link
+              href="/answers"
+              className="text-accent-700 hover:text-brand-600 font-medium transition-colors"
+            >
+              Q&amp;A
+            </Link>
+            <Link
               href="/how-it-works"
               className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-2xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
@@ -97,6 +103,13 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 Success Stories
+              </Link>
+              <Link
+                href="/answers"
+                className="text-accent-700 hover:text-brand-600 font-medium transition-colors px-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                Q&amp;A
               </Link>
               <Link
                 href="/eligibility-test"
