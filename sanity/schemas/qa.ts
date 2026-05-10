@@ -29,6 +29,12 @@ export const qa = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "video",
+      title: "Video",
+      type: "mux.video",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "transcript",
       title: "Transcript",
       type: "text",
