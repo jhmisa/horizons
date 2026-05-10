@@ -1,0 +1,31 @@
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { QAJsonLd } from "../QAJsonLd";
+
+const fakeQA = {
+  question: "Am I eligible for the NZ Skilled Migrant visa?",
+  slug: "am-i-eligible-for-the-nz-skilled-migrant-visa",
+  transcript: "Yes, you may be. The criteria are points-based...",
+  publishedAt: "2026-05-01T00:00:00Z",
+  liaName: "David Mitchell",
+  thumbnailUrl: "https://image.mux.com/abc/thumbnail.jpg",
+  videoDuration: 120,
+  siteUrl: "https://horizonsimmigration.com",
+};
+
+describe("QAJsonLd", () => {
+  it("emits FAQPage, VideoObject, and Article JSON-LD", () => {
+    const { container } = render(<QAJsonLd {...fakeQA} />);
+    const scripts = container.querySelectorAll(
+      "script[type='application/ld+json']"
+    );
+    expect(scripts).toHaveLength(3);
+
+    const types = Array.from(scripts).map((s) =>
+      JSON.parse(s.textContent || "{}")["@type"]
+    );
+    expect(types).toContain("FAQPage");
+    expect(types).toContain("VideoObject");
+    expect(types).toContain("Article");
+  });
+});
