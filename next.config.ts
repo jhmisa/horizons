@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
     "localhost",
     "0.0.0.0",
   ],
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.sanity.io" },
+      { protocol: "https", hostname: "image.mux.com" },
+    ],
+  },
 };
 
 export default nextConfig;
