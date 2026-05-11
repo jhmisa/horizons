@@ -58,7 +58,9 @@ This phase happens once. The admin (Joey) performs these steps in a browser and 
 
 - [ ] **Step 1.1 — Install runtime dependencies**
 
-Run: `npm install next-sanity@^9 sanity@^3 @sanity/client@^6 @sanity/image-url@^1 @portabletext/react@^3 styled-components@^6`
+Run: `npm install next-sanity@^12 sanity@^3 @sanity/client@^6 @sanity/image-url@^1 @portabletext/react@^3 styled-components@^6`
+
+(Note: `next-sanity@^12` is required for Next.js 16 compatibility. Earlier versions targeted Next.js 14/15.)
 
 Expected: dependencies installed; lockfile updated.
 
@@ -656,6 +658,15 @@ export default defineConfig({
 Create `/Users/joeymisa/Documents/HorizonsWebsite/vitest.setup.ts`:
 
 ```typescript
+// Provide fallback env vars so `sanity/env.ts` doesn't throw when test modules
+// transitively import the Sanity client.
+process.env.NEXT_PUBLIC_SANITY_PROJECT_ID =
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "test-project";
+process.env.NEXT_PUBLIC_SANITY_DATASET =
+  process.env.NEXT_PUBLIC_SANITY_DATASET || "test";
+process.env.NEXT_PUBLIC_SANITY_API_VERSION =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-10-01";
+
 import "@testing-library/jest-dom/vitest";
 ```
 
@@ -686,8 +697,30 @@ git commit -m "Set up Vitest with React Testing Library"
 ### Task 11: Build `LIAAttribution` component (TDD)
 
 **Files:**
+- Modify: `next.config.ts`
 - Create: `components/qa/LIAAttribution.tsx`
 - Create: `components/qa/__tests__/LIAAttribution.test.tsx`
+
+- [ ] **Step 11.0 — Allow Sanity CDN and Mux thumbnails for `next/image`**
+
+Edit `next.config.ts`. The existing file is short; replace its contents with:
+
+```typescript
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.sanity.io" },
+      { protocol: "https", hostname: "image.mux.com" },
+    ],
+  },
+};
+
+export default nextConfig;
+```
+
+(If `next.config.ts` already has unrelated settings, preserve them — just add the `images.remotePatterns` block.)
 
 - [ ] **Step 11.1 — Write the failing test**
 
