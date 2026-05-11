@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "Sanity": {
+      "type": "http",
+      "url": "https://mcp.sanity.io"
+    },
+    "Mux": {
+      "type": "http",
+      "url": "https://mcp.mux.com"
+    }
+  }
+}
