@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How It Works | 4 Steps to NZ & Australia | Horizons Immigration",
+  title: "How It Works | 3 Steps to NZ & Australia | Horizons Immigration",
   description:
-    "Follow our transparent, proven 4-step path to secure your family's future in New Zealand or Australia.",
+    "Follow our transparent, proven 3-step path to secure your family's future in New Zealand or Australia.",
 };
 
 export default function HowItWorks() {
@@ -24,7 +24,7 @@ export default function HowItWorks() {
             YOUR ROADMAP TO DOWN UNDER
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 fade-in-up delay-100">
-            Four Simple Steps to <br className="hidden md:block" /> Your New
+            Three Simple Steps to <br className="hidden md:block" /> Your New
             Life
           </h1>
           <p className="text-xl text-brand-100 max-w-2xl mx-auto fade-in-up delay-200">
@@ -85,99 +85,16 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* STEP 2: TEST */}
+      {/* STEP 2: BOOK */}
       <section
         id="step-2"
-        className="py-20 lg:py-24 bg-[#FAFAFA] border-t border-accent-100"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6">
-              {/* Interactive Quiz Mockup */}
-              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-accent-100">
-                <div className="flex justify-between items-center mb-8 pb-4 border-b border-accent-100">
-                  <span className="text-sm font-bold text-accent-400 tracking-wider uppercase">
-                    Free Evaluation
-                  </span>
-                  <span className="text-sm font-medium text-brand-600 bg-brand-50 px-3 py-1 rounded-2xl">
-                    <i className="fa-regular fa-clock mr-1" /> 2 Mins
-                  </span>
-                </div>
-
-                <h3 className="text-2xl font-bold text-accent mb-6">
-                  Which country are you hoping to move to?
-                </h3>
-
-                <div className="space-y-4 mb-8">
-                  {[
-                    { label: "New Zealand", flag: "🇳🇿" },
-                    { label: "Australia", flag: "🇦🇺" },
-                    { label: "I'm open to both", flag: "🌏" },
-                  ].map((option) => (
-                    <label
-                      key={option.label}
-                      className="flex items-center justify-between p-5 border-2 border-accent-100 rounded-xl cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all group"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-2xl">{option.flag}</span>
-                        <span className="font-bold text-accent text-lg group-hover:text-brand-700">
-                          {option.label}
-                        </span>
-                      </div>
-                      <div className="w-6 h-6 rounded-2xl border-2 border-accent-200 group-hover:border-brand-500" />
-                    </label>
-                  ))}
-                </div>
-
-                <Link
-                  href="/eligibility-test"
-                  className="block w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-md text-center"
-                >
-                  Start My Eligibility Test{" "}
-                  <i className="fa-solid fa-arrow-right ml-2" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 lg:col-start-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 text-2xl font-bold mb-6">
-                2
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
-                Take the Eligibility Test.
-              </h2>
-              <p className="text-lg text-accent-600 mb-6 leading-relaxed">
-                Don&apos;t waste time wondering. Our free 2-minute eligibility
-                test analyzes your age, education, work experience, and family
-                situation.
-              </p>
-              <p className="text-lg text-accent-600 mb-6 leading-relaxed">
-                You&apos;ll get instant results showing whether you may qualify —
-                and which specific visa pathways could work for your unique
-                situation.
-              </p>
-              <div className="bg-accent-50 border-l-4 border-brand-500 p-5 rounded-r-lg">
-                <p className="text-brand-900 font-medium text-sm">
-                  <i className="fa-solid fa-lock text-brand-500 mr-2" /> Your
-                  data is 100% private and confidential. We never share your
-                  information with third parties.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* STEP 3: BOOK */}
-      <section
-        id="step-3"
         className="py-20 lg:py-24 bg-white border-t border-accent-100"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 text-2xl font-bold mb-6">
-                3
+                2
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
                 Book Your LIA Consultation.
@@ -229,63 +146,64 @@ export default function HowItWorks() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/30 rounded-2xl blur-3xl -mr-20 -mt-20" />
 
                 <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-8">
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2">
-                        Expert Consultation
-                      </h3>
-                      <p className="text-brand-200">
-                        1-Hour Video Call with an LIA
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-3xl font-extrabold">
-                        $190{" "}
-                        <span className="text-sm font-normal text-brand-200">
-                          USD
-                        </span>
-                      </div>
-                      <div className="text-xs text-brand-300 mt-1">
-                        Fully creditable (See Step 4)
-                      </div>
-                    </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-2">
+                      Expert Consultation
+                    </h3>
+                    <p className="text-brand-200">
+                      1-Hour Video Call with an LIA
+                    </p>
                   </div>
 
-                  <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm mb-8">
-                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
-                      <i className="fa-regular fa-calendar text-brand-400" />{" "}
-                      Select your preferred time:
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <button className="bg-white text-accent hover:bg-brand-50 py-3 rounded-lg font-medium text-sm transition-colors border border-transparent hover:border-brand-300">
-                        Mon, Oct 12 <br />
-                        <span className="text-accent-500 text-xs">
-                          9:00 AM NZT
-                        </span>
-                      </button>
-                      <button className="bg-white text-accent hover:bg-brand-50 py-3 rounded-lg font-medium text-sm transition-colors border border-transparent hover:border-brand-300">
-                        Mon, Oct 12 <br />
-                        <span className="text-accent-500 text-xs">
-                          1:00 PM NZT
-                        </span>
-                      </button>
-                      <button className="bg-white text-accent hover:bg-brand-50 py-3 rounded-lg font-medium text-sm transition-colors border border-transparent hover:border-brand-300">
-                        Tue, Oct 13 <br />
-                        <span className="text-accent-500 text-xs">
-                          10:30 AM NZT
-                        </span>
-                      </button>
-                      <button className="bg-transparent border border-white/30 text-white hover:bg-white/10 py-3 rounded-lg font-medium text-sm transition-colors">
-                        See more times...
-                      </button>
-                    </div>
+                  <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm mb-6">
+                    <dl className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <dt className="text-brand-200">Consultation Fee</dt>
+                        <dd className="font-semibold text-white">$190 USD</dd>
+                      </div>
+                      <div className="flex justify-between">
+                        <dt className="text-brand-200">
+                          Payment Processing Fee
+                        </dt>
+                        <dd className="font-semibold text-white">$7 USD</dd>
+                      </div>
+                      <div className="flex justify-between border-t border-white/20 pt-2 mt-2">
+                        <dt className="font-bold text-white">Total</dt>
+                        <dd className="text-2xl font-extrabold text-white">
+                          $197 USD
+                        </dd>
+                      </div>
+                    </dl>
+                    <p className="mt-3 text-xs text-brand-300">
+                      $190 credited toward your $2,000 processing fee if you
+                      proceed → only $1,810 due to complete.
+                    </p>
                   </div>
+
+                  <p className="text-sm text-brand-200 mb-4">
+                    Already watched the masterclass and checked our Q&amp;A?
+                    {" "}
+                    <Link
+                      href="/answers"
+                      className="underline hover:text-white"
+                    >
+                      Browse Q&amp;A
+                    </Link>
+                    {" · "}
+                    <Link
+                      href="#step-1"
+                      className="underline hover:text-white"
+                    >
+                      Watch Masterclass
+                    </Link>
+                  </p>
 
                   <Link
                     href="/book"
                     className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
                   >
-                    <i className="fa-solid fa-video" /> Schedule My Consultation
+                    <i className="fa-solid fa-lock" /> Pay $197 USD — Book My
+                    Consultation
                   </Link>
                 </div>
               </div>
@@ -294,9 +212,9 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* STEP 4: PROCEED */}
+      {/* STEP 3: PROCEED */}
       <section
-        id="step-4"
+        id="step-3"
         className="py-20 lg:py-24 bg-brand-50 border-t border-brand-100 relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -325,7 +243,7 @@ export default function HowItWorks() {
                         <span className="font-bold text-brand-600">$190</span>
                       </div>
                       <p className="text-xs text-accent-500">
-                        Paid upfront for Step 3.
+                        Paid upfront for Step 2.
                       </p>
                     </div>
                   </div>
@@ -373,7 +291,7 @@ export default function HowItWorks() {
 
             <div className="lg:col-span-5 lg:col-start-8">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 text-2xl font-bold mb-6">
-                4
+                3
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
                 Proceed with No Surprises.
@@ -419,17 +337,17 @@ export default function HowItWorks() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-            Ready to take Step 1?
+            Ready to start?
           </h2>
           <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
-            Begin your journey today. Take the 2-minute test and see if you
-            qualify to migrate.
+            Begin with the masterclass and see if New Zealand is the right fit
+            for your family.
           </p>
           <Link
-            href="/eligibility-test"
+            href="#step-1"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
-            Take the Eligibility Test
+            Watch the Masterclass
           </Link>
         </div>
       </section>
