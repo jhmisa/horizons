@@ -97,14 +97,6 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link
-                  href="/eligibility-test"
-                  className="hover:text-brand-400 transition-colors"
-                >
-                  Free Eligibility Test
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/#why-lia"
                   className="hover:text-brand-400 transition-colors"
                 >

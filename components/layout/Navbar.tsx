@@ -112,11 +112,11 @@ export default function Navbar() {
                 Q&amp;A
               </Link>
               <Link
-                href="/eligibility-test"
+                href="/how-it-works"
                 className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-2xl font-semibold transition-all shadow-md text-center"
                 onClick={() => setMobileOpen(false)}
               >
-                Check Eligibility
+                Book Session
               </Link>
             </div>
           </div>
