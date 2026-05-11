@@ -126,7 +126,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
-              Four Simple Steps to Your New Life
+              Three Simple Steps to Your New Life
             </h2>
             <p className="text-lg text-accent-600">
               We&apos;ve streamlined the complex immigration process into a
@@ -140,23 +140,17 @@ export default function Home() {
                 num: 1,
                 icon: "fa-circle-play",
                 title: "Watch",
-                desc: "Start with a short video that explains everything — what it takes to migrate to New Zealand or Australia, how the process works, and why having the right pathway matters.",
+                desc: "Start with our short masterclass that explains everything — what it takes to migrate to New Zealand, how the process works, and why having the right pathway matters.",
               },
               {
                 num: 2,
-                icon: "fa-clipboard-check",
-                title: "Test",
-                desc: "Take our free 2-minute eligibility test. You'll get instant results showing whether you may qualify — and which pathways could work for your situation.",
-              },
-              {
-                num: 3,
                 icon: "fa-calendar-check",
                 title: "Book",
-                desc: "Ready to go deeper? Book a one-on-one consultation with a Licensed Immigration Adviser for $190 USD. They'll study your background and craft a tailored plan.",
+                desc: "Ready to go deeper? Book a one-on-one consultation with a Licensed Immigration Adviser for $197 USD ($190 fee + $7 payment processing). They'll study your background and craft a tailored plan.",
                 iconPrefix: "fa-regular",
               },
               {
-                num: 4,
+                num: 3,
                 icon: "fa-plane-departure",
                 title: "Proceed",
                 desc: "If you decide to move forward with Horizons, your $190 consultation fee is credited toward the $2,000 USD processing fee. No wasted money. No hidden costs.",
@@ -189,7 +183,7 @@ export default function Home() {
               href="/how-it-works"
               className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-10 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              Explore the Full 4-Step Process{" "}
+              Explore the Full 3-Step Process{" "}
               <i className="fa-solid fa-arrow-right ml-2" />
             </Link>
           </div>
@@ -491,7 +485,7 @@ export default function Home() {
 
       {/* FINAL CTA SECTION */}
       <section
-        id="eligibility"
+        id="get-started"
         className="py-24 bg-brand-900 text-center relative overflow-hidden"
       >
         <div
@@ -508,18 +502,17 @@ export default function Home() {
             Your family&apos;s next chapter is waiting.
           </h2>
           <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
-            Take the free eligibility test and find out if New Zealand or
-            Australia could be your new home.
+            Start your journey today. Watch the masterclass and see if New
+            Zealand is the right fit for your family.
           </p>
           <Link
-            href="/eligibility-test"
+            href="/how-it-works#step-1"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
-            Check My Eligibility — Free
+            Watch the Masterclass
           </Link>
           <p className="text-brand-300 text-sm mt-6">
-            <i className="fa-solid fa-lock mr-1" /> 100% Confidential. Results
-            delivered instantly.
+            <i className="fa-solid fa-lock mr-1" /> Free. No signup required.
           </p>
         </div>
       </section>
