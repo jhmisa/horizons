@@ -88,7 +88,7 @@ export default function HowItWorks() {
       {/* STEP 2: BOOK */}
       <section
         id="step-2"
-        className="py-20 lg:py-24 bg-white border-t border-accent-100"
+        className="py-20 lg:py-24 bg-[#FAFAFA] border-t border-accent-100"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
