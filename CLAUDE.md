@@ -102,8 +102,20 @@ SANITY_API_TOKEN=
 - **Processing Fee:** Separate $2,000 Stripe Checkout (triggered after consultation). The $190 is credited, so remaining = $1,810.
 - **CMS Content:** Blog posts, team members, and success stories are managed in Sanity Studio by non-technical team members.
 
+## Content & SEO Workflows
+
+**MUST READ before any work involving Sanity content (Q&A, blog posts, success stories), SEO research, or content publishing tasks: [`SEOStrategy.md`](./SEOStrategy.md).**
+
+That file is the source of truth for:
+- Target audience (Filipinos in PH and OFWs in countries that block long-term residency — Singapore, HK, UAE, Saudi, etc.)
+- Workflows: what to do when given a Q&A transcript, what to do when given a blog idea
+- Channel strategy (Mux primary on-site; YouTube deferred to Phase 3)
+- Sanity schema status, conventions, and project IDs
+- Phasing (Phase 1: populate Q&A backlog; Phase 2: SEO research; Phase 3: YouTube)
+
 ## Reference Files
 
+- `SEOStrategy.md` — SEO + content strategy and Claude workflows for content
 - `PRD.md` — Full product requirements document
 - `index.html` — Original static homepage (design reference)
 - `how-it-works.html` — Original static process page (design reference)

@@ -1,0 +1,96 @@
+import { defineField, defineType } from "sanity";
+
+export const successStory = defineType({
+  name: "successStory",
+  title: "Success story",
+  type: "document",
+  fields: [
+    defineField({
+      name: "clientFirstName",
+      title: "Client first name",
+      type: "string",
+      description:
+        "First name only for privacy. Use 'Anonymous' if the client did not consent to being named.",
+      validation: (rule) => rule.required().max(60),
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "clientFirstName", maxLength: 96 },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "originLocation",
+      title: "Origin location",
+      type: "string",
+      description:
+        "Where the client was based before migrating. e.g. 'Manila, Philippines' or 'OFW in Dubai, UAE'.",
+      validation: (rule) => rule.max(120),
+    }),
+    defineField({
+      name: "visaCategory",
+      title: "Visa category",
+      type: "string",
+      description:
+        "e.g. 'Skilled Migrant Category', 'AEWV', 'Partnership Resident'.",
+      validation: (rule) => rule.max(120),
+    }),
+    defineField({
+      name: "summary",
+      title: "Summary",
+      type: "text",
+      rows: 3,
+      description:
+        "Short pull-quote shown on the listing page. Also used as the meta description.",
+      validation: (rule) => rule.required().max(220),
+    }),
+    defineField({
+      name: "photo",
+      title: "Photo",
+      type: "image",
+      options: { hotspot: true },
+      description: "Optional. Only use with explicit client consent.",
+    }),
+    defineField({
+      name: "story",
+      title: "Story",
+      type: "array",
+      of: [
+        { type: "block" },
+        { type: "image", options: { hotspot: true } },
+      ],
+      description: "Long-form story body. Notion-style editor.",
+    }),
+    defineField({
+      name: "adviser",
+      title: "Adviser",
+      type: "reference",
+      to: [{ type: "lia" }],
+      options: { filter: "archived != true" },
+      description: "The LIA who handled this case.",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "publishedAt",
+      title: "Published at",
+      type: "datetime",
+      description:
+        "Empty = draft. Past date = live. Future date = scheduled.",
+    }),
+  ],
+  preview: {
+    select: {
+      title: "clientFirstName",
+      subtitle: "visaCategory",
+      media: "photo",
+    },
+  },
+  orderings: [
+    {
+      title: "Newest first",
+      name: "publishedAtDesc",
+      by: [{ field: "publishedAt", direction: "desc" }],
+    },
+  ],
+});

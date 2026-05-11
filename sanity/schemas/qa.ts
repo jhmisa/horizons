@@ -35,6 +35,14 @@ export const qa = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "youtubeUrl",
+      title: "YouTube URL",
+      type: "url",
+      description:
+        "Optional. Paste the YouTube link if this Q&A has also been uploaded to YouTube.",
+      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+    }),
+    defineField({
       name: "transcript",
       title: "Transcript",
       type: "text",
