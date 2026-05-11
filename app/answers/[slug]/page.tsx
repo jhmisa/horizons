@@ -58,7 +58,7 @@ export default async function QAPage({
   const thumbnailUrl = `https://image.mux.com/${playbackId}/thumbnail.jpg?width=1200`;
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-12 pb-32 lg:pb-12">
+    <main className="mx-auto max-w-6xl px-6 pt-32 pb-32 lg:pb-12">
       <QAJsonLd
         question={qa.question}
         slug={qa.slug.current}
@@ -72,16 +72,18 @@ export default async function QAPage({
 
       <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
         <div>
-          <QAVideoPlayer
-            playbackId={playbackId}
-            title={qa.question}
-            poster={thumbnailUrl}
-          />
-          <h1 className="mt-8 text-3xl font-bold text-slate-900 sm:text-4xl">
+          <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             {qa.question}
           </h1>
           <div className="mt-6">
             <LIAAttribution lia={qa.lia} />
+          </div>
+          <div className="mt-8">
+            <QAVideoPlayer
+              playbackId={playbackId}
+              title={qa.question}
+              poster={thumbnailUrl}
+            />
           </div>
           {qa.article && qa.article.length > 0 && (
             <QAArticle blocks={qa.article} />

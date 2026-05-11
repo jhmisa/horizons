@@ -16,7 +16,7 @@ export default async function AnswersPage() {
   const qas = await sanityClient.fetch<QACardData[]>(publishedQAsQuery);
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
+    <main className="mx-auto max-w-6xl px-6 pt-32 pb-16">
       <header className="mb-12">
         <h1 className="text-4xl font-bold text-slate-900">
           Immigration questions, answered by licensed advisers
