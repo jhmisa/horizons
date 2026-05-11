@@ -159,13 +159,13 @@ export default function SuccessStoriesPage() {
             Your story could be next.
           </h2>
           <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
-            Take the free eligibility test and start your journey today.
+            Watch our free masterclass and start your journey today.
           </p>
           <Link
-            href="/eligibility-test"
+            href="/how-it-works#step-1"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
-            Check My Eligibility — Free
+            Watch the Masterclass — Free
           </Link>
         </div>
       </section>

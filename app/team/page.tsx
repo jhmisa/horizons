@@ -125,14 +125,14 @@ export default function TeamPage() {
             Ready to work with our team?
           </h2>
           <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
-            Start with the free eligibility test and we&apos;ll match you with
-            the right adviser for your situation.
+            Start with our free masterclass to see how the process works, then
+            we&apos;ll match you with the right adviser for your situation.
           </p>
           <Link
-            href="/eligibility-test"
+            href="/how-it-works#step-1"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
-            Check My Eligibility — Free
+            Watch the Masterclass — Free
           </Link>
         </div>
       </section>
