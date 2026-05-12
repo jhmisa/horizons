@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { sanityClient } from "@/lib/sanity";
 import { publishedQAsQuery } from "@/lib/queries";
 import { QACard } from "@/components/qa/QACard";
+import { SubmitQuestionForm } from "@/components/qa/SubmitQuestionForm";
 import type { QACardData } from "@/types/qa";
 
 export const revalidate = 60;
@@ -26,8 +27,11 @@ export default async function AnswersPage() {
           and Australia.
         </p>
       </header>
+
       {qas.length === 0 ? (
-        <p className="text-slate-600">No Q&As published yet. Check back soon.</p>
+        <p className="text-slate-600">
+          No Q&amp;As published yet. Check back soon.
+        </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {qas.map((qa) => (
@@ -35,6 +39,10 @@ export default async function AnswersPage() {
           ))}
         </div>
       )}
+
+      <section className="mt-20 max-w-2xl mx-auto">
+        <SubmitQuestionForm />
+      </section>
     </main>
   );
 }
