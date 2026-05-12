@@ -108,7 +108,7 @@ export default async function Home() {
               </div>
               <div className="flex flex-col items-center px-4">
                 <i className="fa-solid fa-plane-arrival text-2xl text-brand-400 mb-2" />
-                <span className="font-bold text-white text-lg">850+</span>
+                <span className="font-bold text-white text-lg">6,500+</span>
                 <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
                   Successful Migrations
                 </span>
@@ -299,7 +299,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
-              Trusted by Hundreds of Families Since 2005
+              Trusted by 6,500+ Families Since 2005
             </h2>
             <p className="text-lg text-accent-600 max-w-2xl mx-auto">
               Don&apos;t just take our word for it. Hear directly from the

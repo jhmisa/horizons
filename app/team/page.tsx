@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Our Team | Horizons Immigration",
   description:
-    "Meet the Licensed Immigration Advisers at Horizons who have helped hundreds of families migrate to New Zealand.",
+    "Meet the Licensed Immigration Advisers at Horizons who have helped 6,500+ families migrate to New Zealand.",
 };
 
 const teamMembers = [

@@ -13,7 +13,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Horizons Immigration | Expert Visa Pathways to New Zealand",
   description:
-    "For 20 years, our Licensed Immigration Advisers have guided hundreds of families to New Zealand with honest advice and a clear plan.",
+    "For 20 years, our Licensed Immigration Advisers have guided 6,500+ families to New Zealand with honest advice and a clear plan.",
 };
 
 export default function RootLayout({

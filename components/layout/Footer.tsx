@@ -18,8 +18,8 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-accent-300 mb-8 leading-relaxed">
               For 20 years, our Licensed Immigration Advisers have guided
-              hundreds of families to New Zealand with honest advice and a
-              clear plan.
+              6,500+ families to New Zealand with honest advice and a clear
+              plan.
             </p>
             <div className="flex gap-4">
               <a
