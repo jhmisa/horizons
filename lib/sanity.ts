@@ -1,5 +1,5 @@
 import { createClient } from "@sanity/client";
-import { apiVersion, dataset, projectId } from "../sanity/env";
+import { apiVersion, dataset, projectId, token } from "../sanity/env";
 
 export const sanityClient = createClient({
   projectId,
@@ -7,4 +7,12 @@ export const sanityClient = createClient({
   apiVersion,
   useCdn: true,
   perspective: "published",
+});
+
+export const sanityWriteClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+  token,
 });
