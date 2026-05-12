@@ -1,5 +1,7 @@
 # Horizons Immigration — Product Requirements Document
 
+> **Updated 2026-05-11:** funnel reduced to 3 steps (Watch → Book → Proceed); eligibility test removed; payment switched to Stripe Payment Link with transparent $190 + $7 processing fee = $197 customer total. Body text below preserved as historical record.
+
 ## Overview
 
 Horizons Immigration is a Licensed Immigration Advisory business based in East Auckland, New Zealand. The website serves as the primary client acquisition funnel, guiding prospective immigrants through a transparent 4-step process toward migrating to New Zealand or Australia.
