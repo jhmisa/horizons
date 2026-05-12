@@ -18,7 +18,7 @@ export function StickyBookCTA() {
             href="/book"
             className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-brand-600 px-5 py-2.5 font-semibold text-white shadow hover:bg-brand-800"
           >
-            Book — $190
+            Book — $197
           </Link>
         </div>
       </aside>
@@ -27,7 +27,7 @@ export function StickyBookCTA() {
           href="/book"
           className="flex w-full items-center justify-center rounded-full bg-brand-600 px-5 py-3 font-semibold text-white"
         >
-          Book a Consultation — $190
+          Book a Consultation — $197
         </Link>
       </div>
     </>
