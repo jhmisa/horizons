@@ -20,22 +20,18 @@ Immigration consulting business website built with Next.js. Guides prospective c
 /app
   /page.tsx                     # Homepage
   /how-it-works/page.tsx        # 4-step process detail
-  /eligibility-test/page.tsx    # Interactive quiz
   /book/page.tsx                # Booking + Stripe payment ($190)
   /team/page.tsx                # Team member profiles
   /blog/page.tsx                # Blog listing
   /blog/[slug]/page.tsx         # Individual blog post
   /success-stories/page.tsx     # Client testimonials
-  /api/stripe/checkout/route.ts # Create Stripe Checkout session
-  /api/stripe/webhook/route.ts  # Handle Stripe webhook events
-  /api/eligibility/submit/route.ts # Save to Google Sheets + send email
+  /api/submit-question/route.ts # Receive Q&A submissions, write to Sanity
   /layout.tsx                   # Root layout (nav + footer)
 /components
   /ui/                          # Reusable UI components (Button, Card, Badge, etc.)
   /layout/                      # Nav, Footer, MobileMenu
   /sections/                    # Page-specific section components
 /lib
-  /stripe.ts                    # Stripe client config
   /sheets.ts                    # Google Sheets API helper
   /sanity.ts                    # Sanity client + queries
   /resend.ts                    # Email sending helper
@@ -79,6 +75,7 @@ npm run lint         # Run ESLint
 STRIPE_SECRET_KEY=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_STRIPE_PAYMENT_LINK=
 
 # Google Sheets
 GOOGLE_SERVICE_ACCOUNT_EMAIL=
@@ -97,9 +94,8 @@ SANITY_API_TOKEN=
 
 ## Key Business Logic
 
-- **Eligibility Test:** Multi-step quiz (~2 min). Results saved to Google Sheets + email sent to team via Resend.
-- **Booking:** Client selects 2-3 preferred time slots + pays $190 via Stripe Checkout. Team confirms final time via email.
-- **Processing Fee:** Separate $2,000 Stripe Checkout (triggered after consultation). The $190 is credited, so remaining = $1,810.
+- **Booking:** Client pays $197 USD ($190 consultation fee + $7 payment processing fee) via Stripe Payment Link. Stripe captures email + name + phone. After payment, team emails a short follow-up form to gather situation details and schedule the consultation time.
+- **Processing Fee:** Separate $2,000 USD payment triggered after consultation. The $190 (not the $197) is credited, so the remaining = $1,810.
 - **CMS Content:** Blog posts, team members, and success stories are managed in Sanity Studio by non-technical team members.
 
 ## Content & SEO Workflows
