@@ -2,16 +2,15 @@
 
 ## Project Overview
 
-Immigration consulting business website built with Next.js. Guides prospective clients through a 4-step process (Watch → Test → Book → Proceed) to migrate to New Zealand or Australia.
+Immigration consulting business website built with Next.js. Guides prospective clients through a 3-step process (Watch → Book → Proceed) to migrate to New Zealand or Australia.
 
 ## Tech Stack
 
 - **Framework:** Next.js 14+ (App Router, TypeScript)
 - **Styling:** Tailwind CSS v4
 - **CMS:** Sanity (blog posts, team members, success stories)
-- **Payments:** Stripe (Checkout Sessions + Webhooks)
+- **Payments:** Stripe Payment Link
 - **Email:** Resend (notifications to team + client confirmations)
-- **Data:** Google Sheets API (eligibility test results)
 - **Deployment:** Vercel
 
 ## Project Structure
@@ -19,8 +18,8 @@ Immigration consulting business website built with Next.js. Guides prospective c
 ```
 /app
   /page.tsx                     # Homepage
-  /how-it-works/page.tsx        # 4-step process detail
-  /book/page.tsx                # Booking + Stripe payment ($190)
+  /how-it-works/page.tsx        # 3-step process detail
+  /book/page.tsx                # Booking via Stripe Payment Link ($197 = $190 + $7 fee)
   /team/page.tsx                # Team member profiles
   /blog/page.tsx                # Blog listing
   /blog/[slug]/page.tsx         # Individual blog post
@@ -32,7 +31,6 @@ Immigration consulting business website built with Next.js. Guides prospective c
   /layout/                      # Nav, Footer, MobileMenu
   /sections/                    # Page-specific section components
 /lib
-  /sheets.ts                    # Google Sheets API helper
   /sanity.ts                    # Sanity client + queries
   /resend.ts                    # Email sending helper
 /sanity
@@ -76,11 +74,6 @@ STRIPE_SECRET_KEY=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_STRIPE_PAYMENT_LINK=
-
-# Google Sheets
-GOOGLE_SERVICE_ACCOUNT_EMAIL=
-GOOGLE_PRIVATE_KEY=
-GOOGLE_SHEET_ID=
 
 # Resend
 RESEND_API_KEY=
