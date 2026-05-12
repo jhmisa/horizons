@@ -18,8 +18,8 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-accent-300 mb-8 leading-relaxed">
               For 20 years, our Licensed Immigration Advisers have guided
-              hundreds of families to New Zealand and Australia with honest
-              advice and a clear plan.
+              hundreds of families to New Zealand with honest advice and a
+              clear plan.
             </p>
             <div className="flex gap-4">
               <a
@@ -67,7 +67,7 @@ export default function Footer() {
                   href="/team"
                   className="hover:text-brand-400 transition-colors"
                 >
-                  Meet the Team
+                  Our Team
                 </Link>
               </li>
               <li>
@@ -105,10 +105,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/answers"
                   className="hover:text-brand-400 transition-colors"
                 >
-                  Immigration Blog
+                  Q&amp;A Library
                 </Link>
               </li>
               <li>
@@ -162,15 +162,24 @@ export default function Footer() {
             reserved. Licensed Immigration Advisers.
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link
+              href="/terms-of-service"
+              className="hover:text-white transition-colors"
+            >
               Terms of Service
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link
+              href="/iaa-code-of-conduct"
+              className="hover:text-white transition-colors"
+            >
               IAA Code of Conduct
-            </a>
+            </Link>
           </div>
         </div>
       </div>

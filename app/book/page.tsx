@@ -34,87 +34,94 @@ export default function BookPage() {
         </div>
       </header>
 
-      {/* Value Props */}
+      {/* What's included + Pricing */}
       <section className="py-16 bg-[#FAFAFA]">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-accent text-center mb-10">
-            What&apos;s included
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "fa-magnifying-glass-chart",
-                title: "Profile Assessment",
-                desc: "Your qualifications analyzed against current laws.",
-              },
-              {
-                icon: "fa-map-location-dot",
-                title: "Optimal Pathway",
-                desc: "The route with your highest probability of approval.",
-              },
-              {
-                icon: "fa-comments",
-                title: "Live Q&A",
-                desc: "All your specific questions answered.",
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="bg-white rounded-2xl p-6 shadow-md border border-slate-100 text-center"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto mb-4 text-xl">
-                  <i className={`fa-solid ${feature.icon}`} />
-                </div>
-                <h3 className="font-bold text-accent">{feature.title}</h3>
-                <p className="text-sm text-accent-600 mt-2">{feature.desc}</p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+            {/* Left: What's included */}
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-accent mb-8">
+                What&apos;s included
+              </h2>
+              <div className="space-y-4">
+                {[
+                  {
+                    icon: "fa-file-lines",
+                    title: "Extensive Written Report",
+                    desc: "Your best pathway to New Zealand, documented in detail.",
+                  },
+                  {
+                    icon: "fa-list-check",
+                    title: "Step-by-Step Walkthrough",
+                    desc: "Your LIA explains the report's findings, section by section.",
+                  },
+                  {
+                    icon: "fa-comments",
+                    title: "Live Q&A",
+                    desc: "Time set aside for your specific questions.",
+                  },
+                ].map((feature) => (
+                  <div
+                    key={feature.title}
+                    className="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex gap-4 items-start"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                      <i className={`fa-solid ${feature.icon}`} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-accent">{feature.title}</h3>
+                      <p className="text-sm text-accent-600 mt-1">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* Pricing & Pay */}
-      <section className="py-16 bg-white">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-accent-950 rounded-3xl p-8 md:p-10 shadow-2xl text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/30 rounded-2xl blur-3xl -mr-20 -mt-20" />
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-2">Expert Consultation</h3>
-              <p className="text-brand-200 mb-6">1-Hour Video Call with an LIA</p>
+            {/* Right: Pricing & Pay */}
+            <div className="bg-accent-950 rounded-3xl p-8 md:p-10 shadow-2xl text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/30 rounded-2xl blur-3xl -mr-20 -mt-20" />
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold mb-2">Expert Consultation</h3>
+                <p className="text-brand-200 mb-6">
+                  1-Hour Video Call with an LIA
+                </p>
 
-              <dl className="space-y-3 mb-6 bg-white/10 rounded-xl p-5 backdrop-blur-sm">
-                <div className="flex justify-between text-sm">
-                  <dt className="text-brand-100">Consultation Fee</dt>
-                  <dd className="font-semibold text-white">$190 USD</dd>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <dt className="text-brand-100">Payment Processing Fee</dt>
-                  <dd className="font-semibold text-white">$7 USD</dd>
-                </div>
-                <div className="flex justify-between border-t border-white/20 pt-3 mt-3">
-                  <dt className="font-bold text-white">Total</dt>
-                  <dd className="text-3xl font-extrabold text-white">
-                    $197 USD
-                  </dd>
-                </div>
-              </dl>
+                <dl className="space-y-3 mb-6 bg-white/10 rounded-xl p-5 backdrop-blur-sm">
+                  <div className="flex justify-between text-sm">
+                    <dt className="text-brand-100">Consultation Fee</dt>
+                    <dd className="font-semibold text-white">$190 USD</dd>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <dt className="text-brand-100">Payment Processing Fee</dt>
+                    <dd className="font-semibold text-white">$7 USD</dd>
+                  </div>
+                  <div className="flex justify-between border-t border-white/20 pt-3 mt-3">
+                    <dt className="font-bold text-white">Total</dt>
+                    <dd className="text-3xl font-extrabold text-white">
+                      $197 USD
+                    </dd>
+                  </div>
+                </dl>
 
-              <p className="text-xs text-brand-300 mb-6">
-                <i className="fa-solid fa-check text-green-400 mr-1" /> $190
-                credited toward your $2,000 processing fee if you proceed → only
-                $1,810 due to complete.
-              </p>
+                <p className="text-xs text-brand-300 mb-6">
+                  <i className="fa-solid fa-check text-green-400 mr-1" /> $190
+                  credited toward your $2,000 processing fee if you proceed →
+                  only $1,810 due to complete.
+                </p>
 
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
-              >
-                <i className="fa-solid fa-lock" /> Pay $197 USD — Book My
-                Consultation
-              </a>
-              <p className="text-xs text-brand-300 mt-4 text-center">
-                Secure payment via Stripe.
-              </p>
+                <a
+                  href={STRIPE_PAYMENT_LINK}
+                  className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
+                >
+                  <i className="fa-solid fa-lock" /> Pay $197 USD — Book My
+                  Consultation
+                </a>
+                <p className="text-xs text-brand-300 mt-4 text-center">
+                  Secure payment via Stripe.
+                </p>
+              </div>
             </div>
           </div>
         </div>

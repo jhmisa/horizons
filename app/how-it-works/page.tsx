@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How It Works | 3 Steps to NZ & Australia | Horizons Immigration",
+  title: "How It Works | 3 Steps to New Zealand | Horizons Immigration",
   description:
-    "Follow our transparent, proven 3-step path to secure your family's future in New Zealand or Australia.",
+    "Follow our transparent, proven 3-step path to secure your family's future in New Zealand.",
 };
 
 export default function HowItWorks() {
@@ -21,7 +21,7 @@ export default function HowItWorks() {
         />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-block py-1 px-3 rounded-2xl bg-brand-500/20 text-brand-100 border border-brand-400/30 text-sm font-semibold tracking-wide mb-6 fade-in-up">
-            YOUR ROADMAP TO DOWN UNDER
+            YOUR ROADMAP TO NEW ZEALAND
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 fade-in-up delay-100">
             Three Simple Steps to <br className="hidden md:block" /> Your New
@@ -30,7 +30,7 @@ export default function HowItWorks() {
           <p className="text-xl text-brand-100 max-w-2xl mx-auto fade-in-up delay-200">
             We&apos;ve taken the stress and confusion out of immigration. Follow
             this transparent, proven path to secure your family&apos;s future in
-            New Zealand or Australia.
+            New Zealand.
           </p>
         </div>
       </header>
@@ -47,12 +47,12 @@ export default function HowItWorks() {
                 Start with the Masterclass.
               </h2>
               <p className="text-lg text-accent-600 mb-6 leading-relaxed">
-                We believe your family deserves clarity before making such a big decision. In this short, straightforward masterclass, you&apos;ll learn what it truly takes to migrate to New Zealand or Australia, how the visa system actually works, and why choosing the right pathway from the start can shape your long-term success.
+                We believe your family deserves clarity before making such a big decision. In this short, straightforward masterclass, you&apos;ll learn what it truly takes to migrate to New Zealand, how the visa system actually works, and why choosing the right pathway from the start can shape your long-term success.
               </p>
               <ul className="space-y-4 text-accent-600 font-medium mb-8">
                 <li className="flex items-start gap-3">
                   <i className="fa-solid fa-check text-green-500 mt-1" />{" "}
-                  The current immigration landscape in New Zealand &amp; Australia
+                  The current immigration landscape in New Zealand
                 </li>
                 <li className="flex items-start gap-3">
                   <i className="fa-solid fa-check text-green-500 mt-1" /> The
@@ -313,7 +313,7 @@ export default function HowItWorks() {
                 </li>
                 <li className="flex items-start gap-3">
                   <i className="fa-solid fa-shield text-brand-500 mt-1" />{" "}
-                  Direct liaison with Immigration NZ/Australia
+                  Direct liaison with Immigration NZ
                 </li>
                 <li className="flex items-start gap-3">
                   <i className="fa-solid fa-shield text-brand-500 mt-1" />{" "}

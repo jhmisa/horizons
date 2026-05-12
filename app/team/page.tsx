@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Our Team | Horizons Immigration",
   description:
-    "Meet the Licensed Immigration Advisers at Horizons who have helped hundreds of families migrate to New Zealand and Australia.",
+    "Meet the Licensed Immigration Advisers at Horizons who have helped hundreds of families migrate to New Zealand.",
 };
 
 const teamMembers = [
@@ -21,13 +21,6 @@ const teamMembers = [
     image:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     bio: "Sarah specializes in Skilled Migrant and Work to Residence visas. Having migrated to NZ herself, she understands the journey firsthand and has helped over 200 families make the move.",
-  },
-  {
-    name: "James Okonkwo",
-    role: "Immigration Adviser — Australia",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    bio: "James brings 12 years of expertise in Australian immigration pathways. He's passionate about helping skilled professionals and families navigate the complexities of Australian visa categories.",
   },
   {
     name: "Priya Sharma",

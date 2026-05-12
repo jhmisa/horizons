@@ -1,85 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { sanityClient } from "@/lib/sanity";
+import { urlFor } from "@/lib/image";
+import { publishedSuccessStoriesQuery } from "@/lib/queries";
+import { GoogleReviewsStrip } from "@/components/reviews/GoogleReviewsStrip";
+import type { SuccessStoryCard } from "@/types/successStory";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Success Stories | Horizons Immigration",
   description:
-    "Hear from families who successfully migrated to New Zealand and Australia with Horizons Immigration.",
+    "Hear from families who successfully migrated to New Zealand with Horizons Immigration.",
 };
 
-const stories = [
-  {
-    name: "The Smith Family",
-    origin: "South Africa",
-    destination: "Auckland, New Zealand",
-    category: "Skilled Migrant Category",
-    image:
-      "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "Horizons made what felt impossible feel completely manageable. David and his team were with us every step of the way.",
-    hasVideo: true,
-  },
-  {
-    name: "Sarah M.",
-    origin: "United Kingdom",
-    destination: "Wellington, New Zealand",
-    category: "Work to Residence Visa",
-    image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "Horizons made the complex simple. I was overwhelmed by the process until I found them. Now I'm living my dream in Wellington.",
-    hasVideo: true,
-  },
-  {
-    name: "The Chen Family",
-    origin: "China",
-    destination: "Christchurch, New Zealand",
-    category: "Partner Sponsorship",
-    image:
-      "https://images.unsplash.com/photo-1543269664-56d74c65a6c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "We couldn't have done it without them. The attention to detail and genuine care for our family was extraordinary.",
-    hasVideo: true,
-  },
-  {
-    name: "The Okafor Family",
-    origin: "Nigeria",
-    destination: "Sydney, Australia",
-    category: "Skilled Worker Visa",
-    image:
-      "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "James understood exactly what we needed and guided us through the Australian immigration process flawlessly. Our children love their new school.",
-    hasVideo: false,
-  },
-  {
-    name: "Raj & Meena Patel",
-    origin: "India",
-    destination: "Auckland, New Zealand",
-    category: "Skilled Migrant Category",
-    image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "After two failed attempts with other agents, Horizons got it right the first time. Their expertise is unmatched. We're so grateful.",
-    hasVideo: false,
-  },
-  {
-    name: "The Van der Berg Family",
-    origin: "South Africa",
-    destination: "Melbourne, Australia",
-    category: "Employer Sponsored Visa",
-    image:
-      "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    quote:
-      "From our first consultation to receiving the visa, Horizons was transparent about timelines, costs, and what to expect. No surprises.",
-    hasVideo: false,
-  },
-];
+export default async function SuccessStoriesPage() {
+  const stories = await sanityClient.fetch<SuccessStoryCard[]>(
+    publishedSuccessStoriesQuery
+  );
 
-export default function SuccessStoriesPage() {
   return (
     <>
-      {/* Page Header */}
       <header className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-brand-900 text-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"
@@ -102,50 +44,94 @@ export default function SuccessStoriesPage() {
         </div>
       </header>
 
-      {/* Stories Grid */}
+      <GoogleReviewsStrip
+        heading="What clients say on Google"
+        subheading="Quick public reviews. Scroll past for in-depth case studies below."
+      />
+
       <section className="py-20 bg-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {stories.map((story) => (
-              <div
-                key={story.name}
-                className="bg-white rounded-2xl shadow-md border border-accent-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="aspect-video bg-accent-100 relative cursor-pointer">
-                  <img
-                    src={story.image}
-                    alt={story.name}
-                    className="w-full h-full object-cover"
-                  />
-                  {story.hasVideo && (
-                    <div className="absolute inset-0 bg-slate-900/30 flex items-center justify-center group-hover:bg-slate-900/10 transition-colors">
-                      <i className="fa-brands fa-youtube text-5xl text-red-600 opacity-90 group-hover:scale-110 transition-transform" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">
-                      {story.category}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-accent mb-1">
-                    {story.name}
-                  </h3>
-                  <p className="text-sm text-accent-500 mb-4">
-                    {story.origin} → {story.destination}
-                  </p>
-                  <blockquote className="text-accent-600 text-sm leading-relaxed italic border-l-4 border-brand-200 pl-4">
-                    &ldquo;{story.quote}&rdquo;
-                  </blockquote>
-                </div>
-              </div>
-            ))}
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-accent">
+              In-depth case studies
+            </h2>
+            <p className="mt-2 text-sm text-accent-600">
+              Full journeys from first consultation to visa approval.
+            </p>
           </div>
+
+          {stories.length === 0 ? (
+            <p className="text-center text-accent-600">
+              Stories coming soon. Check back shortly.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {stories.map((story) => {
+                const photoUrl = story.photo
+                  ? urlFor(story.photo).width(800).height(450).fit("crop").url()
+                  : null;
+                const hasVideo = Boolean(story.youtubeUrl);
+
+                return (
+                  <article
+                    key={story._id}
+                    className="bg-white rounded-2xl shadow-md border border-accent-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                  >
+                    <a
+                      href={story.youtubeUrl || undefined}
+                      target={story.youtubeUrl ? "_blank" : undefined}
+                      rel={story.youtubeUrl ? "noopener noreferrer" : undefined}
+                      className={`aspect-video bg-gradient-to-br from-brand-100 to-brand-50 relative block ${
+                        story.youtubeUrl ? "cursor-pointer" : ""
+                      }`}
+                    >
+                      {photoUrl ? (
+                        <Image
+                          src={photoUrl}
+                          alt={story.clientFirstName}
+                          width={800}
+                          height={450}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-brand-300">
+                          <i className="fa-solid fa-users text-5xl" />
+                        </div>
+                      )}
+                      {hasVideo && (
+                        <div className="absolute inset-0 bg-slate-900/30 flex items-center justify-center group-hover:bg-slate-900/10 transition-colors">
+                          <i className="fa-brands fa-youtube text-5xl text-red-600 opacity-90 group-hover:scale-110 transition-transform" />
+                        </div>
+                      )}
+                    </a>
+                    <div className="p-6 flex-1 flex flex-col">
+                      {story.visaCategory && (
+                        <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-3">
+                          {story.visaCategory}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-bold text-accent mb-1">
+                        {story.clientFirstName}
+                      </h3>
+                      {(story.originLocation || story.destination) && (
+                        <p className="text-sm text-accent-500 mb-4">
+                          {story.originLocation}
+                          {story.originLocation && story.destination && " → "}
+                          {story.destination}
+                        </p>
+                      )}
+                      <blockquote className="text-accent-600 text-sm leading-relaxed italic border-l-4 border-brand-200 pl-4">
+                        &ldquo;{story.summary}&rdquo;
+                      </blockquote>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24 bg-brand-900 text-center relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"

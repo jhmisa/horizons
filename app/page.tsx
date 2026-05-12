@@ -1,7 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
+import { sanityClient } from "@/lib/sanity";
+import { urlFor } from "@/lib/image";
+import { homepageBlogCardsQuery } from "@/lib/queries";
+import { GoogleReviewsStrip } from "@/components/reviews/GoogleReviewsStrip";
+import type { PostCard } from "@/types/post";
 
-export default function Home() {
+export const revalidate = 60;
+
+const dateFormatter = new Intl.DateTimeFormat("en-NZ", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+export default async function Home() {
+  const homepagePosts = await sanityClient.fetch<PostCard[]>(
+    homepageBlogCardsQuery
+  );
+
   return (
     <>
       {/* HERO SECTION */}
@@ -244,7 +261,7 @@ export default function Home() {
                     Choosing the right visa pathway isn&apos;t paperwork. It&apos;s positioning. It&apos;s timing. It&apos;s knowing which options strengthen your case — and which ones put it at risk.
                   </p>
                   <p className="text-white font-semibold">
-                    In New Zealand and Australia, only a Licensed Immigration Adviser can legally provide that level of advice.
+                    In New Zealand, only a Licensed Immigration Adviser can legally provide that level of advice.
                   </p>
                   <p>
                     At Horizons, every consultation is with an LIA. We assess your qualifications, experience, family circumstances, and long-term goals — then build a strategy designed for approval, not guesswork.
@@ -388,6 +405,8 @@ export default function Home() {
         </div>
       </section>
 
+      <GoogleReviewsStrip />
+
       {/* BLOG PREVIEW SECTION */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -410,66 +429,74 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                img: "https://images.unsplash.com/photo-1490642914619-7955a3fd483c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "New Zealand landscape",
-                category: "Eligibility",
-                title: "Am I Eligible to Migrate to New Zealand?",
-                excerpt:
-                  "Understanding the points system, skill shortages, and age requirements. A complete breakdown of current NZ visa criteria.",
-              },
-              {
-                img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "Sydney Opera House",
-                category: "Comparison",
-                title: "NZ vs Australia: Which Is Right for Your Family?",
-                excerpt:
-                  "Comparing cost of living, healthcare, education systems, and work-life balance between the two Down Under destinations.",
-              },
-              {
-                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "Consultation desk",
-                category: "Process",
-                title:
-                  "What Does a Licensed Immigration Adviser Actually Do?",
-                excerpt:
-                  "Behind the scenes of an LIA's role. Why their regulatory status protects you and dramatically increases your chance of success.",
-              },
-            ].map((post, idx) => (
-              <article
-                key={idx}
-                className="bg-white rounded-2xl shadow-sm border border-accent-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
-              >
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={post.img}
-                    alt={post.alt}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2">
-                    {post.category}
-                  </div>
-                  <h3 className="text-xl font-bold text-accent mb-3 leading-snug hover:text-brand-600 transition-colors cursor-pointer">
-                    {post.title}
-                  </h3>
-                  <p className="text-accent-600 text-sm mb-6 flex-1">
-                    {post.excerpt}
-                  </p>
+          {homepagePosts.length === 0 ? (
+            <p className="text-center text-accent-600">
+              Articles coming soon.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {homepagePosts.map((post) => {
+                const imageUrl = post.heroImage
+                  ? urlFor(post.heroImage)
+                      .width(800)
+                      .height(450)
+                      .fit("crop")
+                      .url()
+                  : null;
+                const dateLabel = dateFormatter.format(
+                  new Date(post.publishedAt)
+                );
+
+                return (
                   <Link
-                    href="/blog"
-                    className="font-semibold text-accent text-sm flex items-center gap-2 hover:text-brand-600 transition-colors group"
+                    key={post._id}
+                    href={`/blog/${post.slug.current}`}
+                    className="group bg-white rounded-2xl shadow-sm border border-accent-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
                   >
-                    Read Article{" "}
-                    <i className="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform" />
+                    <div className="h-48 overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50">
+                      {imageUrl ? (
+                        <Image
+                          src={imageUrl}
+                          alt={post.title}
+                          width={800}
+                          height={450}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-brand-300">
+                          <i className="fa-solid fa-newspaper text-5xl" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex items-center justify-between mb-2">
+                        {post.category && (
+                          <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">
+                            {post.category}
+                          </span>
+                        )}
+                        <span className="text-xs text-accent-400 ml-auto">
+                          {dateLabel}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-accent mb-3 leading-snug group-hover:text-brand-600 transition-colors">
+                        {post.title}
+                      </h3>
+                      {post.excerpt && (
+                        <p className="text-accent-600 text-sm mb-6 flex-1">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      <span className="font-semibold text-accent text-sm flex items-center gap-2 group-hover:text-brand-600 transition-colors">
+                        Read Article
+                        <i className="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
                   </Link>
-                </div>
-              </article>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          )}
 
           <div className="mt-8 text-center md:hidden">
             <Link

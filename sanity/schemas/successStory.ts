@@ -29,6 +29,14 @@ export const successStory = defineType({
       validation: (rule) => rule.max(120),
     }),
     defineField({
+      name: "destination",
+      title: "Destination",
+      type: "string",
+      description:
+        "Where they ended up in New Zealand. e.g. 'Auckland, New Zealand'.",
+      validation: (rule) => rule.max(120),
+    }),
+    defineField({
       name: "visaCategory",
       title: "Visa category",
       type: "string",
@@ -68,8 +76,16 @@ export const successStory = defineType({
       type: "reference",
       to: [{ type: "lia" }],
       options: { filter: "archived != true" },
-      description: "The LIA who handled this case.",
-      validation: (rule) => rule.required(),
+      description:
+        "Optional. The LIA who handled this case. Leave blank to keep attribution at the brand level.",
+    }),
+    defineField({
+      name: "youtubeUrl",
+      title: "YouTube URL",
+      type: "url",
+      description:
+        "Optional. If set, the card overlays a play icon and links to the YouTube video.",
+      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
     }),
     defineField({
       name: "publishedAt",

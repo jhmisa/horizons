@@ -28,6 +28,23 @@ export const post = defineType({
       validation: (rule) => rule.max(220),
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      description:
+        "Shown as a tag on the card. Pick the closest match.",
+      options: {
+        list: [
+          { title: "Eligibility", value: "Eligibility" },
+          { title: "Process", value: "Process" },
+          { title: "Policy Update", value: "Policy Update" },
+          { title: "Lifestyle", value: "Lifestyle" },
+          { title: "Tips", value: "Tips" },
+          { title: "Comparison", value: "Comparison" },
+        ],
+      },
+    }),
+    defineField({
       name: "heroImage",
       title: "Hero image",
       type: "image",
@@ -39,7 +56,8 @@ export const post = defineType({
       type: "reference",
       to: [{ type: "lia" }],
       options: { filter: "archived != true" },
-      validation: (rule) => rule.required(),
+      description:
+        "Optional. Leave blank to byline as 'Horizons Immigration'.",
     }),
     defineField({
       name: "publishedAt",

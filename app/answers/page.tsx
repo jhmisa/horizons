@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Immigration Questions, Answered | Horizons Immigration",
   description:
-    "Watch short videos from our licensed immigration advisers answering common questions about migrating to New Zealand and Australia.",
+    "Watch short videos from our licensed immigration advisers answering common questions about migrating to New Zealand.",
 };
 
 export default async function AnswersPage() {
@@ -23,8 +23,7 @@ export default async function AnswersPage() {
           Immigration questions, answered by licensed advisers
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-slate-600">
-          Short videos from our team on common visa questions for New Zealand
-          and Australia.
+          Short videos from our team on common visa questions for New Zealand.
         </p>
       </header>
 
