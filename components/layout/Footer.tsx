@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -9,12 +10,16 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link
               href="/"
-              className="flex items-center gap-2 mb-6 cursor-pointer group"
+              className="inline-flex items-center mb-6 cursor-pointer group"
+              aria-label="Horizons Immigration Consulting home"
             >
-              <i className="fa-solid fa-earth-oceania text-brand-500 text-3xl group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-2xl tracking-tight text-white group-hover:text-brand-100 transition-colors">
-                Horizons<span className="text-brand-500">.</span>
-              </span>
+              <Image
+                src="/images/horizons-logo-white-154x42.png"
+                alt="Horizons Immigration Consulting"
+                width={154}
+                height={42}
+                className="h-10 w-auto transition-transform group-hover:scale-[1.03]"
+              />
             </Link>
             <p className="text-sm text-accent-300 mb-8 leading-relaxed">
               For 20 years, our Licensed Immigration Advisers have guided

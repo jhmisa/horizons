@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,12 +13,17 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <Link
             href="/"
-            className="flex-shrink-0 flex items-center gap-2 cursor-pointer group"
+            className="flex-shrink-0 flex items-center cursor-pointer group"
+            aria-label="Horizons home"
           >
-            <i className="fa-solid fa-earth-oceania text-brand-600 text-3xl group-hover:scale-110 transition-transform" />
-            <span className="font-bold text-2xl tracking-tight text-accent group-hover:text-brand-600 transition-colors">
-              Horizons<span className="text-brand-600">.</span>
-            </span>
+            <Image
+              src="/images/horizons-logo-blue-154x45.png"
+              alt="Horizons"
+              width={154}
+              height={45}
+              priority
+              className="h-10 w-auto sm:h-12 transition-transform group-hover:scale-[1.03]"
+            />
           </Link>
 
           {/* Desktop nav */}
