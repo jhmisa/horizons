@@ -1,6 +1,6 @@
 {
   "name": "horizons-next",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
@@ -35,7 +35,9 @@
     "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "googleapis": "^144.0.0",
     "jsdom": "^25.0.1",
+    "open": "^10.2.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^2.1.9"

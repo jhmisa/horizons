@@ -38,3 +38,8 @@ next-env.d.ts
 
 # Higgsfield character reference library (account-scoped UUIDs, machine-specific)
 .character-refs.json
+
+# YouTube Data API OAuth credentials (never commit)
+.youtube-credentials/
+client_secret*.json
+Client ID*.json
