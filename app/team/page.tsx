@@ -11,6 +11,7 @@ type LIA = {
   name: string;
   licence: string;
   image: string;
+  objectPosition?: string;
 };
 
 type SupportMember = {
@@ -51,6 +52,7 @@ const advisers: LIA[] = [
     name: "Tonet Cruz Jang",
     licence: "201601367",
     image: "/images/Team/tonet-cruz-jang.webp",
+    objectPosition: "50% 35%",
   },
   {
     name: "Trinity Lee",
@@ -172,7 +174,8 @@ export default function TeamPage() {
                   <img
                     src={member.image}
                     alt={`${member.name} — Licensed Immigration Adviser`}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    style={{ objectPosition: member.objectPosition ?? "50% 0%" }}
                   />
                 </div>
                 <div className="p-6">

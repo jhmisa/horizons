@@ -76,10 +76,10 @@ export default function TermsOfServicePage() {
             <p>
               Questions about these Terms of Service can be sent to{" "}
               <a
-                href="mailto:info@horizonsmigration.com"
+                href="mailto:hello@horizons.nz"
                 className="text-brand-600"
               >
-                info@horizonsmigration.com
+                hello@horizons.nz
               </a>
               .
             </p>

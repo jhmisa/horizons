@@ -141,10 +141,10 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope text-brand-500" />
                 <a
-                  href="mailto:info@horizonsmigration.com"
+                  href="mailto:hello@horizons.nz"
                   className="hover:text-brand-400 transition-colors"
                 >
-                  info@horizonsmigration.com
+                  hello@horizons.nz
                 </a>
               </li>
               <li className="flex items-center gap-3">
