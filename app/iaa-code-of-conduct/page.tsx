@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "IAA Code of Conduct | Horizons Immigration",
   description:
     "Horizons Immigration is bound by the Immigration Advisers Authority (IAA) Code of Conduct.",
+  alternates: { canonical: "/iaa-code-of-conduct" },
 };
 
 export default function IAACodeOfConductPage() {

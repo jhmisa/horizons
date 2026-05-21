@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Immigration Questions, Answered | Horizons Immigration",
   description:
     "Watch short videos from our licensed immigration advisers answering common questions about migrating to New Zealand.",
+  alternates: { canonical: "/answers" },
 };
 
 export default async function AnswersPage() {

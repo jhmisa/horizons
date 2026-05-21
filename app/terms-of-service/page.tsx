@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | Horizons Immigration",
   description:
     "The terms that govern your use of the Horizons Immigration website and consultancy services.",
+  alternates: { canonical: "/terms-of-service" },
 };
 
 export default function TermsOfServicePage() {

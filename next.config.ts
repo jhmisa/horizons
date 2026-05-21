@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "i.ytimg.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "horizons.nz" }],
+        destination: "https://www.horizons.nz/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

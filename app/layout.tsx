@@ -10,10 +10,17 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Horizons Immigration | Expert Visa Pathways to New Zealand",
   description:
     "For 20 years, our Licensed Immigration Advisers have guided 6,500+ families to New Zealand with honest advice and a clear plan.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/images/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },

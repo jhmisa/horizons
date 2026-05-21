@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Horizons Immigration",
   description:
     "How Horizons Immigration collects, uses, and protects your personal information.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

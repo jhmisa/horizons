@@ -22,7 +22,7 @@ import type { QA } from "@/types/qa";
 export const revalidate = 60;
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://horizonsimmigration.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
 
 export async function generateStaticParams() {
   const slugs = await sanityClient.fetch<string[]>(publishedQASlugsQuery);
@@ -42,6 +42,7 @@ export async function generateMetadata({
   return {
     title: `${qa.question} | Horizons Immigration`,
     description: qa.transcript?.slice(0, 160) || `Answered by ${qa.lia.name}.`,
+    alternates: { canonical: `/answers/${slug}` },
     openGraph: {
       title: qa.question,
       description: qa.transcript?.slice(0, 160) || `Answered by ${qa.lia.name}.`,

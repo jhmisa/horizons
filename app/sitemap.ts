@@ -3,7 +3,7 @@ import { sanityClient } from "@/lib/sanity";
 import { groq } from "next-sanity";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://horizonsimmigration.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
 
 const sitemapQuery = groq`
   *[_type == "qa" && defined(publishedAt) && publishedAt <= now()] {

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Success Stories | Horizons Immigration",
   description:
     "Hear from families who successfully migrated to New Zealand with Horizons Immigration.",
+  alternates: { canonical: "/success-stories" },
 };
 
 export default async function SuccessStoriesPage() {

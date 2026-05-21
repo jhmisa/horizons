@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Immigration Blog | Horizons Immigration",
   description:
     "Expert advice, policy updates, and practical tips to navigate your migration journey to New Zealand.",
+  alternates: { canonical: "/blog" },
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en-NZ", {

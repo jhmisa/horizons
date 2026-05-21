@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Our Team | Horizons Immigration",
   description:
     "Meet the Licensed Immigration Advisers and support team at Horizons Immigration NZ — IAA-licensed advisers who have helped 6,500+ families migrate to New Zealand.",
+  alternates: { canonical: "/team" },
 };
 
 type LIA = {
