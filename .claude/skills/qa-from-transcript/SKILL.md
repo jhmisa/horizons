@@ -36,7 +36,9 @@ Create a JSON payload at `tmp/qa-draft-<slug>.json` (create `tmp/` if missing; i
 
 Then run: `node scripts/create-qa-draft.mjs tmp/qa-draft-<slug>.json`
 
-The script creates a draft document in Sanity and prints the Studio URL. Tell Joey to review and publish from Studio.
+The script creates a **published** Q&A document by default (the script name retains the older "-draft" suffix for backwards compatibility, but the default is now publish-on-create). The Q&A goes live on the site at `/answers/<slug>` within ~60 seconds (ISR cache). The script prints the live URL and the Studio URL.
+
+If for some reason Joey wants to create a draft for manual review instead, add `"publish": false` to the JSON payload — but the default (publish immediately) is what Joey wants for normal Q&A work.
 
 ### 2. YouTube metadata bundle
 
@@ -143,15 +145,15 @@ Rules:
 ## Defaults
 
 - **LIA:** Rowel Mercado (`ab1d6c56-999e-4e5e-985e-cde4bb14416e`) unless Joey specifies otherwise.
-- **publishedAt:** Leave empty. Joey publishes from Studio after review. Never publish directly from this skill.
+- **publishedAt:** Don't set in JSON — the script defaults to "now" when publishing. The Q&A goes live on the site immediately. (Joey trusts this skill to ship without a review step; see memory `feedback_qa_auto_publish.md`.)
 - **Domain:** `horizons.nz` — for all user-facing links in descriptions and articles.
 
 ## Verification
 
 Before reporting done:
 
-1. Confirm the script printed a valid `drafts.*` `_id` for the Sanity Q&A.
+1. Confirm the script printed a valid `_id` for the Sanity Q&A (no `drafts.` prefix, since publish-on-create is the default).
 2. Confirm the question, slug, youtubeUrl, transcript, and article fields are all present in the JSON.
 3. Confirm the article begins with a direct answer in the first 1-2 sentences.
-4. Print the Studio URL the script returned so Joey can open it in one click.
+4. Print the **live URL** (`https://horizons.nz/answers/<slug>`) the script returned so Joey can open it in one click after the ~60s ISR cache refresh.
 5. If YouTube push was approved: run `node scripts/youtube-update.mjs <videoId> --show` and confirm title, tags, and description start match what was pushed.

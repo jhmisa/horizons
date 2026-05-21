@@ -1,6 +1,13 @@
 #!/usr/bin/env node
 /**
- * Create a draft `qa` document in Sanity from a JSON payload.
+ * Create a published `qa` document in Sanity from a JSON payload.
+ *
+ * Default behavior: publishes immediately with `publishedAt` set to "now" so
+ * the Q&A goes live on the site. Pass `"publish": false` in the JSON payload
+ * to create as a draft for manual review in Studio instead.
+ *
+ * (The script name retains "-draft" for backwards compatibility with the
+ * earlier convention; the default behavior is now publish-on-create.)
  *
  * Usage: node scripts/create-qa-draft.mjs path/to/qa.json
  *
@@ -12,7 +19,8 @@
  *   "transcript": "Raw transcript text...",
  *   "article": [ ...PortableText blocks ], // optional
  *   "liaId": "ab1d6c56-999e-4e5e-985e-cde4bb14416e",
- *   "publishedAt": "2026-05-21T00:00:00Z"  // optional; empty = draft
+ *   "publishedAt": "2026-05-21T00:00:00Z", // optional; defaults to now if publishing
+ *   "publish": true                        // optional; default true. false = create as draft
  * }
  */
 import { createClient } from "@sanity/client";
@@ -44,6 +52,8 @@ if (!payload.question) throw new Error("Missing required field: question");
 if (!payload.youtubeUrl) throw new Error("Missing required field: youtubeUrl");
 if (!payload.liaId) throw new Error("Missing required field: liaId");
 
+const publish = payload.publish !== false;
+
 const slug =
   payload.slug ||
   payload.question
@@ -60,8 +70,9 @@ const client = createClient({
   useCdn: false,
 });
 
+const id = randomUUID();
 const doc = {
-  _id: `drafts.${randomUUID()}`,
+  _id: publish ? id : `drafts.${id}`,
   _type: "qa",
   question: payload.question,
   slug: { _type: "slug", current: slug },
@@ -69,13 +80,17 @@ const doc = {
   youtubeUrl: payload.youtubeUrl,
   transcript: payload.transcript,
   article: payload.article,
-  publishedAt: payload.publishedAt,
+  publishedAt: payload.publishedAt || (publish ? new Date().toISOString() : undefined),
 };
 
 const result = await client.create(doc);
-console.log(`Created draft qa document:`);
+console.log(`Created ${publish ? "published" : "draft"} qa document:`);
 console.log(`  _id: ${result._id}`);
 console.log(`  slug: ${result.slug.current}`);
+console.log(`  publishedAt: ${result.publishedAt || "(not set)"}`);
 console.log(
   `  Open in Studio: https://www.sanity.io/@ogeyySxqI/studio/au38jvffmsguvwbhyehqn93a/horizons-studio/structure/qa;${result._id}`
 );
+if (publish) {
+  console.log(`  Live URL (after ~60s ISR): https://horizons.nz/answers/${result.slug.current}`);
+}
