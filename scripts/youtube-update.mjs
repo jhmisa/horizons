@@ -12,7 +12,9 @@
  *   --description "Inline description"
  *   --description-file path/to/desc.md   (overrides --description)
  *   --tags "tag one,tag two,tag three"   (comma-separated)
- *   --category-id 27                     (default: keep current)
+ *   --category-id 27                     (default: keep current; 26 = Howto & Style, 27 = Education)
+ *   --privacy-status public              (one of: public, unlisted, private)
+ *   --embeddable true                    (allow embedding on other sites; one of: true, false)
  *   --thumbnail path/to/image.jpg        (sets custom thumbnail; JPG/PNG, <2MB)
  *   --dry-run                            (fetch + show diff but don't write)
  *   --show                               (just print current metadata and exit)
@@ -85,10 +87,13 @@ if (!video) {
 }
 
 const current = video.snippet;
+const currentStatus = video.status;
 console.log(`\nCurrent metadata for ${videoId}:`);
 console.log(`  Title:       ${current.title}`);
 console.log(`  Channel:     ${current.channelTitle}`);
 console.log(`  Category ID: ${current.categoryId}`);
+console.log(`  Privacy:     ${currentStatus?.privacyStatus ?? "(unknown)"}`);
+console.log(`  Embeddable:  ${currentStatus?.embeddable ?? "(unknown)"}`);
 console.log(`  Tags:        ${(current.tags || []).join(", ") || "(none)"}`);
 console.log(`  Description: ${(current.description || "").slice(0, 80)}${
   (current.description || "").length > 80 ? "..." : ""
@@ -114,13 +119,43 @@ if (args.flags.tags) {
 
 if (args.flags["category-id"]) newSnippet.categoryId = args.flags["category-id"];
 
+const allowedPrivacy = new Set(["public", "unlisted", "private"]);
+if (
+  args.flags["privacy-status"] &&
+  !allowedPrivacy.has(args.flags["privacy-status"])
+) {
+  console.error(
+    `--privacy-status must be one of: public, unlisted, private. Got: ${args.flags["privacy-status"]}`
+  );
+  process.exit(1);
+}
+
+const allowedEmbeddable = new Set(["true", "false"]);
+if (
+  args.flags["embeddable"] !== undefined &&
+  !allowedEmbeddable.has(args.flags["embeddable"])
+) {
+  console.error(
+    `--embeddable must be one of: true, false. Got: ${args.flags["embeddable"]}`
+  );
+  process.exit(1);
+}
+
 const changed = Object.keys(args.flags).filter((k) =>
-  ["title", "description", "description-file", "tags", "category-id"].includes(k)
+  [
+    "title",
+    "description",
+    "description-file",
+    "tags",
+    "category-id",
+    "privacy-status",
+    "embeddable",
+  ].includes(k)
 );
 const willUpload = Boolean(args.flags.thumbnail);
 
 if (changed.length === 0 && !willUpload) {
-  console.log(`\nNo changes requested. Use --title / --description / --tags / --thumbnail / --show.`);
+  console.log(`\nNo changes requested. Use --title / --description / --tags / --category-id / --privacy-status / --embeddable / --thumbnail / --show.`);
   process.exit(0);
 }
 
@@ -134,9 +169,31 @@ if (args.bools.has("dry-run")) {
 }
 
 if (changed.length > 0) {
+  const partsToUpdate = [];
+  const updateBody = { id: videoId };
+
+  const snippetChanged = changed.some((k) =>
+    ["title", "description", "description-file", "tags", "category-id"].includes(k)
+  );
+  if (snippetChanged) {
+    partsToUpdate.push("snippet");
+    updateBody.snippet = newSnippet;
+  }
+
+  if (args.flags["privacy-status"] || args.flags["embeddable"] !== undefined) {
+    partsToUpdate.push("status");
+    updateBody.status = {};
+    if (args.flags["privacy-status"]) {
+      updateBody.status.privacyStatus = args.flags["privacy-status"];
+    }
+    if (args.flags["embeddable"] !== undefined) {
+      updateBody.status.embeddable = args.flags["embeddable"] === "true";
+    }
+  }
+
   await youtube.videos.update({
-    part: ["snippet"],
-    requestBody: { id: videoId, snippet: newSnippet },
+    part: partsToUpdate,
+    requestBody: updateBody,
   });
   console.log(`Metadata updated.`);
 }

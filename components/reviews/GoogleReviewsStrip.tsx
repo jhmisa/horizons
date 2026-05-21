@@ -2,6 +2,7 @@ import { sanityClient } from "@/lib/sanity";
 import { featuredGoogleReviewsQuery } from "@/lib/queries";
 import type { GoogleReview } from "@/types/googleReview";
 import { GoogleReviewCard } from "./GoogleReviewCard";
+import { LeaveGoogleReviewButton } from "./LeaveGoogleReviewButton";
 
 type Props = {
   heading?: string;
@@ -42,6 +43,8 @@ export async function GoogleReviewsStrip({
             <GoogleReviewCard key={review._id} review={review} />
           ))}
         </div>
+
+        <LeaveGoogleReviewButton />
       </div>
     </section>
   );

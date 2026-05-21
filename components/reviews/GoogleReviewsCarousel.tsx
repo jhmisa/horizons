@@ -2,6 +2,7 @@ import { sanityClient } from "@/lib/sanity";
 import { allGoogleReviewsQuery } from "@/lib/queries";
 import type { GoogleReview } from "@/types/googleReview";
 import { ReviewsCarouselClient } from "./ReviewsCarouselClient";
+import { LeaveGoogleReviewButton } from "./LeaveGoogleReviewButton";
 
 type Props = {
   heading?: string;
@@ -39,6 +40,8 @@ export async function GoogleReviewsCarousel({
         </div>
 
         <ReviewsCarouselClient reviews={reviews} />
+
+        <LeaveGoogleReviewButton />
       </div>
     </section>
   );

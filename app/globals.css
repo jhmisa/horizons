@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   /* Primary brand palette — centered on #0C3C60 */

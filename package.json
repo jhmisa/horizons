@@ -1,6 +1,6 @@
 {
   "name": "horizons-next",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^20",

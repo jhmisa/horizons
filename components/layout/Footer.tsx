@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GOOGLE_REVIEW_URL } from "@/lib/config";
 
 export default function Footer() {
   return (
@@ -114,6 +115,20 @@ export default function Footer() {
                 >
                   FAQ
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={GOOGLE_REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-400 transition-colors inline-flex items-center gap-2"
+                >
+                  Leave a Google review
+                  <i
+                    className="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-70"
+                    aria-hidden="true"
+                  />
+                </a>
               </li>
             </ul>
           </div>
