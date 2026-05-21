@@ -18,9 +18,9 @@ export default function Navbar() {
             <img
               src="/images/horizons-logo-navy.svg"
               alt="Horizons"
-              width={154}
-              height={45}
-              className="h-10 w-auto sm:h-12 transition-transform group-hover:scale-[1.03]"
+              width={219}
+              height={64}
+              className="h-14 w-auto sm:h-16 transition-transform group-hover:scale-[1.03]"
             />
           </Link>
 
