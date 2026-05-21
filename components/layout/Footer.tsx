@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { GOOGLE_REVIEW_URL } from "@/lib/config";
+import {
+  FACEBOOK_URL,
+  GOOGLE_BUSINESS_URL,
+  GOOGLE_REVIEW_URL,
+  YOUTUBE_URL,
+} from "@/lib/config";
 
 export default function Footer() {
   return (
@@ -28,22 +33,31 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Horizons on Facebook"
                 className="w-10 h-10 rounded-2xl bg-accent-900 flex items-center justify-center text-accent-300 hover:text-white hover:bg-brand-600 transition-all"
               >
                 <i className="fa-brands fa-facebook-f" />
               </a>
               <a
-                href="#"
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Horizons on YouTube"
                 className="w-10 h-10 rounded-2xl bg-accent-900 flex items-center justify-center text-accent-300 hover:text-white hover:bg-brand-600 transition-all"
               >
                 <i className="fa-brands fa-youtube" />
               </a>
               <a
-                href="#"
+                href={GOOGLE_BUSINESS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Horizons on Google"
                 className="w-10 h-10 rounded-2xl bg-accent-900 flex items-center justify-center text-accent-300 hover:text-white hover:bg-brand-600 transition-all"
               >
-                <i className="fa-brands fa-instagram" />
+                <i className="fa-brands fa-google" />
               </a>
             </div>
           </div>

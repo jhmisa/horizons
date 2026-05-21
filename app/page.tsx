@@ -137,7 +137,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <GoogleReviewsCarousel />
+      <GoogleReviewsCarousel
+        heading="Trusted by 6,500+ Families Since 2005"
+        subheading="Don't just take our word for it. Hear directly from the families who have successfully made the move with Horizons."
+      />
 
       {/* HOW IT WORKS SECTION */}
       <section id="how-it-works" className="py-20 bg-[#FAFAFA] border-t border-accent-100">
@@ -291,117 +294,6 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SOCIAL PROOF SECTION */}
-      <section id="success-stories" className="py-20 bg-[#FAFAFA]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-accent mb-4">
-              Trusted by 6,500+ Families Since 2005
-            </h2>
-            <p className="text-lg text-accent-600 max-w-2xl mx-auto">
-              Don&apos;t just take our word for it. Hear directly from the
-              families who have successfully made the move with Horizons.
-            </p>
-          </div>
-
-          {/* Video Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "The Smith Family",
-                title: '"From South Africa to Auckland"',
-                subtitle: "The Smith Family — Skilled Migrant Category",
-              },
-              {
-                img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "Sarah M.",
-                title: '"Horizons made the complex simple."',
-                subtitle: "Sarah M. — Work to Residence Visa",
-              },
-              {
-                img: "https://images.unsplash.com/photo-1543269664-56d74c65a6c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                alt: "The Chen Family",
-                title: '"We couldn\'t have done it without them."',
-                subtitle: "The Chen Family — Partner Sponsorship",
-              },
-            ].map((testimonial, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-accent-100"
-              >
-                <div className="aspect-video bg-accent-100 relative group cursor-pointer">
-                  <img
-                    src={testimonial.img}
-                    alt={testimonial.alt}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-accent-950/30 flex items-center justify-center group-hover:bg-accent-950/10 transition-colors">
-                    <i className="fa-brands fa-youtube text-5xl text-red-600 opacity-90 group-hover:scale-110 transition-transform shadow-sm" />
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h4 className="font-bold text-accent text-lg">
-                    {testimonial.title}
-                  </h4>
-                  <p className="text-sm text-accent-500 mt-1">
-                    {testimonial.subtitle}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Stats & Reviews */}
-          <div className="bg-white rounded-2xl shadow-sm border border-accent-100 p-8 md:p-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center divide-y md:divide-y-0 md:divide-x divide-accent-100">
-              <div className="flex flex-col items-center text-center">
-                <div className="flex text-yellow-400 text-2xl mb-2">
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star-half-stroke" />
-                </div>
-                <h4 className="text-2xl font-bold text-accent mb-1">
-                  4.7 Out of 5
-                </h4>
-                <p className="text-accent-500 mb-4">Based on 142 reviews</p>
-                <p className="italic text-accent-600 text-sm max-w-sm">
-                  &ldquo;Absolutely stellar service. The team was transparent
-                  about costs and realistic about timelines from day one.&rdquo;
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center text-center md:pl-12 pt-12 md:pt-0">
-                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-4">
-                  <i className="fa-brands fa-facebook-f" />
-                </div>
-                <h4 className="text-3xl font-bold text-accent mb-2">
-                  12,500+
-                </h4>
-                <p className="text-accent-600 font-medium mb-2">
-                  Active Community Members
-                </p>
-                <p className="text-sm text-accent-500 max-w-sm">
-                  Join our private Facebook group to connect with others on the
-                  same journey, ask questions, and share milestones.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/success-stories"
-              className="text-brand-600 font-bold hover:text-brand-800 transition-colors border-b-2 border-brand-600 hover:border-brand-800 pb-1"
-            >
-              Read More Success Stories
-            </Link>
           </div>
         </div>
       </section>
