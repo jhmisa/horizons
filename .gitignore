@@ -32,3 +32,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local scratch (Higgsfield test outputs, etc.)
+/tmp/
+
+# Higgsfield character reference library (account-scoped UUIDs, machine-specific)
+.character-refs.json

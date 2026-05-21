@@ -102,9 +102,19 @@ That file is the source of truth for:
 - Sanity schema status, conventions, and project IDs
 - Phasing (Phase 1: populate Q&A backlog; Phase 2: SEO research; Phase 3: YouTube)
 
+## AI Image Generation
+
+**MUST READ before any AI image generation: [`HiggsfieldGuide.md`](./HiggsfieldGuide.md).**
+
+Standing rules (do NOT deviate without explicit instruction from Joey):
+- **Model:** `gpt_image_2` (GPT Image 2 via Higgsfield CLI) — always, unless Joey specifies otherwise
+- **Quality:** `high` | **Resolution:** `2k` | **Aspect ratio:** `16:9`
+- **Always confirm the full generation setup** (model, prompt, character refs from `.character-refs.json`) with Joey BEFORE running `higgsfield generate create`
+
 ## Reference Files
 
 - `SEOStrategy.md` — SEO + content strategy and Claude workflows for content
+- `HiggsfieldGuide.md` — AI image generation defaults, character refs, confirm-before-generate rule
 - `PRD.md` — Full product requirements document
 - `index.html` — Original static homepage (design reference)
 - `how-it-works.html` — Original static process page (design reference)
