@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -13,11 +12,11 @@ export default function Footer() {
               className="inline-flex items-center mb-6 cursor-pointer group"
               aria-label="Horizons Immigration Consulting home"
             >
-              <Image
-                src="/images/horizons-logo-white-154x42.png"
+              <img
+                src="/images/horizons-logo-white.svg"
                 alt="Horizons Immigration Consulting"
                 width={154}
-                height={42}
+                height={45}
                 className="h-10 w-auto transition-transform group-hover:scale-[1.03]"
               />
             </Link>

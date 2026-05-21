@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,12 +15,11 @@ export default function Navbar() {
             className="flex-shrink-0 flex items-center cursor-pointer group"
             aria-label="Horizons home"
           >
-            <Image
-              src="/images/horizons-logo-blue-154x45.png"
+            <img
+              src="/images/horizons-logo-navy.svg"
               alt="Horizons"
               width={154}
               height={45}
-              priority
               className="h-10 w-auto sm:h-12 transition-transform group-hover:scale-[1.03]"
             />
           </Link>
