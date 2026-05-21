@@ -61,9 +61,19 @@ export default async function SuccessStoriesPage() {
           </div>
 
           {stories.length === 0 ? (
-            <p className="text-center text-accent-600">
-              Stories coming soon. Check back shortly.
-            </p>
+            <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md border border-accent-100 p-10 text-center">
+              <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-brand-50 flex items-center justify-center text-brand-500">
+                <i className="fa-solid fa-users text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold text-accent mb-2">
+                Stories coming soon
+              </h3>
+              <p className="text-accent-600 text-sm leading-relaxed">
+                We&rsquo;re putting together full case studies from real families
+                we&rsquo;ve helped migrate. Check back shortly &mdash; or watch
+                the free masterclass below to see how the process works.
+              </p>
+            </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {stories.map((story) => {
