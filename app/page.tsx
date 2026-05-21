@@ -5,6 +5,7 @@ import { urlFor } from "@/lib/image";
 import { homepageBlogCardsQuery } from "@/lib/queries";
 import { GoogleReviewsStrip } from "@/components/reviews/GoogleReviewsStrip";
 import { GoogleReviewsCarousel } from "@/components/reviews/GoogleReviewsCarousel";
+import { YouTubeEmbed } from "@/components/qa/YouTubeEmbed";
 import type { PostCard } from "@/types/post";
 
 export const revalidate = 60;
@@ -82,13 +83,10 @@ export default async function Home() {
 
             {/* Right Column: Video */}
             <div className="fade-in-up delay-300 relative mt-10 lg:mt-0">
-              <div className="relative w-full aspect-video rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 bg-accent-950">
-                <iframe
-                  src="https://www.youtube.com/embed/ASbMvKQrHJ8?rel=0"
+              <div className="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 bg-accent-950">
+                <YouTubeEmbed
+                  videoId="ASbMvKQrHJ8"
                   title="Horizons Immigration Consulting"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full absolute inset-0"
                 />
               </div>
               <div className="absolute -inset-10 bg-brand-500/20 blur-3xl rounded-2xl -z-10 pointer-events-none hidden lg:block" />

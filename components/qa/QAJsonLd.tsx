@@ -5,15 +5,10 @@ type Props = {
   publishedAt: string;
   liaName: string;
   thumbnailUrl: string;
-  videoDuration: number;
+  videoWatchUrl: string;
+  videoEmbedUrl: string;
   siteUrl: string;
 };
-
-function isoDuration(seconds: number) {
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  return `PT${m}M${s}S`;
-}
 
 export function QAJsonLd({
   question,
@@ -22,7 +17,8 @@ export function QAJsonLd({
   publishedAt,
   liaName,
   thumbnailUrl,
-  videoDuration,
+  videoWatchUrl,
+  videoEmbedUrl,
   siteUrl,
 }: Props) {
   const url = `${siteUrl}/answers/${slug}`;
@@ -49,8 +45,8 @@ export function QAJsonLd({
     description: answerText,
     thumbnailUrl: [thumbnailUrl],
     uploadDate: publishedAt,
-    duration: isoDuration(videoDuration),
-    contentUrl: url,
+    contentUrl: videoWatchUrl,
+    embedUrl: videoEmbedUrl,
   };
 
   const article = {

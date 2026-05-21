@@ -20,10 +20,9 @@ The audience is **Filipinos who want long-term residency in New Zealand**, in th
 
 | Channel | Role | Status |
 |---|---|---|
-| **Mux** (embedded on horizonsmigration.com) | Conversion channel. Visitors stay on our site. Our domain owns the video signal. | Active. |
-| **YouTube** (separate uploads) | Discovery channel. YouTube SEO + AI engine citations + Filipino YouTube viewing behavior. | **Deferred to Phase 3.** Schema has optional `youtubeUrl` field ready. |
+| **YouTube** (embedded on horizonsmigration.com) | Both the on-site embed (conversion) and the discovery channel (YouTube SEO + AI engine citations + Filipino YouTube viewing behavior). One upload, two channels of traffic. | Active. |
 
-Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Phase 3.
+Q&A videos live on YouTube. We embed them via `react-lite-youtube-embed` on `/answers/[slug]` (private-by-default `youtube-nocookie.com` embed, thumbnail-only until clicked for Core Web Vitals). Each `qa`, `post`, and `successStory` Sanity document carries a `youtubeUrl` field.
 
 ## Content Types & Sanity Schemas
 
@@ -46,32 +45,32 @@ Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Ph
 
 ## Phasing
 
-- **Phase 1 (current):** Populate Q&A from existing video backlog. Get inventory in. No formal SEO keyword research yet — but write in good Q&A shape from the start so we don't pay rework cost later.
-- **Phase 2 (later):** Keyword research pass. Edit existing Q&As + write blogs targeting specific keyword clusters. Connect Google Search Console. Decide on paid SEO tools (Ahrefs / SEMrush) if needed.
-- **Phase 3 (later):** YouTube uploads. Fill in `youtubeUrl` on each Q&A and post. Cut YouTube Shorts / TikTok / IG Reels from the same source videos.
+- **Phase 1 (current):** Populate the Q&A library and start the blog backlog. Videos go on YouTube (public, with proper titles/descriptions/transcripts) and are embedded on-site. No formal SEO keyword research yet — but write in good Q&A shape from the start so we don't pay rework cost later.
+- **Phase 2 (later):** Keyword research pass. Edit existing Q&As + write blogs targeting specific keyword clusters. Connect Google Search Console. Decide on paid SEO tools (Ahrefs / SEMrush) if needed. Consider wiring up the YouTube Data API for automated description sync once volume justifies the OAuth setup.
+- **Phase 3 (later):** Cross-post to YouTube Shorts / TikTok / IG Reels from the same source videos.
 
 ## Workflows
 
-### Q&A Workflow — when Joey sends a Q&A transcript
+### Q&A Workflow — when Joey provides a transcript
 
 **Joey provides:**
-1. **Mux asset ID** (or uploads to Mux first; Claude can list current Mux assets via the Mux MCP and Joey picks).
-2. **Transcript from CapCut.** *Not Mux auto-transcription* — Mux does not support Tagalog/Filipino (verified May 2026). CapCut handles Taglish words and lets Joey correct mistakes in the editor before exporting.
+1. **YouTube URL** — Joey uploads the video to YouTube Studio first, then pastes the URL.
+2. **Transcript from Descript.** Descript handles Filipino-accented English and Taglish reasonably; Joey corrects mistakes in the Descript editor before exporting.
 3. **Question or topic** — rough is fine, Claude will polish.
 4. **LIA reference** — default Rowel Mercado (`ab1d6c56-999e-4e5e-985e-cde4bb14416e`) unless Joey says otherwise.
 
-**Claude does:**
+**Claude does** (full detail in `.claude/skills/qa-from-transcript/SKILL.md`):
 1. Polish the question — clear, natural, the way someone would actually search it.
-2. Generate slug (auto from question via Sanity).
-3. Create Sanity `qa` document **as a draft** (Joey publishes from Studio after review). Never publish directly unless Joey explicitly says to.
-4. Save raw transcript verbatim into the `transcript` field.
-5. Rewrite transcript into `article` body as structured PortableText:
+2. Generate slug from the question.
+3. Build a JSON payload (`tmp/qa-draft-<slug>.json`) with the question, slug, youtubeUrl, liaId, transcript, and a PortableText `article` body.
+4. Run `node scripts/create-qa-draft.mjs <file>` to create the draft in Sanity. **Always as a draft** — Joey publishes from Studio after review.
+5. Save the raw transcript verbatim into the `transcript` field.
+6. Write the `article` body as PortableText:
    - Direct answer in first 1–2 sentences.
    - Then context with headings, short paragraphs, lists where useful.
    - **No invented facts.** Only what's in the transcript, polished and reorganized for readability.
-6. Reference the Mux asset (`video` field) and LIA (`lia` field).
-7. Set `publishedAt` if Joey provides a date; otherwise leave empty.
-8. Leave `youtubeUrl` empty (Phase 3).
+7. Output a separate **YouTube description block** for Joey to paste into YouTube Studio (hook + timestamps + link back to the Q&A page + book link + brief About).
+8. Leave `publishedAt` empty. Joey sets it from Studio.
 
 ### Blog Workflow — when Joey provides a blog idea
 
@@ -90,7 +89,7 @@ Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Ph
 6. Suggest hero image direction (do not auto-generate unless asked).
 7. Write a meta-description-ready `excerpt` (150–160 chars).
 8. Set author LIA. Leave `publishedAt` empty (= draft).
-9. Leave `youtubeUrl` empty (Phase 3).
+9. If a companion YouTube video exists, populate `youtubeUrl`.
 
 **Claude does (Phase 2, future — adds these steps before writing):**
 - Keyword research first (Google + YouTube autocomplete, SERP analysis of top-ranking competitors, optionally paid tools).
@@ -98,7 +97,7 @@ Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Ph
 - Place primary keyword in: title, slug, H1, first paragraph, one H2, image alt text.
 - Place LSI/related keywords throughout body naturally.
 
-## Sanity / Mux references
+## Sanity references
 
 - **Sanity project ID:** `07g62s03`
 - **Sanity dataset:** `production`
@@ -106,7 +105,6 @@ Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Ph
 - **Studio URL:** https://www.sanity.io/@ogeyySxqI/studio/au38jvffmsguvwbhyehqn93a/horizons-studio
 - **Schema source:** `sanity/schemas/`
 - **Existing LIAs:** Rowel Mercado (`ab1d6c56-999e-4e5e-985e-cde4bb14416e`)
-- **Mux MCP:** Connected. Use it to list/inspect Mux assets when matching videos to Q&As.
 - **Sanity MCP:** Connected. Use `query_documents`, `create_documents_from_json`, etc. for content operations.
 
 ## Deferred / Future Decisions
@@ -117,4 +115,5 @@ Each `qa` and `post` document has a `youtubeUrl` field that stays empty until Ph
 - **Categories/tags taxonomy on blog** — deferred until we know what cuts matter.
 - **Frontend pages for `/blog` and `/success-stories`** — schemas are ready; frontend may still need build work.
 - **`consentOnFile` boolean on success stories** — currently a description note; promote to a required field if legal/privacy needs increase.
+- **YouTube Data API / OAuth** — deferred. Joey pastes the URL manually after upload, which is fine at current volume. Wire up later if we want Sanity-driven descriptions auto-pushed to YouTube.
 - **YouTube Shorts / TikTok / IG Reels repurposing** — Phase 3.

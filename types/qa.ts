@@ -8,27 +8,20 @@ export type LIA = {
   bio: string;
 };
 
-export type MuxVideo = {
-  asset: {
-    _ref: string;
-    playbackId: string;
-    duration: number;
-    thumbTime?: number;
-  };
-};
-
 export type QA = {
   _id: string;
   question: string;
   slug: { current: string };
   lia: LIA;
-  video: MuxVideo;
+  youtubeUrl: string;
   transcript?: string;
   article?: PortableTextBlock[];
   publishedAt: string;
 };
 
-export type QACardData = Pick<QA, "_id" | "question" | "slug" | "publishedAt"> & {
+export type QACardData = Pick<
+  QA,
+  "_id" | "question" | "slug" | "publishedAt" | "youtubeUrl"
+> & {
   lia: Pick<LIA, "name" | "photo">;
-  video: { asset: { playbackId: string; thumbTime?: number } };
 };

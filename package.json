@@ -1,6 +1,6 @@
 {
   "name": "horizons-next",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
@@ -11,7 +11,6 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@mux/mux-player-react": "^3.13.0",
     "@portabletext/react": "^3.2.4",
     "@sanity/client": "^6.29.1",
     "@sanity/image-url": "^1.2.0",
@@ -22,8 +21,8 @@
     "next-sanity": "^12.4.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-lite-youtube-embed": "^2.5.1",
     "sanity": "^5.24.0",
-    "sanity-plugin-mux-input": "^2.18.0",
     "styled-components": "^6.4.1"
   },
   "devDependencies": {

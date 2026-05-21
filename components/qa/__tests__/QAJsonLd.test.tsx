@@ -8,8 +8,9 @@ const fakeQA = {
   transcript: "Yes, you may be. The criteria are points-based...",
   publishedAt: "2026-05-01T00:00:00Z",
   liaName: "David Mitchell",
-  thumbnailUrl: "https://image.mux.com/abc/thumbnail.jpg",
-  videoDuration: 120,
+  thumbnailUrl: "https://i.ytimg.com/vi/ASbMvKQrHJ8/maxresdefault.jpg",
+  videoWatchUrl: "https://www.youtube.com/watch?v=ASbMvKQrHJ8",
+  videoEmbedUrl: "https://www.youtube-nocookie.com/embed/ASbMvKQrHJ8",
   siteUrl: "https://horizonsimmigration.com",
 };
 

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/lib/image";
+import { extractYouTubeId, youtubeThumbnail } from "@/lib/youtube";
 import type { QACardData } from "@/types/qa";
 
 export function QACard({ qa }: { qa: QACardData }) {
-  const thumbUrl = `https://image.mux.com/${qa.video.asset.playbackId}/thumbnail.jpg?width=640${
-    qa.video.asset.thumbTime ? `&time=${qa.video.asset.thumbTime}` : ""
-  }`;
+  const videoId = extractYouTubeId(qa.youtubeUrl);
+  const thumbUrl = videoId ? youtubeThumbnail(videoId, "hq") : null;
   const avatarUrl = urlFor(qa.lia.photo).width(64).height(64).fit("crop").url();
 
   return (
@@ -15,13 +15,15 @@ export function QACard({ qa }: { qa: QACardData }) {
       className="group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
     >
       <div className="aspect-video w-full overflow-hidden bg-slate-100">
-        <Image
-          src={thumbUrl}
-          alt=""
-          width={640}
-          height={360}
-          className="h-full w-full object-cover"
-        />
+        {thumbUrl ? (
+          <Image
+            src={thumbUrl}
+            alt=""
+            width={480}
+            height={360}
+            className="h-full w-full object-cover"
+          />
+        ) : null}
       </div>
       <div className="p-5">
         <h3 className="line-clamp-3 text-base font-semibold text-slate-900 group-hover:text-brand-800">

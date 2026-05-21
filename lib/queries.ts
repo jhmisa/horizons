@@ -7,8 +7,8 @@ export const publishedQAsQuery = groq`
     question,
     slug,
     publishedAt,
-    "lia": lia->{ name, photo },
-    "video": { "asset": video.asset->{ playbackId, thumbTime } }
+    youtubeUrl,
+    "lia": lia->{ name, photo }
   }
 `;
 
@@ -20,8 +20,8 @@ export const qaBySlugQuery = groq`
     publishedAt,
     transcript,
     article,
-    "lia": lia->{ _id, name, licenseNumber, photo, bio },
-    "video": { "asset": video.asset->{ playbackId, duration, thumbTime } }
+    youtubeUrl,
+    "lia": lia->{ _id, name, licenseNumber, photo, bio }
   }
 `;
 
@@ -39,6 +39,7 @@ export const publishedPostsQuery = groq`
     category,
     publishedAt,
     heroImage,
+    youtubeUrl,
     "author": author->{ name }
   }
 `;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import type { GoogleReview } from "@/types/googleReview";
@@ -12,6 +12,7 @@ type Props = {
 
 export function ReviewsCarouselClient({ reviews }: Props) {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [expandedCount, setExpandedCount] = useState(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -21,15 +22,23 @@ export function ReviewsCarouselClient({ reviews }: Props) {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  const plugins = reducedMotion
-    ? []
-    : [
-        Autoplay({
-          delay: 5000,
-          stopOnInteraction: false,
-          stopOnMouseEnter: true,
-        }),
-      ];
+  const plugins = useMemo(
+    () =>
+      reducedMotion || expandedCount > 0
+        ? []
+        : [
+            Autoplay({
+              delay: 5000,
+              stopOnInteraction: false,
+              stopOnMouseEnter: true,
+            }),
+          ],
+    [reducedMotion, expandedCount]
+  );
+
+  const handleExpandChange = useCallback((isExpanded: boolean) => {
+    setExpandedCount((c) => c + (isExpanded ? 1 : -1));
+  }, []);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", slidesToScroll: 1, dragFree: false },
@@ -70,7 +79,10 @@ export function ReviewsCarouselClient({ reviews }: Props) {
               key={review._id}
               className="min-w-0 flex-[0_0_100%] pl-6 md:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
             >
-              <GoogleReviewCard review={review} />
+              <GoogleReviewCard
+                review={review}
+                onExpandChange={handleExpandChange}
+              />
             </div>
           ))}
         </div>

@@ -29,18 +29,48 @@ export const qa = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "video",
-      title: "Video",
-      type: "mux.video",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "youtubeUrl",
       title: "YouTube URL",
       type: "url",
       description:
-        "Optional. Paste the YouTube link if this Q&A has also been uploaded to YouTube.",
-      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+        "Paste the full YouTube URL for this Q&A (e.g. https://youtu.be/XXXXXXXXXXX).",
+      validation: (rule) =>
+        rule
+          .required()
+          .uri({ scheme: ["http", "https"] })
+          .custom((url?: string) => {
+            if (!url) return true;
+            try {
+              const u = new URL(url);
+              const host = u.hostname.replace(/^www\./, "");
+              const youtubeHosts = [
+                "youtube.com",
+                "m.youtube.com",
+                "youtu.be",
+                "youtube-nocookie.com",
+              ];
+              if (!youtubeHosts.includes(host)) {
+                return "Must be a YouTube URL (youtube.com, youtu.be, or youtube-nocookie.com).";
+              }
+              let id: string | null = null;
+              if (host === "youtu.be") {
+                id = u.pathname.replace(/^\//, "").split("/")[0] || null;
+              } else if (u.pathname === "/watch") {
+                id = u.searchParams.get("v");
+              } else {
+                const m = u.pathname.match(
+                  /^\/(?:embed|shorts|v)\/([^/?#]+)/
+                );
+                if (m) id = m[1];
+              }
+              if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) {
+                return "URL does not contain a valid 11-character YouTube video ID.";
+              }
+              return true;
+            } catch {
+              return "Invalid URL.";
+            }
+          }),
     }),
     defineField({
       name: "transcript",
