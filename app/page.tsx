@@ -4,6 +4,7 @@ import { sanityClient } from "@/lib/sanity";
 import { urlFor } from "@/lib/image";
 import { homepageBlogCardsQuery } from "@/lib/queries";
 import { GoogleReviewsStrip } from "@/components/reviews/GoogleReviewsStrip";
+import { GoogleReviewsCarousel } from "@/components/reviews/GoogleReviewsCarousel";
 import type { PostCard } from "@/types/post";
 
 export const revalidate = 60;
@@ -137,6 +138,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <GoogleReviewsCarousel />
 
       {/* HOW IT WORKS SECTION */}
       <section id="how-it-works" className="py-20 bg-[#FAFAFA] border-t border-accent-100">

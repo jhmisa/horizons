@@ -1,6 +1,6 @@
 {
   "name": "horizons-next",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
@@ -16,6 +16,8 @@
     "@sanity/client": "^6.29.1",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^3.99.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "next": "16.1.6",
     "next-sanity": "^12.4.5",
     "react": "19.2.3",

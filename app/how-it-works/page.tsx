@@ -181,13 +181,13 @@ export default function HowItWorks() {
                   </div>
 
                   <p className="text-sm text-brand-200 mb-4">
-                    Already watched the masterclass and checked our Q&amp;A?
+                    Already watched the masterclass and checked our FAQ?
                     {" "}
                     <Link
                       href="/answers"
                       className="underline hover:text-white"
                     >
-                      Browse Q&amp;A
+                      Browse FAQ
                     </Link>
                     {" · "}
                     <Link

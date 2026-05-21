@@ -112,13 +112,8 @@ export default function Footer() {
                   href="/answers"
                   className="hover:text-brand-400 transition-colors"
                 >
-                  Q&amp;A Library
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-brand-400 transition-colors">
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

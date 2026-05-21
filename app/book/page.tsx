@@ -174,7 +174,7 @@ export default function BookPage() {
               href="/answers"
               className="text-brand-600 font-semibold hover:text-brand-800"
             >
-              Browse our Q&amp;A page →
+              Browse our FAQ page →
             </Link>
           </p>
         </div>

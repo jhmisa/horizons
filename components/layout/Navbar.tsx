@@ -18,9 +18,9 @@ export default function Navbar() {
             <img
               src="/images/horizons-logo-navy.svg"
               alt="Horizons"
-              width={247}
-              height={72}
-              className="h-14 w-auto sm:h-[72px] transition-transform group-hover:scale-[1.03]"
+              width={192}
+              height={56}
+              className="h-12 w-auto sm:h-14 transition-transform group-hover:scale-[1.03]"
             />
           </Link>
 
@@ -54,7 +54,7 @@ export default function Navbar() {
               href="/answers"
               className="text-accent-700 hover:text-brand-600 font-medium transition-colors"
             >
-              Q&amp;A
+              FAQ
             </Link>
             <Link
               href="/how-it-works"
@@ -113,7 +113,7 @@ export default function Navbar() {
                 className="text-accent-700 hover:text-brand-600 font-medium transition-colors px-2"
                 onClick={() => setMobileOpen(false)}
               >
-                Q&amp;A
+                FAQ
               </Link>
               <Link
                 href="/how-it-works"
