@@ -15,9 +15,9 @@ export default function Footer() {
               <img
                 src="/images/horizons-logo-white.svg"
                 alt="Horizons Immigration Consulting"
-                width={154}
-                height={45}
-                className="h-10 w-auto transition-transform group-hover:scale-[1.03]"
+                width={192}
+                height={56}
+                className="h-14 w-auto transition-transform group-hover:scale-[1.03]"
               />
             </Link>
             <p className="text-sm text-accent-300 mb-8 leading-relaxed">
