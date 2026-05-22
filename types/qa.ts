@@ -13,7 +13,8 @@ export type QA = {
   question: string;
   slug: { current: string };
   lia: LIA;
-  youtubeUrl: string;
+  // Optional: AU/CA Q&As may be text-only (no video).
+  youtubeUrl?: string | null;
   transcript?: string;
   article?: PortableTextBlock[];
   publishedAt: string;
