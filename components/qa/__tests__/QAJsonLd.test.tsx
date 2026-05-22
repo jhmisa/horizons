@@ -5,6 +5,7 @@ import { QAJsonLd } from "../QAJsonLd";
 const fakeQA = {
   question: "Am I eligible for the NZ Skilled Migrant visa?",
   slug: "am-i-eligible-for-the-nz-skilled-migrant-visa",
+  country: "nz" as const,
   transcript: "Yes, you may be. The criteria are points-based...",
   publishedAt: "2026-05-01T00:00:00Z",
   liaName: "David Mitchell",

@@ -1,6 +1,9 @@
+import type { Country } from "@/lib/config";
+
 type Props = {
   question: string;
   slug: string;
+  country: Country;
   transcript?: string;
   publishedAt: string;
   liaName: string;
@@ -14,6 +17,7 @@ type Props = {
 export function QAJsonLd({
   question,
   slug,
+  country,
   transcript,
   publishedAt,
   liaName,
@@ -22,7 +26,8 @@ export function QAJsonLd({
   videoEmbedUrl,
   siteUrl,
 }: Props) {
-  const url = `${siteUrl}/answers/${slug}`;
+  const pathPrefix = country === "nz" ? "" : `/${country}`;
+  const url = `${siteUrl}${pathPrefix}/answers/${slug}`;
   const hasVideo = Boolean(thumbnailUrl && videoWatchUrl && videoEmbedUrl);
   const answerText =
     transcript?.slice(0, 500) ||

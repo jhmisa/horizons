@@ -2,16 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/lib/image";
 import { extractYouTubeId, youtubeThumbnail } from "@/lib/youtube";
+import type { Country } from "@/lib/config";
 import type { QACardData } from "@/types/qa";
 
-export function QACard({ qa }: { qa: QACardData }) {
+export function QACard({ qa, country }: { qa: QACardData; country: Country }) {
   const videoId = extractYouTubeId(qa.youtubeUrl);
   const thumbUrl = videoId ? youtubeThumbnail(videoId, "hq") : null;
   const avatarUrl = urlFor(qa.lia.photo).width(64).height(64).fit("crop").url();
+  const pathPrefix = country === "nz" ? "" : `/${country}`;
 
   return (
     <Link
-      href={`/answers/${qa.slug.current}`}
+      href={`${pathPrefix}/answers/${qa.slug.current}`}
       className="group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
     >
       <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100">

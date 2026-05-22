@@ -51,6 +51,7 @@ export default async function AnswerDetail({
       <QAJsonLd
         question={qa.question}
         slug={qa.slug.current}
+        country={country}
         transcript={qa.transcript}
         publishedAt={qa.publishedAt}
         liaName={qa.lia.name}
