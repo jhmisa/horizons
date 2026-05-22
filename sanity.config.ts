@@ -3,6 +3,7 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schemaTypes } from "./sanity/schemas";
+import deskStructure from "./sanity/structure";
 
 export default defineConfig({
   name: "horizons-studio",
@@ -12,7 +13,7 @@ export default defineConfig({
   dataset,
   apiVersion,
   plugins: [
-    structureTool(),
+    structureTool({ structure: deskStructure }),
     visionTool({ defaultApiVersion: apiVersion }),
   ],
   schema: { types: schemaTypes },

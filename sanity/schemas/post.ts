@@ -28,6 +28,22 @@ export const post = defineType({
       validation: (rule) => rule.max(220),
     }),
     defineField({
+      name: "country",
+      title: "Country",
+      type: "string",
+      options: {
+        list: [
+          { title: "New Zealand", value: "nz" },
+          { title: "Australia", value: "au" },
+          { title: "Canada", value: "ca" },
+          { title: "Global", value: "global" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "nz",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -94,7 +110,19 @@ export const post = defineType({
     }),
   ],
   preview: {
-    select: { title: "title", subtitle: "author.name", media: "heroImage" },
+    select: {
+      title: "title",
+      country: "country",
+      category: "category",
+      media: "heroImage",
+    },
+    prepare({ title, country, category, media }) {
+      const countryLabel = (country || "nz").toString().toUpperCase();
+      const subtitle = category
+        ? `${countryLabel} • ${category}`
+        : countryLabel;
+      return { title, subtitle, media };
+    },
   },
   orderings: [
     {

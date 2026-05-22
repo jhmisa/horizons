@@ -21,6 +21,22 @@ export const successStory = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "country",
+      title: "Country",
+      type: "string",
+      options: {
+        list: [
+          { title: "New Zealand", value: "nz" },
+          { title: "Australia", value: "au" },
+          { title: "Canada", value: "ca" },
+          { title: "Global", value: "global" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "nz",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "originLocation",
       title: "Origin location",
       type: "string",
@@ -33,7 +49,7 @@ export const successStory = defineType({
       title: "Destination",
       type: "string",
       description:
-        "Where they ended up in New Zealand. e.g. 'Auckland, New Zealand'.",
+        "Specific city/region the client settled in, e.g. 'Auckland, NZ' or 'Melbourne, AU'.",
       validation: (rule) => rule.max(120),
     }),
     defineField({

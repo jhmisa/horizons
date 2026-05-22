@@ -1,4 +1,5 @@
 import { googleReview } from "./googleReview";
+import { interestSubmission } from "./interestSubmission";
 import { lia } from "./lia";
 import { post } from "./post";
 import { qa } from "./qa";
@@ -12,4 +13,5 @@ export const schemaTypes = [
   successStory,
   googleReview,
   submittedQuestion,
+  interestSubmission,
 ];

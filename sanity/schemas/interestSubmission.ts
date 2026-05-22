@@ -1,40 +1,28 @@
 import { defineField, defineType } from "sanity";
 
-export const submittedQuestion = defineType({
-  name: "submittedQuestion",
-  title: "Submitted Question",
+export const interestSubmission = defineType({
+  name: "interestSubmission",
+  title: "Interest submission",
   type: "document",
   fields: [
     defineField({
-      name: "question",
-      title: "Question",
-      type: "text",
-      rows: 5,
-      validation: (rule) => rule.required().min(10).max(2000),
-    }),
-    defineField({
-      name: "submitterEmail",
-      title: "Submitter email",
+      name: "email",
+      title: "Email",
       type: "string",
       validation: (rule) => rule.required().email(),
     }),
     defineField({
-      name: "submitterName",
-      title: "Submitter name",
+      name: "name",
+      title: "Name",
       type: "string",
-      validation: (rule) => rule.max(100),
-    }),
-    defineField({
-      name: "sourceUrl",
-      title: "Source URL",
-      type: "url",
-      description:
-        "Auto-captured from the page where the form was submitted.",
+      validation: (rule) => rule.max(120),
     }),
     defineField({
       name: "country",
       title: "Country",
       type: "string",
+      description:
+        "The country the visitor was expressing interest in.",
       options: {
         list: [
           { title: "New Zealand", value: "nz" },
@@ -44,13 +32,19 @@ export const submittedQuestion = defineType({
         ],
         layout: "radio",
       },
-      initialValue: "nz",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "sourceUrl",
+      title: "Source URL",
+      type: "string",
+      description: "URL the visitor was on when they submitted.",
     }),
     defineField({
       name: "submittedAt",
       title: "Submitted at",
       type: "datetime",
+      initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -60,11 +54,11 @@ export const submittedQuestion = defineType({
       options: {
         list: [
           { title: "New", value: "new" },
-          { title: "In progress", value: "in-progress" },
-          { title: "Answered", value: "answered" },
+          { title: "Contacted", value: "contacted" },
+          { title: "Converted", value: "converted" },
           { title: "Spam", value: "spam" },
         ],
-        layout: "dropdown",
+        layout: "radio",
       },
       initialValue: "new",
       validation: (rule) => rule.required(),
@@ -73,22 +67,23 @@ export const submittedQuestion = defineType({
       name: "adminNotes",
       title: "Admin notes",
       type: "text",
-      rows: 3,
+      rows: 4,
       description: "Internal triage notes.",
     }),
   ],
   preview: {
     select: {
-      title: "question",
-      email: "submitterEmail",
+      email: "email",
       country: "country",
+      status: "status",
     },
-    prepare({ title, email, country }) {
-      const countryLabel = (country || "nz").toString().toUpperCase();
-      const subtitle = email
-        ? `${countryLabel} • ${email}`
-        : countryLabel;
-      return { title, subtitle };
+    prepare({ email, country, status }) {
+      const countryLabel = (country || "").toString().toUpperCase();
+      const subtitle =
+        countryLabel && status
+          ? `${countryLabel} • ${status}`
+          : countryLabel || status || "";
+      return { title: email || "(no email)", subtitle };
     },
   },
   orderings: [

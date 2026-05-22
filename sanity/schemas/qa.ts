@@ -19,6 +19,22 @@ export const qa = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "country",
+      title: "Country",
+      type: "string",
+      options: {
+        list: [
+          { title: "New Zealand", value: "nz" },
+          { title: "Australia", value: "au" },
+          { title: "Canada", value: "ca" },
+          { title: "Global", value: "global" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "nz",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "lia",
       title: "Licensed Immigration Adviser",
       type: "reference",
@@ -33,10 +49,9 @@ export const qa = defineType({
       title: "YouTube URL",
       type: "url",
       description:
-        "Paste the full YouTube URL for this Q&A (e.g. https://youtu.be/XXXXXXXXXXX).",
+        "Optional. Paste the full YouTube URL for this Q&A (e.g. https://youtu.be/XXXXXXXXXXX). AU/CA Q&As may not have a video yet — leave blank if there is none.",
       validation: (rule) =>
         rule
-          .required()
           .uri({ scheme: ["http", "https"] })
           .custom((url?: string) => {
             if (!url) return true;
@@ -98,7 +113,19 @@ export const qa = defineType({
     }),
   ],
   preview: {
-    select: { title: "question", subtitle: "lia.name", media: "lia.photo" },
+    select: {
+      title: "question",
+      country: "country",
+      liaName: "lia.name",
+      media: "lia.photo",
+    },
+    prepare({ title, country, liaName, media }) {
+      const countryLabel = (country || "nz").toString().toUpperCase();
+      const subtitle = liaName
+        ? `${countryLabel} • ${liaName}`
+        : countryLabel;
+      return { title, subtitle, media };
+    },
   },
   orderings: [
     {
