@@ -39,9 +39,12 @@ export default async function AnswerDetail({
   const qa = await getQAForCountry(slug, country);
   if (!qa) notFound();
 
+  // Text-only Q&As (e.g. AU/CA) have no youtubeUrl — derive videoId
+  // optionally and skip the video block entirely when absent.
   const videoId = extractYouTubeId(qa.youtubeUrl);
-  if (!videoId) notFound();
-  const thumbnailUrl = youtubeThumbnail(videoId);
+  const thumbnailUrl = videoId ? youtubeThumbnail(videoId) : undefined;
+  const videoWatchUrl = videoId ? youtubeWatchUrl(videoId) : undefined;
+  const videoEmbedUrl = videoId ? youtubeEmbedUrl(videoId) : undefined;
 
   return (
     <main className="mx-auto max-w-6xl px-6 pt-32 pb-32 lg:pb-12">
@@ -52,8 +55,8 @@ export default async function AnswerDetail({
         publishedAt={qa.publishedAt}
         liaName={qa.lia.name}
         thumbnailUrl={thumbnailUrl}
-        videoWatchUrl={youtubeWatchUrl(videoId)}
-        videoEmbedUrl={youtubeEmbedUrl(videoId)}
+        videoWatchUrl={videoWatchUrl}
+        videoEmbedUrl={videoEmbedUrl}
         siteUrl={SITE_URL}
       />
 
@@ -65,13 +68,20 @@ export default async function AnswerDetail({
           <div className="mt-6">
             <LIAAttribution lia={qa.lia} />
           </div>
-          <div className="mt-8">
-            <YouTubeEmbed videoId={videoId} title={qa.question} />
-          </div>
+          {videoId && (
+            <div className="mt-8">
+              <YouTubeEmbed videoId={videoId} title={qa.question} />
+            </div>
+          )}
           {qa.article && qa.article.length > 0 && (
             <QAArticle blocks={qa.article} />
           )}
-          {qa.transcript && (
+          {/*
+            Transcript is the verbatim text of the video and only makes sense
+            alongside it. For text-only Q&As the article body IS the answer,
+            so we hide the transcript disclosure entirely.
+          */}
+          {videoId && qa.transcript && (
             <TranscriptDisclosure transcript={qa.transcript} />
           )}
         </div>

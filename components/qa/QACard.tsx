@@ -14,7 +14,7 @@ export function QACard({ qa }: { qa: QACardData }) {
       href={`/answers/${qa.slug.current}`}
       className="group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
     >
-      <div className="aspect-video w-full overflow-hidden bg-slate-100">
+      <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100">
         {thumbUrl ? (
           <Image
             src={thumbUrl}
@@ -23,7 +23,11 @@ export function QACard({ qa }: { qa: QACardData }) {
             height={360}
             className="h-full w-full object-cover"
           />
-        ) : null}
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-brand-400">
+            <i className="fa-regular fa-comment-dots text-5xl" aria-hidden="true" />
+          </div>
+        )}
       </div>
       <div className="p-5">
         <h3 className="line-clamp-3 text-base font-semibold text-slate-900 group-hover:text-brand-800">
