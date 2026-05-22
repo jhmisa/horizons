@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Country } from "@/lib/config";
 
 export default function HowItWorks({ country }: { country: Country }) {
-  // `country` is part of the component's public API for Task 5 (AU branch).
-  // Reference it so the lint rule for unused vars doesn't flag it.
-  void country;
+  if (country === "au") {
+    return <AustraliaHowItWorks />;
+  }
 
   return (
     <>
@@ -346,6 +346,196 @@ export default function HowItWorks({ country }: { country: Country }) {
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
             Watch the Masterclass
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function AustraliaHowItWorks() {
+  return (
+    <>
+      {/* PAGE HEADER */}
+      <header className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-brand-900 text-white relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-block py-1 px-3 rounded-2xl bg-brand-500/20 text-brand-100 border border-brand-400/30 text-sm font-semibold tracking-wide mb-6 fade-in-up">
+            HOW IT WORKS
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 fade-in-up delay-100">
+            Your Path to Australia, in 3 Steps
+          </h1>
+          <p className="text-xl text-brand-100 max-w-2xl mx-auto fade-in-up delay-200">
+            Watch. Book. Proceed. The same proven process that has guided
+            thousands of families abroad — now for Australia migration.
+          </p>
+        </div>
+      </header>
+
+      {/* STEP 1: WATCH */}
+      <section id="step-1" className="py-20 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 text-2xl font-bold mb-6">
+                1
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
+                Step 1 — Watch the Masterclass
+              </h2>
+              <p className="text-lg text-accent-600 mb-6 leading-relaxed">
+                Our free masterclass walks you through what it takes to migrate
+                to Australia: pathways, common pitfalls, and what to prepare. No
+                commitment, just clarity.
+              </p>
+            </div>
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="aspect-video bg-slate-100 rounded-2xl flex items-center justify-center text-center p-8 border border-slate-200">
+                <div>
+                  <p className="text-slate-600 font-medium">
+                    Australia Masterclass coming soon.
+                  </p>
+                  <p className="text-slate-500 text-sm mt-1">
+                    For now, book a consultation and we&apos;ll personalize the
+                    pathway walkthrough for you.
+                  </p>
+                  <Link
+                    href="/book"
+                    className="inline-block mt-4 px-5 py-2 rounded-full bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition"
+                  >
+                    Book a Consultation
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STEP 2: BOOK */}
+      <section
+        id="step-2"
+        className="py-20 lg:py-24 bg-[#FAFAFA] border-t border-accent-100"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 text-2xl font-bold mb-6">
+                2
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
+                Step 2 — Book a 1-on-1 Consultation
+              </h2>
+              <p className="text-lg text-accent-600 mb-6 leading-relaxed">
+                Book a 1-hour video consultation with our team. We&apos;ll
+                review your situation in detail, map your most viable Australia
+                pathway, and answer your specific questions.
+              </p>
+            </div>
+
+            <div className="lg:col-span-6 lg:col-start-7 order-1 lg:order-2">
+              <div className="bg-accent-950 rounded-3xl p-8 md:p-10 shadow-2xl text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/30 rounded-2xl blur-3xl -mr-20 -mt-20" />
+
+                <div className="relative z-10">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-2">
+                      Australia Consultation
+                    </h3>
+                    <p className="text-brand-200">
+                      1-Hour Video Call with our team
+                    </p>
+                  </div>
+
+                  <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm mb-6">
+                    <dl className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <dt className="text-brand-200">Consultation Fee</dt>
+                        <dd className="font-semibold text-white">$190 USD</dd>
+                      </div>
+                      <div className="flex justify-between">
+                        <dt className="text-brand-200">
+                          Payment Processing Fee
+                        </dt>
+                        <dd className="font-semibold text-white">$7 USD</dd>
+                      </div>
+                      <div className="flex justify-between border-t border-white/20 pt-2 mt-2">
+                        <dt className="font-bold text-white">Total</dt>
+                        <dd className="text-2xl font-extrabold text-white">
+                          $197 USD
+                        </dd>
+                      </div>
+                    </dl>
+                    <p className="mt-3 text-xs text-brand-300">
+                      Your $190 is fully credited toward your full service fee
+                      if you choose to proceed.
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/book"
+                    className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <i className="fa-solid fa-lock" /> Book My Consultation
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STEP 3: PROCEED */}
+      <section
+        id="step-3"
+        className="py-20 lg:py-24 bg-brand-50 border-t border-brand-100 relative overflow-hidden"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 text-2xl font-bold mb-6">
+            3
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
+            Step 3 — Proceed with Confidence
+          </h2>
+          <p className="text-lg text-accent-600 mb-6 leading-relaxed">
+            Once you decide to engage us, we handle visa selection, document
+            preparation, and lodgement with the Department of Home Affairs. The
+            $190 you&apos;ve paid is credited — only $1,810 USD remains to
+            complete the full service.
+          </p>
+          <p className="text-lg text-accent font-medium">
+            Direct liaison with Australian immigration authorities. Personal,
+            expert, end-to-end.
+          </p>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-24 bg-brand-900 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            Ready to start your Australia journey?
+          </h2>
+          <Link
+            href="/book"
+            className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+          >
+            Book My Consultation
           </Link>
         </div>
       </section>
