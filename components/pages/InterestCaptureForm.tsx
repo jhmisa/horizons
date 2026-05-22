@@ -14,6 +14,7 @@ export default function InterestCaptureForm({
 }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -29,7 +30,8 @@ export default function InterestCaptureForm({
           name: name || undefined,
           country,
           sourceUrl:
-            typeof window !== "undefined" ? window.location.pathname : undefined,
+            typeof window !== "undefined" ? window.location.href : undefined,
+          _website: honeypot || undefined,
         }),
       });
       if (res.status === 201) {
@@ -83,14 +85,16 @@ export default function InterestCaptureForm({
           maxLength={120}
           className="w-full rounded-2xl border border-slate-300 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
         />
-        {/* Honeypot */}
+        {/* Honeypot: real users never fill this; bots that auto-fill forms do. */}
         <input
           type="text"
           name="_website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
           tabIndex={-1}
           autoComplete="off"
           aria-hidden="true"
-          className="hidden"
+          className="absolute -left-[9999px] h-0 w-0 opacity-0 pointer-events-none"
         />
         <button
           type="submit"
