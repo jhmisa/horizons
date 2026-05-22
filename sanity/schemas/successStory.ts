@@ -114,8 +114,16 @@ export const successStory = defineType({
   preview: {
     select: {
       title: "clientFirstName",
-      subtitle: "visaCategory",
+      country: "country",
+      visaCategory: "visaCategory",
       media: "photo",
+    },
+    prepare({ title, country, visaCategory, media }) {
+      const countryLabel = (country || "nz").toString().toUpperCase();
+      const subtitle = visaCategory
+        ? `${countryLabel} • ${visaCategory}`
+        : countryLabel;
+      return { title, subtitle, media };
     },
   },
   orderings: [

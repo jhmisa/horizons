@@ -7,6 +7,9 @@
  * have a country value. Idempotent: documents that already have a
  * country are skipped.
  *
+ * Safe to re-run after partial failure — uses `!defined(country)` filter
+ * so already-patched docs are skipped on the next run.
+ *
  * Usage:
  *   node scripts/backfill-country.mjs           # DRY RUN — no writes
  *   node scripts/backfill-country.mjs --apply   # actually patch documents
@@ -83,57 +86,97 @@ console.log(
 console.log("");
 
 const summary = {};
+let failed = false;
 
-for (const type of TYPES) {
-  // Fetch IDs of all documents of this type that are missing a country.
-  // Sanity returns both published and draft (drafts.*) docs; the query
-  // returns each by its actual document ID, which is what we patch.
-  const ids = await client.fetch(
-    `*[_type == $type && !defined(country)]._id`,
-    { type }
-  );
-
-  summary[type] = { found: ids.length, patched: 0 };
-
-  if (ids.length === 0) {
-    console.log(`[${type}] no docs missing country — skipping`);
-    continue;
-  }
-
-  const sample = ids.slice(0, 5);
-  console.log(
-    `[${type}] ${ids.length} doc(s) missing country. Sample IDs: ${sample.join(", ")}${ids.length > sample.length ? ", ..." : ""}`
-  );
-
-  if (!APPLY) continue;
-
-  // Patch in chunks of 50 so we don't hit transaction-size limits on big datasets.
-  const CHUNK = 50;
-  for (let i = 0; i < ids.length; i += CHUNK) {
-    const chunk = ids.slice(i, i + CHUNK);
-    const tx = client.transaction();
-    for (const id of chunk) {
-      tx.patch(id, (p) =>
-        p.setIfMissing({ country: DEFAULT_COUNTRY })
-      );
-    }
-    const result = await tx.commit();
-    summary[type].patched += result.results.length;
+function logTypeSummary(type) {
+  const s = summary[type];
+  if (!s) return;
+  if (APPLY) {
     console.log(
-      `  [${type}] patched ${summary[type].patched}/${ids.length}`
+      `  [${type}] summary: patched ${s.patched}/${s.found}`
     );
   }
 }
 
-console.log("");
-if (APPLY) {
-  const parts = TYPES.map(
-    (t) => `${summary[t].patched} ${t} docs`
-  ).join(", ");
-  console.log(`Patched ${parts}.`);
-} else {
-  const parts = TYPES.map(
-    (t) => `${summary[t].found} ${t} docs`
-  ).join(", ");
-  console.log(`Would patch ${parts} (re-run with --apply to commit).`);
+try {
+  for (const type of TYPES) {
+    summary[type] = { found: 0, patched: 0 };
+    try {
+      // Fetch IDs of all documents of this type that are missing a country.
+      // Sanity returns both published and draft (drafts.*) docs; the query
+      // returns each by its actual document ID, which is what we patch.
+      const ids = await client.fetch(
+        `*[_type == $type && !defined(country)]._id`,
+        { type }
+      );
+
+      summary[type].found = ids.length;
+
+      if (ids.length === 0) {
+        console.log(`[${type}] no docs missing country — skipping`);
+        continue;
+      }
+
+      const sample = ids.slice(0, 5);
+      console.log(
+        `[${type}] ${ids.length} doc(s) missing country. Sample IDs: ${sample.join(", ")}${ids.length > sample.length ? ", ..." : ""}`
+      );
+
+      if (!APPLY) continue;
+
+      // Patch in chunks of 50 so we don't hit transaction-size limits on big datasets.
+      const CHUNK = 50;
+      for (let i = 0; i < ids.length; i += CHUNK) {
+        const chunk = ids.slice(i, i + CHUNK);
+        const tx = client.transaction();
+        for (const id of chunk) {
+          tx.patch(id, (p) =>
+            p.setIfMissing({ country: DEFAULT_COUNTRY })
+          );
+        }
+        const result = await tx.commit();
+        summary[type].patched += result.results.length;
+        console.log(
+          `  [${type}] patched ${summary[type].patched}/${ids.length}`
+        );
+      }
+    } finally {
+      logTypeSummary(type);
+    }
+  }
+} catch (err) {
+  failed = true;
+  console.error("");
+  console.error("ERROR during backfill:", err && err.message ? err.message : err);
+} finally {
+  console.log("");
+  if (failed) {
+    console.log("=== PARTIAL COMPLETION ===");
+    if (APPLY) {
+      const parts = TYPES.map(
+        (t) =>
+          `${(summary[t] && summary[t].patched) || 0}/${(summary[t] && summary[t].found) || 0} ${t} docs`
+      ).join(", ");
+      console.log(`Patched ${parts} before failure.`);
+      console.log(
+        "Safe to re-run — the `!defined(country)` filter skips already-patched docs."
+      );
+    } else {
+      const parts = TYPES.map(
+        (t) => `${(summary[t] && summary[t].found) || 0} ${t} docs`
+      ).join(", ");
+      console.log(`Scanned ${parts} before failure (dry run — nothing written).`);
+    }
+    process.exit(1);
+  } else if (APPLY) {
+    const parts = TYPES.map(
+      (t) => `${summary[t].patched} ${t} docs`
+    ).join(", ");
+    console.log(`Patched ${parts}.`);
+  } else {
+    const parts = TYPES.map(
+      (t) => `${summary[t].found} ${t} docs`
+    ).join(", ");
+    console.log(`Would patch ${parts} (re-run with --apply to commit).`);
+  }
 }
