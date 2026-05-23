@@ -37,10 +37,44 @@ describe("AboutPage", () => {
     });
   });
 
-  it("renders a team teaser linking to /team", () => {
+  it("renders all six Licensed Immigration Advisers", () => {
     render(<AboutPage />);
-    const teamLink = screen.getByRole("link", { name: /Meet|team/i });
-    expect(teamLink).toHaveAttribute("href", "/team");
+    const names = [
+      "Jocelyn Ocampo",
+      "Joyce Maneja-Curiano",
+      "Lorna Caluag",
+      "Stephanie Feret",
+      "Tonet Cruz Jang",
+      "Trinity Lee",
+    ];
+    for (const name of names) {
+      expect(screen.getByText(name)).toBeInTheDocument();
+    }
+  });
+
+  it("renders an IAA licence number for each adviser", () => {
+    render(<AboutPage />);
+    const licences = [
+      "201001078",
+      "202400363",
+      "201900427",
+      "201700294",
+      "201601367",
+      "201701299",
+    ];
+    for (const licence of licences) {
+      expect(screen.getByText(new RegExp(licence))).toBeInTheDocument();
+    }
+  });
+
+  it("renders the three behind-the-scenes support team members", () => {
+    render(<AboutPage />);
+    expect(screen.getByText("Marie Quintos")).toBeInTheDocument();
+    expect(screen.getByText("Issa Mercado")).toBeInTheDocument();
+    expect(screen.getByText("Paolo Quintos")).toBeInTheDocument();
+    expect(screen.getByText("Office Manager")).toBeInTheDocument();
+    expect(screen.getByText("Admin & Finance")).toBeInTheDocument();
+    expect(screen.getByText("Marketing Officer")).toBeInTheDocument();
   });
 
   it("renders a final CTA linking to /how-it-works#step-1", () => {

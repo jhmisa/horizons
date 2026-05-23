@@ -8,8 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-// TODO(joey): Replace placeholder copy below before adding About to the Nav.
-// Items flagged with TODO(joey) need real content from Joey:
+// TODO(joey): items flagged with TODO(joey) below need real content from Joey:
 //   - Mission line in the hero
 //   - Founder story paragraphs (3-4 short paragraphs)
 //   - "years operating" stat — placeholder is 15+
@@ -77,26 +76,69 @@ const REGULATORS = [
   },
 ] as const;
 
-const TEAM_TEASER = [
-  {
-    name: "Rowel Mercado",
-    role: "Founder & Principal LIA",
-    image: "/images/Team/rowel-mercado.webp",
-  },
+type Adviser = {
+  name: string;
+  licence: string;
+  image: string;
+  /** Optional CSS object-position override for off-center crops. */
+  objectPosition?: string;
+};
+
+type Support = {
+  name: string;
+  role: string;
+  image: string;
+};
+
+const ADVISERS: Adviser[] = [
   {
     name: "Jocelyn Ocampo",
-    role: "Licensed Immigration Adviser",
+    licence: "201001078",
     image: "/images/Team/jocelyn-ocampo.webp",
   },
   {
+    name: "Joyce Maneja-Curiano",
+    licence: "202400363",
+    image: "/images/Team/joyce-maneja-curiano.webp",
+  },
+  {
     name: "Lorna Caluag",
-    role: "Licensed Immigration Adviser",
+    licence: "201900427",
     image: "/images/Team/lorna-caluag.webp",
   },
   {
+    name: "Stephanie Feret",
+    licence: "201700294",
+    image: "/images/Team/stephanie-feret.webp",
+  },
+  {
+    name: "Tonet Cruz Jang",
+    licence: "201601367",
+    image: "/images/Team/tonet-cruz-jang.webp",
+    objectPosition: "50% 35%",
+  },
+  {
     name: "Trinity Lee",
-    role: "Licensed Immigration Adviser",
+    licence: "201701299",
     image: "/images/Team/trinity-lee.webp",
+  },
+];
+
+const SUPPORT: Support[] = [
+  {
+    name: "Marie Quintos",
+    role: "Office Manager",
+    image: "/images/Team/marie-quintos.webp",
+  },
+  {
+    name: "Issa Mercado",
+    role: "Admin & Finance",
+    image: "/images/Team/issa-mercado.webp",
+  },
+  {
+    name: "Paolo Quintos",
+    role: "Marketing Officer",
+    image: "/images/Team/paolo-quintos.webp",
   },
 ];
 
@@ -261,19 +303,72 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Team teaser */}
+      {/* 5. Licensed Immigration Advisers */}
       <section className="py-20 bg-[#FAFAFA]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-800 text-xs font-bold tracking-wider uppercase mb-4">
-              The team
+              Licensed Immigration Advisers
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-              The people behind your journey
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+              Our IAA-licensed advisers
             </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Every adviser is licensed by the Immigration Advisers Authority
+              of New Zealand &mdash; the regulator that holds NZ immigration
+              professionals to a strict code of conduct.
+            </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            {TEAM_TEASER.map((member) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {ADVISERS.map((member) => (
+              <div
+                key={member.licence}
+                className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden"
+              >
+                <div className="aspect-square overflow-hidden bg-slate-100">
+                  <img
+                    src={member.image}
+                    alt={`${member.name} — Licensed Immigration Adviser`}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: member.objectPosition ?? "50% 0%" }}
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-brand-600 text-xs mb-2">
+                    Licensed Immigration Adviser
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 py-1 px-2 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-[10px] font-medium leading-none">
+                    <span aria-hidden="true">🇳🇿</span>
+                    <span>IAA No. {member.licence}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Behind the scenes */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-800 text-xs font-bold tracking-wider uppercase mb-4">
+              Support Team
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+              The people behind the scenes
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              The team that keeps everything running &mdash; finance,
+              operations, and making sure your journey is heard about by others
+              like you.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {SUPPORT.map((member) => (
               <div
                 key={member.name}
                 className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden"
@@ -286,7 +381,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-4 text-center">
-                  <h3 className="font-bold text-slate-900 text-sm">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
                     {member.name}
                   </h3>
                   <p className="text-brand-600 text-xs">{member.role}</p>
@@ -294,19 +389,10 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          <div className="text-center">
-            <Link
-              href="/team"
-              className="inline-flex items-center gap-2 bg-white text-brand-900 hover:bg-brand-50 font-bold py-3 px-8 rounded-2xl shadow-md hover:shadow-lg transition-all border border-slate-200"
-            >
-              Meet the full team
-              <i className="fa-solid fa-arrow-right text-sm" aria-hidden="true" />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* 6. Final CTA */}
+      {/* 7. Final CTA */}
       <section className="py-24 bg-brand-900 text-center relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"
