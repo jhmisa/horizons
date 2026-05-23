@@ -69,9 +69,9 @@ export default function CountrySwitcher({ onSelect }: CountrySwitcherProps) {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 text-accent-700 hover:text-brand-600 hover:border-brand-200 font-medium text-sm transition-colors"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white border border-slate-200 text-accent-700 font-semibold text-sm shadow-sm hover:bg-brand-50 hover:border-brand-200 hover:shadow transition-all"
       >
-        <i className="fa-solid fa-globe text-brand-500" aria-hidden="true" />
+        <span aria-label={current.displayName}>{current.flag}</span>
         <span>{current.displayName}</span>
         <i
           className={`fa-solid fa-chevron-down text-xs transition-transform ${open ? "rotate-180" : ""}`}
@@ -94,17 +94,21 @@ export default function CountrySwitcher({ onSelect }: CountrySwitcherProps) {
                 role="option"
                 aria-selected={isActive}
                 onClick={() => handleSelect(c)}
-                className={`w-full text-left px-4 py-2.5 text-sm flex items-center justify-between transition-colors ${
+                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between gap-3 transition-colors ${
                   isActive
                     ? "bg-brand-50 text-brand-700 font-semibold"
                     : "text-accent-700 hover:bg-slate-50 hover:text-brand-600"
                 }`}
               >
-                <span>{cfg.displayName}</span>
+                <span className="flex items-center gap-2.5">
+                  <span aria-label={cfg.displayName}>{cfg.flag}</span>
+                  <span>{cfg.displayName}</span>
+                </span>
                 {isActive && (
-                  <span className="text-xs uppercase tracking-wider text-brand-500">
-                    Current
-                  </span>
+                  <i
+                    className="fa-solid fa-check text-brand-600 text-xs"
+                    aria-hidden="true"
+                  />
                 )}
               </button>
             );
