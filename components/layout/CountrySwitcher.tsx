@@ -29,9 +29,19 @@ const HOME_PATH: Record<Country, string> = {
 interface CountrySwitcherProps {
   /** Optional onSelect callback (used by the mobile menu to close itself). */
   onSelect?: () => void;
+  /**
+   * - `"desktop"` (default): trigger button + popover dropdown.
+   * - `"mobile"`: inline always-visible list with a "Country" label.
+   *   Used inside the hamburger menu so the dropdown doesn't nest in a
+   *   vertical menu (it felt cramped before).
+   */
+  variant?: "desktop" | "mobile";
 }
 
-export default function CountrySwitcher({ onSelect }: CountrySwitcherProps) {
+export default function CountrySwitcher({
+  onSelect,
+  variant = "desktop",
+}: CountrySwitcherProps) {
   const pathname = usePathname() ?? "/";
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -61,6 +71,51 @@ export default function CountrySwitcher({ onSelect }: CountrySwitcherProps) {
       router.push(HOME_PATH[target]);
     }
   };
+
+  if (variant === "mobile") {
+    return (
+      <div>
+        <div className="text-xs font-bold tracking-wider uppercase text-slate-500 mb-2 px-1">
+          Country
+        </div>
+        <div
+          role="listbox"
+          className="rounded-2xl border border-slate-200 overflow-hidden bg-white"
+        >
+          {COUNTRIES.map((c, i) => {
+            const cfg = countryConfig[c];
+            const isActive = c === country;
+            return (
+              <button
+                key={c}
+                type="button"
+                role="option"
+                aria-selected={isActive}
+                onClick={() => handleSelect(c)}
+                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between gap-3 transition-colors ${
+                  i > 0 ? "border-t border-slate-200" : ""
+                } ${
+                  isActive
+                    ? "bg-brand-50 text-brand-700 font-semibold"
+                    : "text-accent-700 hover:bg-slate-50"
+                }`}
+              >
+                <span className="flex items-center gap-2.5">
+                  <span aria-label={cfg.displayName}>{cfg.flag}</span>
+                  <span>{cfg.displayName}</span>
+                </span>
+                {isActive && (
+                  <span className="text-xs uppercase tracking-wider text-brand-500">
+                    Current
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} className="relative">

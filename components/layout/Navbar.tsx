@@ -99,7 +99,10 @@ export default function Navbar() {
           <div className="md:hidden pb-6 border-t border-slate-100">
             <div className="flex flex-col space-y-4 pt-4">
               <div className="px-2">
-                <CountrySwitcher onSelect={() => setMobileOpen(false)} />
+                <CountrySwitcher
+                  variant="mobile"
+                  onSelect={() => setMobileOpen(false)}
+                />
               </div>
               {innerLinks.map((link) => (
                 <Link
