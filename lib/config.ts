@@ -42,6 +42,8 @@ export interface CountryConfig {
   regulatorVerifyUrl: string;
   /** Footer label that links to the verify page, e.g. "Verify our advisers". */
   regulatorVerifyLabel: string;
+  /** Country flag as a Unicode emoji (used by CountrySwitcher and licence chips). */
+  flag: string;
 }
 
 const NZ_PHONE = "+6492777162";
@@ -74,6 +76,7 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorUrl: "https://www.iaa.govt.nz",
     regulatorVerifyUrl: "https://www.iaa.govt.nz/for-people-needing-advice/find-a-licensed-immigration-adviser/",
     regulatorVerifyLabel: "Verify our advisers",
+    flag: "🇳🇿",
   },
   au: {
     code: "au",
@@ -96,6 +99,7 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorUrl: "https://www.mara.gov.au",
     regulatorVerifyUrl: "https://www.mara.gov.au/search-the-register-of-migration-agents",
     regulatorVerifyLabel: "Verify our agents",
+    flag: "🇦🇺",
   },
   ca: {
     code: "ca",
@@ -118,6 +122,7 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorUrl: "https://college-ic.ca",
     regulatorVerifyUrl: "https://college-ic.ca/protecting-the-public/find-an-immigration-consultant?l=en-US",
     regulatorVerifyLabel: "Verify our consultants",
+    flag: "🇨🇦",
   },
 };
 
