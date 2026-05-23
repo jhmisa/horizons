@@ -38,6 +38,10 @@ export interface CountryConfig {
   regulatorAbbr: string;
   /** Public URL of the regulator (for future links from Footer / legal pages). */
   regulatorUrl: string;
+  /** Deep-link to the regulator's adviser-search page so prospects can verify licence status. */
+  regulatorVerifyUrl: string;
+  /** Footer label that links to the verify page, e.g. "Verify our advisers". */
+  regulatorVerifyLabel: string;
 }
 
 const NZ_PHONE = "+6492777162";
@@ -68,6 +72,8 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorName: "Immigration Advisers Authority",
     regulatorAbbr: "IAA",
     regulatorUrl: "https://www.iaa.govt.nz",
+    regulatorVerifyUrl: "https://www.iaa.govt.nz/for-people-needing-advice/find-a-licensed-immigration-adviser/",
+    regulatorVerifyLabel: "Verify our advisers",
   },
   au: {
     code: "au",
@@ -88,6 +94,8 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorName: "Office of the Migration Agents Registration Authority",
     regulatorAbbr: "OMARA",
     regulatorUrl: "https://www.mara.gov.au",
+    regulatorVerifyUrl: "https://www.mara.gov.au/search-the-register-of-migration-agents",
+    regulatorVerifyLabel: "Verify our agents",
   },
   ca: {
     code: "ca",
@@ -108,6 +116,8 @@ export const countryConfig: Record<Country, CountryConfig> = {
     regulatorName: "College of Immigration and Citizenship Consultants",
     regulatorAbbr: "CICC",
     regulatorUrl: "https://college-ic.ca",
+    regulatorVerifyUrl: "https://college-ic.ca/protecting-the-public/find-an-immigration-consultant?l=en-US",
+    regulatorVerifyLabel: "Verify our consultants",
   },
 };
 
