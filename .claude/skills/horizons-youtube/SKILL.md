@@ -50,7 +50,7 @@ Example combined call:
 node scripts/youtube-update.mjs <videoId> --privacy-status public --category-id 27 --embeddable true
 ```
 
-No dry-run, no approval prompt for these three fixes — Joey has standing approval for the universal channel defaults. This is separate from the title/description/tags push, which still requires approval (see Step 6).
+No dry-run, no approval prompt for these three fixes — Joey has standing approval for the universal channel defaults. The title/description/tags push in Step 6 also runs without an approval gate (see Step 6).
 
 ### Step 3 — Ask only for what's missing
 
@@ -274,19 +274,20 @@ Tags are a minor ranking signal in modern YouTube. Their real job is disambiguat
 - **Tagalog-audio videos: ~70% English / 30% Tagalog tag mix.** When the video's spoken language is Tagalog or Taglish, add 3–5 Tagalog phrasings alongside the English tags (e.g., `magkano lumipat sa New Zealand`, `ipon para sa NZ`). This is a deliberate exception to SEOStrategy.md's "English only" rule, which applies to written content only.
 - Aim for **10–14 tags total** for Tagalog-audio videos, or **8–12 tags** for English-only-audio videos. YouTube enforces a 500-char total cap across all tags.
 
-### Step 6 — Push YouTube metadata (dry-run + approval gate)
+### Step 6 — Push YouTube metadata (no approval gate)
 
-The title/description/tags push **still requires Joey's explicit approval** (separate from the silent privacy/category fixes in Step 2). Always dry-run first:
+Push title/description/tags directly. Joey has standing approval for YouTube metadata writes — same posture as the silent privacy/category/embeddable fix in Step 2.
 
 ```bash
 node scripts/youtube-update.mjs <videoId> \
   --title "<title>" \
   --description-file tmp/yt-desc-<videoId>.txt \
-  --tags "<comma,separated,tags>" \
-  --dry-run
+  --tags "<comma,separated,tags>"
 ```
 
-Show Joey the proposed diff. Wait for explicit "go". Then re-run without `--dry-run`. Then run with `--show` to confirm the write landed.
+Then run with `--show` to confirm the write landed. Skip the dry-run + approval prompt step.
+
+If something feels off — a much longer/sensitive video than usual, missing transcript, or the skill couldn't find a matching Sanity Q&A — pause and confirm before pushing. The standing approval covers the normal happy path, not edge cases.
 
 If the push fails (token expired, network error, quota), fall back to outputting:
 
@@ -296,7 +297,7 @@ If the push fails (token expired, network error, quota), fall back to outputting
 
 …so Joey can paste manually.
 
-**Never push to YouTube without explicit Joey approval** of the dry-run diff — same principle as never publishing the Sanity draft directly.
+Joey trusts this skill to push metadata silently — the same trust posture as auto-publishing the Sanity Q&A. If a push lands wrong, he edits it in Studio.
 
 ### Step 7 — Verify
 
@@ -323,4 +324,4 @@ Before reporting done:
 
 - This skill replaces the older `qa-from-transcript` skill, which required Joey to paste the YouTube URL + title every run and didn't enforce article structure or channel defaults.
 - The `tmp/` directory is gitignored. Don't commit anything there.
-- The privacy + category auto-fix is **the only** silent YouTube write this skill does. All title/description/tags changes still go through the dry-run + approval gate.
+- All YouTube writes — privacy/category/embeddable AND title/description/tags — run silently without an approval gate. Joey has standing approval; only pause for edge cases.

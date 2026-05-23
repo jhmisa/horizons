@@ -40,10 +40,12 @@ export default async function CountryHome({ country }: { country: Country }) {
                 EXPERT IMMIGRATION ADVISERS
               </span>
               <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight mb-6 leading-tight fade-in-up delay-100">
-                1-on-1 Guidance from Licensed Immigration Experts.
+                Your Pathway to New Zealand.
+                <br />
+                Built with Expert Guidance.
               </h1>
               <p className="mt-4 text-lg md:text-xl text-accent-200 mb-6 leading-relaxed fade-in-up delay-200">
-                Creating personalized pathways for families for over 20 years.
+                Helping Filipino families and OFWs migrate to New Zealand with licensed guidance. The same care that has guided 6,500+ families abroad for over 20 years.
               </p>
 
               {/* Social Trust Badges */}
@@ -462,8 +464,7 @@ function AustraliaHome() {
               Built with Expert Guidance.
             </h1>
             <p className="mt-4 text-lg md:text-xl text-accent-200 mb-8 leading-relaxed fade-in-up delay-200">
-              Helping Filipino families and OFWs migrate to Australia. The same
-              care that has guided 6,500+ families abroad for over 20 years.
+              Helping Filipino families and OFWs migrate to Australia with licensed guidance. The same care that has guided 6,500+ families abroad for over 20 years.
             </p>
 
             {/* Social Trust Badges */}
