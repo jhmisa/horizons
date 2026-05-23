@@ -30,7 +30,7 @@ export default function Navbar() {
     innerLinks = [
       { href: "/", label: "Home" },
       { href: "/how-it-works", label: "How It Works" },
-      { href: "/team", label: "Our Team" },
+      { href: "/about", label: "Our Team" },
       { href: "/success-stories", label: "Success Stories" },
       { href: "/answers", label: "FAQ" },
     ];
@@ -38,7 +38,7 @@ export default function Navbar() {
     innerLinks = [
       { href: "/au", label: "Home" },
       { href: "/au/how-it-works", label: "How It Works" },
-      { href: "/team", label: "Our Team" },
+      { href: "/about", label: "Our Team" },
       { href: "/au/answers", label: "FAQ" },
     ];
   }
