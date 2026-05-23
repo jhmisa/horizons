@@ -13,11 +13,10 @@ import {
   youtubeThumbnail,
   youtubeWatchUrl,
 } from "@/lib/youtube";
-import type { Country } from "@/lib/config";
+import { sharedConfig, type Country } from "@/lib/config";
 import type { QA } from "@/types/qa";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
+const SITE_URL = sharedConfig.siteUrl;
 
 export async function getQAForCountry(
   slug: string,

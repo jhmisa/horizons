@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { sharedConfig } from "@/lib/config";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -10,11 +11,8 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(sharedConfig.siteUrl),
   title: "Horizons Immigration | Expert Visa Pathways to New Zealand",
   description:
     "For 20 years, our Licensed Immigration Advisers have guided 6,500+ families to New Zealand with honest advice and a clear plan.",

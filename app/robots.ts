@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
+import { sharedConfig } from "@/lib/config";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.horizons.nz";
+const SITE_URL = sharedConfig.siteUrl;
 
 export default function robots(): MetadataRoute.Robots {
   return {

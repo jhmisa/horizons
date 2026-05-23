@@ -7,7 +7,15 @@ export const metadata: Metadata = {
   title: "Horizons | Migrate to Australia",
   description:
     "Expert migration guidance for Filipino families and OFWs moving to Australia. Built on 20+ years of helping families settle abroad.",
-  alternates: { canonical: "/au" },
+  alternates: {
+    canonical: "/au",
+    languages: {
+      "en-NZ": "/",
+      "en-AU": "/au",
+      "en-CA": "/ca",
+      "x-default": "/",
+    },
+  },
 };
 
 export default function Page() {
