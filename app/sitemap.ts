@@ -5,7 +5,7 @@ import { groq } from "next-sanity";
 
 const SITE_URL = sharedConfig.siteUrl;
 
-type CountryTag = "nz" | "au" | "global";
+type CountryTag = "nz" | "au" | "ca" | "global";
 
 interface SitemapDoc {
   slug: string;
@@ -69,6 +69,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // country tag matches that country OR is "global". So global-tagged content
   // gets mirrored to BOTH the NZ and AU URL lists (intentional — accurately
   // reflects what's actually reachable on each country's site).
+  //
+  // Content tagged country:"ca" is intentionally NOT emitted: /ca is a
+  // shell page with no /ca/answers/[slug] or /ca/blog/[slug] routes. When
+  // CA routes ship, extend the loops below to mirror ca content the same
+  // way au is handled today.
   const qaUrls: MetadataRoute.Sitemap = [];
   for (const qa of qas) {
     const country = qa.country ?? "global";

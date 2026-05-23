@@ -68,6 +68,7 @@ export default async function BlogDetail({
     ? urlFor(post.heroImage).width(1600).height(900).fit("crop").url()
     : null;
   const dateLabel = dateFormatter.format(new Date(post.publishedAt));
+  const pathPrefix = country === "nz" ? "" : `/${country}`;
 
   return (
     <>
@@ -136,7 +137,7 @@ export default async function BlogDetail({
 
           <div className="mt-16 pt-8 border-t border-slate-100">
             <Link
-              href="/blog"
+              href={`${pathPrefix}/blog`}
               className="inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-800"
             >
               <i className="fa-solid fa-arrow-left" />

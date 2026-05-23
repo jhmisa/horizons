@@ -17,6 +17,7 @@ export default async function BlogIndex({ country }: { country: Country }) {
     publishedPostsForCountryQuery,
     { country }
   );
+  const pathPrefix = country === "nz" ? "" : `/${country}`;
 
   return (
     <>
@@ -59,7 +60,7 @@ export default async function BlogIndex({ country }: { country: Country }) {
                 return (
                   <Link
                     key={post._id}
-                    href={`/blog/${post.slug.current}`}
+                    href={`${pathPrefix}/blog/${post.slug.current}`}
                     className="group bg-white rounded-2xl shadow-sm border border-accent-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
                   >
                     <div className="h-48 overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50">
