@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
     "localhost",
     "0.0.0.0",
   ],
+  async redirects() {
+    return [
+      {
+        source: "/team",
+        destination: "/about",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io" },
