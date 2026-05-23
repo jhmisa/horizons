@@ -55,7 +55,7 @@ const REGULATORS = [
       "The NZ government regulator that licenses immigration advisers and enforces their code of conduct.",
   },
   {
-    abbr: "MARA",
+    abbr: "OMARA",
     fullName: "Office of the Migration Agents Registration Authority",
     country: "Australia",
     url: "https://www.mara.gov.au",
