@@ -23,7 +23,7 @@ Three connected improvements to the public site:
 
 - Navbar label stays `"Our Team"` (not "About Us"). Friendlier for an immigration consultancy where trust comes from people.
 - "Our Team" entry destination changes from `/team` → `/about`.
-- `/team` URL → 301 redirect to `/about`. Implemented in `next.config.ts` via the `redirects()` function so it survives static export and works on Vercel.
+- `/team` URL → 308 redirect (Next.js emits 308 for `permanent: true`; semantically equivalent to a 301 for GET navigation) to `/about`. Implemented in `next.config.ts` via the `redirects()` function so it survives static export and works on Vercel.
 - Footer link to `/team` (Footer.tsx:97) updated to `/about`.
 - The orphan "Meet the full team" CTA inside `/about` (currently linking to `/team`) is removed — `/about` *is* the full team page now.
 
@@ -87,7 +87,7 @@ Uses the **small** `/about`-teaser card geometry (not the larger `/team` card). 
 - Role: `text-xs text-brand-600` (the role text wraps to 2–3 lines on the narrow card — that's fine, mirrors today's teaser).
 - Licence chip (LIA cards only):
   - Wrapper: `mt-2 inline-flex items-center gap-1.5 py-1 px-2 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-[10px] font-medium leading-none`.
-  - Flag: rendered as inline text emoji `🇳🇿` (no icon font, no SVG sprite — keeps it simple and accessible to screen readers via `aria-label="New Zealand"`).
+  - Flag: rendered as inline text emoji `🇳🇿` (no icon font, no SVG sprite — keeps it simple). Flag span is marked `aria-hidden="true"` because the visible "IAA No. NNN" text alongside already carries the semantic content; an `aria-label` on the flag would cause screen readers to announce the country name twice.
   - Body: `IAA No. {licence}` (drop "Licence" word — chip is already cramped, and the IAA prefix carries the meaning).
 - Support cards skip the licence chip entirely. No flag, no badge.
 - No hover lift on these small cards (the current teaser also has no hover state). Keeps the section calm next to the larger founder card above it.
@@ -207,12 +207,12 @@ No CountrySwitcher or Navbar test files exist today; this change adds no new tes
   - Footer "Our Team" link has `href="/about"`.
   - CountrySwitcher desktop renders a single `<button>` trigger with current-country flag in its label.
   - CountrySwitcher mobile renders 3 inline buttons (one per country), no trigger.
-- Manual smoke (post-implementation): visit `/team` and confirm 301 to `/about`; open `/about` on mobile and confirm the team grid wraps 2-wide; toggle the country switcher on mobile and confirm 3 inline rows replace the dropdown.
+- Manual smoke (post-implementation): visit `/team` and confirm 308 redirect to `/about`; open `/about` on mobile and confirm the team grid wraps 2-wide; toggle the country switcher on mobile and confirm 3 inline rows replace the dropdown.
 
 ## Risks / open questions
 
 - **/team redirect SEO:** `/team` is in the current sitemap? Checked — it isn't (sitemap.ts only lists `/about`). So redirecting `/team` → `/about` won't strand any sitemap-advertised URL.
-- **Existing inbound links:** any external content (Google search results, social posts) pointing at `/team` will land on `/about` via the 301. Acceptable.
+- **Existing inbound links:** any external content (Google search results, social posts) pointing at `/team` will land on `/about` via the 308 redirect (Next.js emits 308 for `permanent: true`; semantically equivalent to a 301 for GET navigation). Acceptable.
 - **Tonet Cruz Jang's `objectPosition: "50% 35%"`** — preserve when moving the data. Cropping the photo from the top cuts off the face slightly otherwise.
 - **Mobile emoji rendering on older Android / Linux** — accepted degradation; flag falls back to letter pair which is still readable. No spec change.
 
