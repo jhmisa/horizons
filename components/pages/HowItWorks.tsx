@@ -407,7 +407,7 @@ function AustraliaHowItWorks() {
                     pathway walkthrough for you.
                   </p>
                   <Link
-                    href="/book"
+                    href="/au/book"
                     className="inline-block mt-4 px-5 py-2 rounded-full bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition"
                   >
                     Book a Consultation
@@ -480,7 +480,7 @@ function AustraliaHowItWorks() {
                   </div>
 
                   <Link
-                    href="/book"
+                    href="/au/book"
                     className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
                   >
                     <i className="fa-solid fa-lock" /> Book My Consultation
@@ -497,23 +497,112 @@ function AustraliaHowItWorks() {
         id="step-3"
         className="py-20 lg:py-24 bg-brand-50 border-t border-brand-100 relative overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 text-2xl font-bold mb-6">
-            3
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6">
+              {/* Pricing Graphic */}
+              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-brand-100">
+                <div className="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-2xl text-2xl mb-6 mx-auto">
+                  <i className="fa-solid fa-handshake" />
+                </div>
+                <h3 className="text-2xl font-bold text-center text-accent mb-8">
+                  The Horizons Guarantee
+                </h3>
+
+                <div className="space-y-6">
+                  {/* Step A */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-accent-100 text-accent-500 font-bold text-sm shrink-0">
+                      A
+                    </div>
+                    <div className="flex-1 bg-[#FAFAFA] p-4 rounded border border-accent-100">
+                      <div className="flex justify-between items-center mb-1">
+                        <h4 className="font-bold text-accent">
+                          Consultation Fee
+                        </h4>
+                        <span className="font-bold text-brand-600">$190</span>
+                      </div>
+                      <p className="text-xs text-accent-500">
+                        Paid upfront for Step 2.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step B */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-accent-100 text-accent-500 font-bold text-sm shrink-0">
+                      B
+                    </div>
+                    <div className="flex-1 bg-[#FAFAFA] p-4 rounded border border-accent-100">
+                      <div className="flex justify-between items-center mb-1">
+                        <h4 className="font-bold text-accent">
+                          Full Processing Fee
+                        </h4>
+                        <span className="font-bold text-accent-500">$2,000</span>
+                      </div>
+                      <p className="text-xs text-accent-500">
+                        Total cost of migration services.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Result */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-green-500 text-white shrink-0">
+                      <i className="fa-solid fa-check" />
+                    </div>
+                    <div className="flex-1 bg-green-50 p-4 rounded border border-green-200">
+                      <div className="flex justify-between items-center mb-1">
+                        <h4 className="font-bold text-green-900">
+                          You Pay to Proceed
+                        </h4>
+                        <span className="font-extrabold text-green-700 text-lg">
+                          $1,810
+                        </span>
+                      </div>
+                      <p className="text-xs text-green-700">
+                        The $190 is fully credited back.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 lg:col-start-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 text-2xl font-bold mb-6">
+                3
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
+                Proceed with No Surprises.
+              </h2>
+              <p className="text-lg text-accent-600 mb-6 leading-relaxed">
+                Once you decide to engage us, we handle visa selection,
+                document preparation, and lodgement with the Department of Home
+                Affairs. The $190 you&apos;ve paid is credited — only $1,810
+                USD remains to complete the full service.
+              </p>
+              <p className="text-lg text-accent-600 mb-8 leading-relaxed">
+                No wasted money. No hidden costs. Just complete transparency
+                from day one. You know exactly what you&apos;re paying for:
+                personal, expert, end-to-end representation.
+              </p>
+              <ul className="space-y-4 text-accent-600 font-medium">
+                <li className="flex items-start gap-3">
+                  <i className="fa-solid fa-shield text-brand-500 mt-1" /> Full
+                  document preparation and review
+                </li>
+                <li className="flex items-start gap-3">
+                  <i className="fa-solid fa-shield text-brand-500 mt-1" />{" "}
+                  Direct liaison with Australian immigration authorities
+                </li>
+                <li className="flex items-start gap-3">
+                  <i className="fa-solid fa-shield text-brand-500 mt-1" />{" "}
+                  Ongoing support until a decision is reached
+                </li>
+              </ul>
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
-            Step 3 — Proceed with Confidence
-          </h2>
-          <p className="text-lg text-accent-600 mb-6 leading-relaxed">
-            Once you decide to engage us, we handle visa selection, document
-            preparation, and lodgement with the Department of Home Affairs. The
-            $190 you&apos;ve paid is credited — only $1,810 USD remains to
-            complete the full service.
-          </p>
-          <p className="text-lg text-accent font-medium">
-            Direct liaison with Australian immigration authorities. Personal,
-            expert, end-to-end.
-          </p>
         </div>
       </section>
 
@@ -532,7 +621,7 @@ function AustraliaHowItWorks() {
             Ready to start your Australia journey?
           </h2>
           <Link
-            href="/book"
+            href="/au/book"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
             Book My Consultation

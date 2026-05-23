@@ -85,7 +85,7 @@ export default async function AnswerDetail({
             <TranscriptDisclosure transcript={qa.transcript} />
           )}
         </div>
-        <StickyBookCTA />
+        <StickyBookCTA country={country} />
       </div>
     </main>
   );

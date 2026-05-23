@@ -501,7 +501,7 @@ function AustraliaHome() {
                 <i className="fa-solid fa-arrow-right" />
               </Link>
               <Link
-                href="/book"
+                href="/au/book"
                 className="bg-white/10 hover:bg-white/20 text-white text-lg font-bold py-4 px-8 rounded-2xl transition-all border-2 border-white/30 hover:border-white/50 flex items-center justify-center gap-2"
               >
                 Book a Consultation
@@ -581,7 +581,7 @@ function AustraliaHome() {
             map your pathway.
           </p>
           <Link
-            href="/book"
+            href="/au/book"
             className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-10 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             Book a Consultation
@@ -613,7 +613,7 @@ function AustraliaHome() {
             pathway to Australia.
           </p>
           <Link
-            href="/book"
+            href="/au/book"
             className="inline-block bg-white text-brand-900 hover:bg-[#FAFAFA] text-xl font-bold py-5 px-12 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
             Book a Consultation
