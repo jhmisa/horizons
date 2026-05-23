@@ -75,11 +75,15 @@ export default function CountrySwitcher({
   if (variant === "mobile") {
     return (
       <div>
-        <div className="text-xs font-bold tracking-wider uppercase text-slate-500 mb-2 px-1">
+        <div
+          id="country-switcher-label"
+          className="text-xs font-bold tracking-wider uppercase text-slate-500 mb-2 px-1"
+        >
           Country
         </div>
         <div
           role="listbox"
+          aria-labelledby="country-switcher-label"
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white"
         >
           {COUNTRIES.map((c, i) => {
@@ -97,11 +101,11 @@ export default function CountrySwitcher({
                 } ${
                   isActive
                     ? "bg-brand-50 text-brand-700 font-semibold"
-                    : "text-accent-700 hover:bg-slate-50"
+                    : "text-accent-700 hover:bg-slate-50 hover:text-brand-600"
                 }`}
               >
                 <span className="flex items-center gap-2.5">
-                  <span aria-label={cfg.displayName}>{cfg.flag}</span>
+                  <span aria-hidden="true">{cfg.flag}</span>
                   <span>{cfg.displayName}</span>
                 </span>
                 {isActive && (
@@ -126,7 +130,7 @@ export default function CountrySwitcher({
         aria-expanded={open}
         className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white border border-slate-200 text-accent-700 font-semibold text-sm shadow-sm hover:bg-brand-50 hover:border-brand-200 hover:shadow transition-all"
       >
-        <span aria-label={current.displayName}>{current.flag}</span>
+        <span aria-hidden="true">{current.flag}</span>
         <span>{current.displayName}</span>
         <i
           className={`fa-solid fa-chevron-down text-xs transition-transform ${open ? "rotate-180" : ""}`}
@@ -156,7 +160,7 @@ export default function CountrySwitcher({
                 }`}
               >
                 <span className="flex items-center gap-2.5">
-                  <span aria-label={cfg.displayName}>{cfg.flag}</span>
+                  <span aria-hidden="true">{cfg.flag}</span>
                   <span>{cfg.displayName}</span>
                 </span>
                 {isActive && (
