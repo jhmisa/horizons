@@ -116,6 +116,14 @@ export default async function Footer() {
                   Blog
                 </Link>
               </li>
+              {/*
+                TODO(joey): Uncomment after publishing ≥3 NZ partner schools in Sanity.
+                <li>
+                  <Link href="/partner-schools" className="hover:text-brand-400 transition-colors">
+                    Partner Schools
+                  </Link>
+                </li>
+              */}
             </ul>
           </div>
 
@@ -188,6 +196,31 @@ export default async function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Regulated By Row */}
+        <div className="border-t border-accent-800 pt-6 pb-2 text-sm text-accent-300 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 text-center">
+          <span>
+            Regulated by{" "}
+            <span className="font-semibold text-white">
+              {config.regulatorAbbr}
+            </span>
+          </span>
+          <span className="hidden sm:inline text-accent-500" aria-hidden="true">
+            ·
+          </span>
+          <a
+            href={config.regulatorVerifyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-brand-400 transition-colors inline-flex items-center gap-1"
+          >
+            {config.regulatorVerifyLabel}
+            <i
+              className="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-70"
+              aria-hidden="true"
+            />
+          </a>
         </div>
 
         {/* Bottom Bar */}
