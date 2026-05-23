@@ -52,7 +52,7 @@ export default function CountrySwitcher({
 
   useEffect(() => {
     if (!open) return;
-    const handler = (event: MouseEvent) => {
+    const clickHandler = (event: MouseEvent) => {
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
@@ -60,8 +60,15 @@ export default function CountrySwitcher({
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    const keyHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", clickHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => {
+      document.removeEventListener("mousedown", clickHandler);
+      document.removeEventListener("keydown", keyHandler);
+    };
   }, [open]);
 
   const handleSelect = (target: Country) => {
@@ -124,6 +131,7 @@ export default function CountrySwitcher({
   return (
     <div ref={containerRef} className="relative">
       <button
+        id="country-switcher-trigger"
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
@@ -141,6 +149,7 @@ export default function CountrySwitcher({
       {open && (
         <div
           role="listbox"
+          aria-labelledby="country-switcher-trigger"
           className="absolute right-0 mt-2 min-w-[180px] bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden z-50"
         >
           {COUNTRIES.map((c) => {
