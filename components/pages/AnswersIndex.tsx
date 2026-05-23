@@ -52,7 +52,7 @@ export default async function AnswersIndex({ country }: { country: Country }) {
       )}
 
       <section className="mt-20 max-w-2xl mx-auto">
-        <SubmitQuestionForm />
+        <SubmitQuestionForm country={country} />
       </section>
     </main>
   );

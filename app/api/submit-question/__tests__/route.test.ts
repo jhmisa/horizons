@@ -94,7 +94,53 @@ describe("POST /api/submit-question", () => {
     );
     expect(arg.sourceUrl).toBe("https://example.com/answers");
     expect(arg.status).toBe("new");
+    expect(arg.country).toBe("nz");
     expect(typeof arg.submittedAt).toBe("string");
+  });
+
+  it("persists explicit country from the request body", async () => {
+    (sanityWriteClient.create as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      _id: "abc124",
+    });
+    const req = makeRequest({
+      email: "user@example.com",
+      question: "Valid question with enough length here please",
+      country: "au",
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+    const arg = (sanityWriteClient.create as ReturnType<typeof vi.fn>).mock
+      .calls[0][0];
+    expect(arg.country).toBe("au");
+  });
+
+  it("derives country from the referer when not in the body", async () => {
+    (sanityWriteClient.create as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      _id: "abc125",
+    });
+    const req = makeRequest(
+      {
+        email: "user@example.com",
+        question: "Valid question with enough length here please",
+      },
+      "https://example.com/ca/answers"
+    );
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+    const arg = (sanityWriteClient.create as ReturnType<typeof vi.fn>).mock
+      .calls[0][0];
+    expect(arg.country).toBe("ca");
+  });
+
+  it("rejects an invalid country in the request body", async () => {
+    const req = makeRequest({
+      email: "user@example.com",
+      question: "Valid question with enough length here please",
+      country: "xx",
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    expect(sanityWriteClient.create).not.toHaveBeenCalled();
   });
 
   it("returns 500 if Sanity write throws", async () => {

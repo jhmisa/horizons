@@ -1,13 +1,36 @@
 import { NextResponse } from "next/server";
 import { sanityWriteClient } from "@/lib/sanity";
+import type { Country } from "@/lib/config";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ALLOWED_COUNTRIES: readonly Country[] = ["nz", "au", "ca"] as const;
+
+function isCountry(value: unknown): value is Country {
+  return (
+    typeof value === "string" &&
+    (ALLOWED_COUNTRIES as readonly string[]).includes(value)
+  );
+}
+
+function deriveCountryFromReferer(referer: string | null): Country {
+  if (!referer) return "nz";
+  try {
+    const url = new URL(referer);
+    const path = url.pathname;
+    if (path === "/au" || path.startsWith("/au/")) return "au";
+    if (path === "/ca" || path.startsWith("/ca/")) return "ca";
+    return "nz";
+  } catch {
+    return "nz";
+  }
+}
 
 export async function POST(req: Request) {
   let body: {
     name?: unknown;
     email?: unknown;
     question?: unknown;
+    country?: unknown;
     _website?: unknown;
   };
   try {
@@ -49,6 +72,21 @@ export async function POST(req: Request) {
     );
   }
 
+  // Country: explicit body wins; otherwise derive from referer; default 'nz'.
+  // If body.country is present but invalid, reject — don't silently fall back.
+  let country: Country;
+  if (body.country !== undefined) {
+    if (!isCountry(body.country)) {
+      return NextResponse.json(
+        { ok: false, error: "Invalid country" },
+        { status: 400 }
+      );
+    }
+    country = body.country;
+  } else {
+    country = deriveCountryFromReferer(req.headers.get("referer"));
+  }
+
   const sourceUrl = req.headers.get("referer") || undefined;
 
   try {
@@ -57,6 +95,7 @@ export async function POST(req: Request) {
       question,
       submitterEmail: email,
       submitterName: name || undefined,
+      country,
       sourceUrl,
       submittedAt: new Date().toISOString(),
       status: "new",

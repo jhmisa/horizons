@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import type { Country } from "@/lib/config";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function SubmitQuestionForm() {
+export function SubmitQuestionForm({ country }: { country: Country }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [question, setQuestion] = useState("");
@@ -20,7 +21,13 @@ export function SubmitQuestionForm() {
       const res = await fetch("/api/submit-question", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, question, _website: website }),
+        body: JSON.stringify({
+          name,
+          email,
+          question,
+          country,
+          _website: website,
+        }),
       });
       const json = await res.json();
       if (!res.ok || !json.ok) {

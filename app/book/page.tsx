@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { STRIPE_PAYMENT_LINK } from "@/lib/config";
+import { cookies } from "next/headers";
+import { getStripeLink, type Country } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Book Your LIA Consultation | Horizons Immigration",
@@ -9,7 +10,39 @@ export const metadata: Metadata = {
   alternates: { canonical: "/book" },
 };
 
-export default function BookPage() {
+function isCountry(value: unknown): value is Country {
+  return value === "nz" || value === "au" || value === "ca";
+}
+
+function appendClientReferenceId(url: string, country: Country): string {
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}client_reference_id=country:${country}`;
+}
+
+export default async function BookPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const queryCountryRaw = resolvedSearchParams.country;
+  const queryCountry = Array.isArray(queryCountryRaw)
+    ? queryCountryRaw[0]
+    : queryCountryRaw;
+
+  let country: Country = "nz";
+  if (queryCountry !== undefined) {
+    country = isCountry(queryCountry) ? queryCountry : "nz";
+  } else {
+    const cookieStore = await cookies();
+    const cookieCountry = cookieStore.get("country")?.value;
+    if (isCountry(cookieCountry)) {
+      country = cookieCountry;
+    }
+  }
+
+  const stripeUrl = appendClientReferenceId(getStripeLink(country), country);
+
   return (
     <>
       {/* Page Header */}
@@ -113,7 +146,7 @@ export default function BookPage() {
                 </p>
 
                 <a
-                  href={STRIPE_PAYMENT_LINK}
+                  href={stripeUrl}
                   className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
                 >
                   <i className="fa-solid fa-lock" /> Pay $197 USD — Book My
