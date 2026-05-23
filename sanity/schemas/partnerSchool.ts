@@ -44,7 +44,7 @@ export const partnerSchool = defineType({
       name: "logo",
       title: "Logo",
       type: "image",
-      options: { hotspot: false },
+      options: { hotspot: false, accept: "image/*" },
       fields: [
         defineField({
           name: "alt",
@@ -68,7 +68,7 @@ export const partnerSchool = defineType({
       description: "1-2 lines, ~120 characters. Shows on the school card.",
       type: "text",
       rows: 2,
-      validation: (rule) => rule.required().max(200),
+      validation: (rule) => rule.required().min(20).max(200),
     }),
     defineField({
       name: "order",
