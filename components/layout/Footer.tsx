@@ -94,7 +94,7 @@ export default async function Footer() {
               </li>
               <li>
                 <Link
-                  href="/team"
+                  href="/about"
                   className="hover:text-brand-400 transition-colors"
                 >
                   Our Team
