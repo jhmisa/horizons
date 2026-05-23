@@ -1,12 +1,14 @@
 import Link from "next/link";
-import {
-  FACEBOOK_URL,
-  GOOGLE_BUSINESS_URL,
-  GOOGLE_REVIEW_URL,
-  YOUTUBE_URL,
-} from "@/lib/config";
+import { cookies } from "next/headers";
+import { getCountryConfig, type Country } from "@/lib/config";
 
-export default function Footer() {
+export default async function Footer() {
+  const cookieStore = await cookies();
+  const countryRaw = cookieStore.get("country")?.value;
+  const country: Country =
+    countryRaw === "au" || countryRaw === "ca" ? countryRaw : "nz";
+  const config = getCountryConfig(country);
+
   return (
     <footer className="bg-accent-950 text-accent-300 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +35,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href={FACEBOOK_URL}
+                href={config.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Horizons on Facebook"
@@ -42,7 +44,7 @@ export default function Footer() {
                 <i className="fa-brands fa-facebook-f" />
               </a>
               <a
-                href={YOUTUBE_URL}
+                href={config.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Horizons on YouTube"
@@ -51,7 +53,7 @@ export default function Footer() {
                 <i className="fa-brands fa-youtube" />
               </a>
               <a
-                href={GOOGLE_BUSINESS_URL}
+                href={config.googleBusinessUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Horizons on Google"
@@ -132,7 +134,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href={GOOGLE_REVIEW_URL}
+                  href={config.googleReviewUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-brand-400 transition-colors inline-flex items-center gap-2"
@@ -155,28 +157,24 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <i className="fa-solid fa-location-dot mt-1 text-brand-500" />
-                <span>
-                  East Auckland,
-                  <br />
-                  New Zealand
-                </span>
+                <span>{config.address}</span>
               </li>
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope text-brand-500" />
                 <a
-                  href="mailto:hello@horizons.nz"
+                  href={`mailto:${config.email}`}
                   className="hover:text-brand-400 transition-colors"
                 >
-                  hello@horizons.nz
+                  {config.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-phone text-brand-500" />
                 <a
-                  href="tel:+6492777162"
+                  href={`tel:${config.phone}`}
                   className="hover:text-brand-400 transition-colors"
                 >
-                  +64 9 277 7162
+                  {config.phoneDisplay}
                 </a>
               </li>
             </ul>
