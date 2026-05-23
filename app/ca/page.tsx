@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import ComingSoonShell from "@/components/pages/ComingSoonShell";
-import { getCountryConfig } from "@/lib/config";
+import CountryHome from "@/components/pages/CountryHome";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Horizons | Canada Migration Coming Soon",
-  description: "Canada advisory launching soon. Be the first to know.",
+  title: "Horizons | Migrate to Canada",
+  description:
+    "Expert immigration guidance for Filipino families and OFWs moving to Canada. Built on 20+ years of helping families settle abroad.",
   alternates: {
     canonical: "/ca",
     languages: {
@@ -17,7 +19,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const country = "ca" as const;
-  const { displayName } = getCountryConfig(country);
-  return <ComingSoonShell country={country} displayName={displayName} />;
+  return <CountryHome country="ca" />;
 }

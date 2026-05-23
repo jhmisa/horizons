@@ -28,6 +28,16 @@ export interface CountryConfig {
   youtubeUrl: string;
   /** Name of the env var holding this country's Stripe payment link. */
   stripePaymentLinkEnvVar: string;
+  /** Full title of the licensed immigration adviser in this jurisdiction. */
+  adviserTitle: string;
+  /** Short-form abbreviation of the adviser title (LIA, RMA, RCIC). */
+  adviserAbbr: string;
+  /** Full name of the regulator that licenses advisers in this jurisdiction. */
+  regulatorName: string;
+  /** Short-form regulator abbreviation (IAA, OMARA, CICC). */
+  regulatorAbbr: string;
+  /** Public URL of the regulator (for future links from Footer / legal pages). */
+  regulatorUrl: string;
 }
 
 const NZ_PHONE = "+6492777162";
@@ -53,6 +63,11 @@ export const countryConfig: Record<Country, CountryConfig> = {
     facebookUrl: NZ_FACEBOOK_URL,
     youtubeUrl: NZ_YOUTUBE_URL,
     stripePaymentLinkEnvVar: "NEXT_PUBLIC_STRIPE_PAYMENT_LINK_NZ",
+    adviserTitle: "Licensed Immigration Adviser",
+    adviserAbbr: "LIA",
+    regulatorName: "Immigration Advisers Authority",
+    regulatorAbbr: "IAA",
+    regulatorUrl: "https://www.iaa.govt.nz",
   },
   au: {
     code: "au",
@@ -68,6 +83,11 @@ export const countryConfig: Record<Country, CountryConfig> = {
     facebookUrl: NZ_FACEBOOK_URL,
     youtubeUrl: NZ_YOUTUBE_URL,
     stripePaymentLinkEnvVar: "NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AU",
+    adviserTitle: "Registered Migration Agent",
+    adviserAbbr: "RMA",
+    regulatorName: "Office of the Migration Agents Registration Authority",
+    regulatorAbbr: "OMARA",
+    regulatorUrl: "https://www.mara.gov.au",
   },
   ca: {
     code: "ca",
@@ -83,6 +103,11 @@ export const countryConfig: Record<Country, CountryConfig> = {
     facebookUrl: NZ_FACEBOOK_URL,
     youtubeUrl: NZ_YOUTUBE_URL,
     stripePaymentLinkEnvVar: "NEXT_PUBLIC_STRIPE_PAYMENT_LINK_CA",
+    adviserTitle: "Regulated Canadian Immigration Consultant",
+    adviserAbbr: "RCIC",
+    regulatorName: "College of Immigration and Citizenship Consultants",
+    regulatorAbbr: "CICC",
+    regulatorUrl: "https://college-ic.ca",
   },
 };
 

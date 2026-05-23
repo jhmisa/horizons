@@ -61,9 +61,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/au/blog`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/au/book`, changeFrequency: "monthly", priority: 0.8 },
 
-    // CA shell
-    { url: `${SITE_URL}/ca`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${SITE_URL}/ca/book`, changeFrequency: "monthly", priority: 0.5 },
+    // CA static URLs
+    { url: `${SITE_URL}/ca`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/ca/book`, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Build dynamic URLs from Sanity content.
