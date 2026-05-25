@@ -76,6 +76,11 @@ export default function CountrySwitcher({
     onSelect?.();
     if (target !== country) {
       router.push(HOME_PATH[target]);
+      // Invalidate the client Router Cache so the root layout (and therefore
+      // the Footer's server component) re-renders with the new country cookie.
+      // Without this, soft navigation reuses the cached layout and the Footer
+      // keeps showing the previous regulator until a hard refresh.
+      router.refresh();
     }
   };
 
