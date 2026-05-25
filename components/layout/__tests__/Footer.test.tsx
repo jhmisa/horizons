@@ -65,3 +65,52 @@ describe("Footer regulator row", () => {
     expect(screen.getByText("IAA")).toBeInTheDocument();
   });
 });
+
+describe("Footer country-aware labels", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("uses LIA + NZ copyright + shows IAA Code of Conduct link for NZ", async () => {
+    mockCountryCookie("nz");
+    const ui = await Footer();
+    render(ui);
+    expect(
+      screen.getByRole("link", { name: /Why Use an LIA\?/ })
+    ).toHaveAttribute("href", "/#why-lia");
+    expect(
+      screen.getByText(/Licensed Immigration Advisers\.$/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /IAA Code of Conduct/ })
+    ).toBeInTheDocument();
+  });
+
+  it("uses RMA + AU copyright + hides IAA Code of Conduct link for AU", async () => {
+    mockCountryCookie("au");
+    const ui = await Footer();
+    render(ui);
+    const whyLink = screen.getByRole("link", { name: /Why Use an RMA\?/ });
+    expect(whyLink).toHaveAttribute("href", "/au#why-lia");
+    expect(
+      screen.getByText(/Registered Migration Agents\.$/)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /IAA Code of Conduct/ })
+    ).not.toBeInTheDocument();
+  });
+
+  it("uses RCIC + CA copyright + hides IAA Code of Conduct link for CA", async () => {
+    mockCountryCookie("ca");
+    const ui = await Footer();
+    render(ui);
+    const whyLink = screen.getByRole("link", { name: /Why Use an RCIC\?/ });
+    expect(whyLink).toHaveAttribute("href", "/ca#why-lia");
+    expect(
+      screen.getByText(/Regulated Canadian Immigration Consultants\.$/)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /IAA Code of Conduct/ })
+    ).not.toBeInTheDocument();
+  });
+});

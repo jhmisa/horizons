@@ -135,10 +135,10 @@ export default async function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link
-                  href="/#why-lia"
+                  href={country === "nz" ? "/#why-lia" : `/${country}#why-lia`}
                   className="hover:text-brand-400 transition-colors"
                 >
-                  Why Use an LIA?
+                  Why Use an {config.adviserAbbr}?
                 </Link>
               </li>
               <li>
@@ -227,7 +227,7 @@ export default async function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-accent-400 border-t border-accent-800 pt-8 mt-4">
           <div className="mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Horizons Immigration. All rights
-            reserved. Licensed Immigration Advisers.
+            reserved. {config.adviserTitle}s.
           </div>
           <div className="flex gap-6">
             <Link
@@ -242,12 +242,14 @@ export default async function Footer() {
             >
               Terms of Service
             </Link>
-            <Link
-              href="/iaa-code-of-conduct"
-              className="hover:text-white transition-colors"
-            >
-              IAA Code of Conduct
-            </Link>
+            {country === "nz" && (
+              <Link
+                href="/iaa-code-of-conduct"
+                className="hover:text-white transition-colors"
+              >
+                IAA Code of Conduct
+              </Link>
+            )}
           </div>
         </div>
       </div>

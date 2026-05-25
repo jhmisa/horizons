@@ -41,15 +41,27 @@ export function middleware(request: NextRequest) {
     country = "nz";
   }
 
-  const response = NextResponse.next();
-  if (country) {
-    response.cookies.set("country", country, {
-      httpOnly: false, // readable from client JS
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30, // 30 days
-    });
+  if (!country) {
+    return NextResponse.next();
   }
+
+  // Mutate the request cookie so server components (e.g. Footer) read the new
+  // value on THIS render. Without this, `cookies()` in a server component
+  // sees the previous request's cookie and the footer lags one navigation
+  // behind the country switcher.
+  request.cookies.set("country", country);
+
+  const response = NextResponse.next({
+    request: { headers: request.headers },
+  });
+
+  response.cookies.set("country", country, {
+    httpOnly: false, // readable from client JS
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30, // 30 days
+  });
+
   return response;
 }
 
