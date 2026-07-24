@@ -62,9 +62,9 @@ export default async function CountryHome({ country }: { country: Country }) {
                     <i className="fa-solid fa-star" />
                     <i className="fa-solid fa-star" />
                     <i className="fa-solid fa-star" />
-                    <i className="fa-solid fa-star-half-stroke" />
+                    <i className="fa-solid fa-star" />
                   </div>
-                  <span className="text-white text-sm font-bold">4.7</span>
+                  <span className="text-white text-sm font-bold">4.8</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-lg cursor-default">
                   <i className="fa-brands fa-facebook text-blue-400" />
@@ -136,9 +136,9 @@ export default async function CountryHome({ country }: { country: Country }) {
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star-half-stroke" />
+                  <i className="fa-solid fa-star" />
                 </div>
-                <span className="font-bold text-white text-lg">4.7★</span>
+                <span className="font-bold text-white text-lg">4.8★</span>
                 <span className="text-accent-200 text-xs uppercase tracking-wider mt-1">
                   Google Reviews
                 </span>
@@ -329,9 +329,9 @@ function AustraliaHome() {
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star-half-stroke" />
+                  <i className="fa-solid fa-star" />
                 </div>
-                <span className="text-white text-sm font-bold">4.7</span>
+                <span className="text-white text-sm font-bold">4.8</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-lg cursor-default">
                 <i className="fa-solid fa-calendar-check text-brand-300" />
@@ -511,9 +511,9 @@ function CanadaHome() {
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
                   <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star-half-stroke" />
+                  <i className="fa-solid fa-star" />
                 </div>
-                <span className="text-white text-sm font-bold">4.7</span>
+                <span className="text-white text-sm font-bold">4.8</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-lg cursor-default">
                 <i className="fa-solid fa-calendar-check text-brand-300" />
