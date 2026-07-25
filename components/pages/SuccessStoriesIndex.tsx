@@ -82,7 +82,7 @@ export default async function SuccessStoriesIndex({
                 return (
                   <article
                     key={story._id}
-                    className="bg-white rounded-2xl shadow-md border border-accent-100 overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                    className="bg-white rounded-2xl shadow-md border border-accent-100 overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
                   >
                     <a
                       href={story.youtubeUrl || undefined}
@@ -139,7 +139,95 @@ export default async function SuccessStoriesIndex({
         </div>
       </section>
 
-      <section className="py-24 bg-brand-900 text-center relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-brand-900 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <span className="inline-block py-1 px-3 rounded-2xl bg-brand-500/20 text-brand-100 border border-brand-400/30 text-sm font-semibold tracking-wide mb-6 fade-in-up">
+              THE HORIZONS COMMUNITY
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-5 fade-in-up delay-100">
+              More than clients — a community.
+            </h2>
+            <p className="text-lg text-brand-100 fade-in-up delay-200">
+              Filipino families have trusted Horizons since 2002. From free
+              seminars to Christmas parties in Auckland, this is what it looks
+              like when families don&rsquo;t just get a visa — they find their
+              people.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-6 items-center">
+            <figure className="col-span-2 lg:col-span-7 fade-in-up delay-100">
+              <div className="rounded-2xl overflow-hidden ring-4 ring-white/10 shadow-2xl lg:-rotate-1 hover:rotate-0 transition-transform duration-500">
+                <Image
+                  src="/images/community/community-group.jpg"
+                  alt="Dozens of Filipino families at the Horizons NZ annual Christmas party in Auckland"
+                  width={960}
+                  height={540}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-brand-100/70 text-center">
+                Annual Christmas party — clients, families and the Horizons team
+              </figcaption>
+            </figure>
+
+            <div className="col-span-2 lg:col-span-5 grid grid-cols-2 gap-4 lg:gap-6">
+              <figure className="fade-in-up delay-200">
+                <div className="rounded-2xl overflow-hidden ring-4 ring-white/10 shadow-2xl lg:rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <Image
+                    src="/images/community/community-seminar.jpg"
+                    alt="Filipinos attending a free Horizons immigration seminar in Auckland"
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover aspect-[4/3]"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm text-brand-100/70 text-center">
+                  Free info seminars
+                </figcaption>
+              </figure>
+              <figure className="fade-in-up delay-300">
+                <div className="rounded-2xl overflow-hidden ring-4 ring-white/10 shadow-2xl lg:-rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <Image
+                    src="/images/community/community-alombro-family.jpg"
+                    alt="The Alombro family at the Horizons office after their visa approval"
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover aspect-[4/3]"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm text-brand-100/70 text-center">
+                  Visa-approval celebrations
+                </figcaption>
+              </figure>
+              <figure className="col-span-2 fade-in-up delay-300">
+                <div className="rounded-2xl overflow-hidden ring-4 ring-white/10 shadow-2xl lg:rotate-1 hover:rotate-0 transition-transform duration-500">
+                  <Image
+                    src="/images/community/community-team-party.jpg"
+                    alt="The Horizons New Zealand team at the annual Christmas party"
+                    width={960}
+                    height={540}
+                    className="w-full h-full object-cover aspect-[16/8]"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm text-brand-100/70 text-center">
+                  The Horizons team
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-brand-900 text-center relative overflow-hidden border-t border-white/10">
         <div
           className="absolute inset-0 opacity-10"
           style={{
