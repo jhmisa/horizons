@@ -52,11 +52,13 @@ Top-10 first-mover topics and ~26 PAA-style questions from research included in 
 - If a claim can't be backed by a current official page (e.g. outdated fund amount), flag to Joey instead of linking — accuracy fix, not linking fix.
 - Post-run: summary to Joey of what got linked where.
 
-**f. Domain consolidation (discovered during design, needs Joey's decision)**
-- Two live sites exist: `horizonsimmigration.com` (new, Next.js/Vercel) and `horizonsmigration.com` (old Wix site, still live, currently what Google indexes for the brand).
-- The split divides brand authority and backlinks. Recommended: 301-redirect the Wix domain (all paths) to horizonsimmigration.com so its existing Google standing transfers rather than competes.
-- Requires access to the Wix account / that domain's DNS. Fix `horizonsmigration.com` typo in SEOStrategy.md.
-- Related deferred cleanup: old Weebly site (hnzimmigration.weebly.com), ZoomInfo entry pointing at horizonsnz.co.nz.
+**f. Domain consolidation (discovered during design)**
+- Two live sites exist: `horizonsimmigration.com` (new, Next.js/Vercel) and `horizonsmigration.com` (old Wix site, still live, currently what Google indexes for the brand). The split divides brand authority and backlinks.
+- **URGENT: old domain registration (Network Solutions) expires 2026-08-21.** Renew + auto-renew first, keep indefinitely.
+- **Live Google Workspace email on the old domain** (MX → aspmx.l.google.com). Redirect the website only; never touch MX. Joey to confirm who uses @horizonsmigration.com addresses.
+- Plan: in Wix DNS panel, repoint apex A + www CNAME to Vercel (MX untouched) → add both old hostnames to the Vercel project as permanent redirects to horizonsimmigration.com → explicit path mappings in next.config for valuable old pages (`/advisers|/ourteam|/whyhorizons`→`/about`, `/faqs`→`/answers`, `/testimonials|/more-feedbacks`→`/success-stories`, `/fees`+payment pages→`/book`, `/hnz-partner-schools`→`/partner-schools`, CA/AU promos→`/ca`|`/au`, rest→home). Old sitemap had ~70 URLs, mostly dead promos.
+- After both domains verified in GSC: submit **Change of Address** to accelerate rank transfer.
+- Fix `horizonsmigration.com` typo in SEOStrategy.md. Related deferred cleanup: old Weebly site (hnzimmigration.weebly.com), ZoomInfo entry pointing at horizonsnz.co.nz.
 
 ### Loop skill (`.claude/skills/horizons-seo/`)
 
