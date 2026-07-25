@@ -20,7 +20,7 @@ The audience is **Filipinos who want long-term residency in New Zealand**, in th
 
 | Channel | Role | Status |
 |---|---|---|
-| **YouTube** (embedded on horizonsmigration.com) | Both the on-site embed (conversion) and the discovery channel (YouTube SEO + AI engine citations + Filipino YouTube viewing behavior). One upload, two channels of traffic. | Active. |
+| **YouTube** (embedded on horizonsimmigration.com) | Both the on-site embed (conversion) and the discovery channel (YouTube SEO + AI engine citations + Filipino YouTube viewing behavior). One upload, two channels of traffic. | Active. |
 
 Q&A videos live on YouTube. We embed them via `react-lite-youtube-embed` on `/answers/[slug]` (private-by-default `youtube-nocookie.com` embed, thumbnail-only until clicked for Core Web Vitals). Each `qa`, `post`, and `successStory` Sanity document carries a `youtubeUrl` field.
 
@@ -42,11 +42,12 @@ Q&A videos live on YouTube. We embed them via `react-lite-youtube-embed` on `/an
   - **Direct answer in the first 1–2 sentences.** This is what AI Overviews and ChatGPT cite.
   - Then context, examples, headings (`h2`/`h3`), short paragraphs, lists where useful.
 - **Accuracy:** Use correct visa names (AEWV, SMC, Partnership Resident, Green List, etc.). Never invent facts. If a transcript doesn't cover something, leave it out.
+- **Citations are mandatory:** every visa fact, fee, or requirement links to the exact page on immigration.govt.nz / iaa.govt.nz that backs it (not the homepage). Applies to Q&As, blogs, and success stories.
 
 ## Phasing
 
-- **Phase 1 (current):** Populate the Q&A library and start the blog backlog. Videos go on YouTube (public, with proper titles/descriptions/transcripts) and are embedded on-site. No formal SEO keyword research yet — but write in good Q&A shape from the start so we don't pay rework cost later.
-- **Phase 2 (later):** Keyword research pass. Edit existing Q&As + write blogs targeting specific keyword clusters. Connect Google Search Console. Decide on paid SEO tools (Ahrefs / SEMrush) if needed. Consider wiring up the YouTube Data API for automated description sync once volume justifies the OAuth setup.
+- **Phase 1 (done):** Populated the initial Q&A library and started the blog backlog. Videos go on YouTube (public, with proper titles/descriptions/transcripts) and are embedded on-site. No formal SEO keyword research yet — but write in good Q&A shape from the start so we don't pay rework cost later.
+- **Phase 2 (current, started 2026-07-25):** Keyword research pass. Edit existing Q&As + write blogs targeting specific keyword clusters. Connect Google Search Console. Decide on paid SEO tools (Ahrefs / SEMrush) if needed. Consider wiring up the YouTube Data API for automated description sync once volume justifies the OAuth setup. Run via the /horizons-seo skill (one content cycle per run; keyword map in docs/research/keyword-map.md).
 - **Phase 3 (later):** Cross-post to YouTube Shorts / TikTok / IG Reels from the same source videos.
 
 ## Workflows
@@ -111,7 +112,6 @@ Q&A videos live on YouTube. We embed them via `react-lite-youtube-embed` on `/an
 
 - **Tagalog/Taglish content** — deferred. English only for now.
 - **Paid SEO tools (Ahrefs/SEMrush)** — defer until Phase 2.
-- **Google Search Console** — recommend connecting before Phase 2 starts.
 - **Categories/tags taxonomy on blog** — deferred until we know what cuts matter.
 - **Frontend pages for `/blog` and `/success-stories`** — schemas are ready; frontend may still need build work.
 - **`consentOnFile` boolean on success stories** — currently a description note; promote to a required field if legal/privacy needs increase.
