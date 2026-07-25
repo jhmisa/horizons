@@ -1,3 +1,4 @@
+import { ROWEL } from "@/lib/adviser";
 import type { Country } from "@/lib/config";
 
 type Props = {
@@ -65,7 +66,15 @@ export function QAJsonLd({
     "@type": "Article",
     headline: question,
     datePublished: publishedAt,
-    author: { "@type": "Person", name: liaName },
+    author:
+      liaName === ROWEL.name
+        ? {
+            "@type": "Person",
+            name: ROWEL.name,
+            jobTitle: `${ROWEL.jobTitle} (IAA #${ROWEL.licenseNumber})`,
+            sameAs: [ROWEL.linkedinUrl],
+          }
+        : { "@type": "Person", name: liaName },
     mainEntityOfPage: url,
   };
 

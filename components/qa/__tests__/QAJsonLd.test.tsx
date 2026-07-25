@@ -30,4 +30,22 @@ describe("QAJsonLd", () => {
     expect(types).toContain("VideoObject");
     expect(types).toContain("Article");
   });
+
+  it("enriches the Article author with Rowel's credentials when liaName matches", () => {
+    const { container } = render(
+      <QAJsonLd {...fakeQA} liaName="Rowel Mercado" />
+    );
+    const article = Array.from(
+      container.querySelectorAll("script[type='application/ld+json']")
+    )
+      .map((s) => JSON.parse(s.textContent || "{}"))
+      .find((d) => d["@type"] === "Article");
+    expect(article).toBeDefined();
+    const author = article.author as Record<string, unknown>;
+    expect(author["@type"]).toBe("Person");
+    expect(author.sameAs).toContain(
+      "https://www.linkedin.com/in/rowel-mercado-1388883a/"
+    );
+    expect(author.jobTitle).toContain("200900577");
+  });
 });

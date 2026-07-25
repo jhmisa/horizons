@@ -16,6 +16,22 @@ describe("AboutPage", () => {
     expect(screen.getAllByText(/200900577/).length).toBeGreaterThan(0);
   });
 
+  it("shows Rowel's license in his title line and links to the IAA register", () => {
+    render(<AboutPage />);
+    expect(
+      screen.getByText(/Licensed Immigration Adviser — IAA #200900577/),
+    ).toBeInTheDocument();
+    const verifyLink = screen.getByRole("link", {
+      name: /Verify on the IAA register/i,
+    });
+    expect(verifyLink).toHaveAttribute(
+      "href",
+      expect.stringContaining("app.mbieregisters.govt.nz"),
+    );
+    expect(verifyLink).toHaveAttribute("target", "_blank");
+    expect(verifyLink).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   it("renders the by-the-numbers stats", () => {
     render(<AboutPage />);
     expect(screen.getByText(/6,500\+/)).toBeInTheDocument();
@@ -25,9 +41,9 @@ describe("AboutPage", () => {
 
   it("renders the Regulated By section with all three regulators", () => {
     render(<AboutPage />);
-    const iaaLink = screen.getByRole("link", { name: /IAA|Immigration Advisers Authority/i });
-    const maraLink = screen.getByRole("link", { name: /MARA|OMARA|Migration Agents/i });
-    const ciccLink = screen.getByRole("link", { name: /CICC|College of Immigration/i });
+    const iaaLink = screen.getByRole("link", { name: /Verify our advisers/i });
+    const maraLink = screen.getByRole("link", { name: /Verify our agents/i });
+    const ciccLink = screen.getByRole("link", { name: /Verify our consultants/i });
     expect(iaaLink).toHaveAttribute("href", expect.stringContaining("iaa.govt.nz"));
     expect(maraLink).toHaveAttribute("href", expect.stringContaining("mara.gov.au"));
     expect(ciccLink).toHaveAttribute("href", expect.stringContaining("college-ic.ca"));

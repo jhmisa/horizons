@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { sharedConfig } from "@/lib/config";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${plusJakarta.variable} font-sans text-accent antialiased bg-[#FAFAFA]`}
       >
+        <SiteJsonLd siteUrl={sharedConfig.siteUrl} />
         <Navbar />
         <main>{children}</main>
         <Footer />

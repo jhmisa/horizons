@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ROWEL } from "@/lib/adviser";
 
 export const metadata: Metadata = {
   title: "About Us | Horizons Immigration",
@@ -188,14 +189,20 @@ export default function AboutPage() {
                 Rowel Mercado
               </h2>
               <p className="text-brand-600 font-semibold text-lg mb-6">
-                Founder &amp; Principal Licensed Immigration Adviser
+                Founder &amp; Principal &middot; Licensed Immigration Adviser
+                &mdash; IAA #{ROWEL.licenseNumber}
               </p>
               <div className="space-y-4 text-slate-700 leading-relaxed mb-6">
                 {FOUNDER_PARAGRAPHS.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
               </div>
-              <div className="inline-flex items-center gap-2 self-start py-1.5 px-3 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-sm font-medium">
+              <a
+                href={ROWEL.iaaRegisterSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 self-start py-1.5 px-3 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-sm font-medium hover:bg-brand-100 transition-colors"
+              >
                 <svg
                   className="w-4 h-4"
                   viewBox="0 0 20 20"
@@ -208,8 +215,12 @@ export default function AboutPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-                IAA Licence No. 200900577
-              </div>
+                Verify on the IAA register
+                <i
+                  className="fa-solid fa-arrow-up-right-from-square text-xs"
+                  aria-hidden="true"
+                />
+              </a>
             </div>
           </div>
         </div>
