@@ -156,10 +156,9 @@ export default async function SuccessStoriesIndex({
               More than clients — a community.
             </h2>
             <p className="text-lg text-brand-100 fade-in-up delay-200">
-              Filipino families have trusted Horizons since 2002. From free
-              seminars to Christmas parties in Auckland, this is what it looks
-              like when families don&rsquo;t just get a visa — they find their
-              people.
+              From free info seminars to Christmas parties in Auckland — this
+              is what it looks like when families don&rsquo;t just get a visa,
+              they find their people.
             </p>
           </div>
 
