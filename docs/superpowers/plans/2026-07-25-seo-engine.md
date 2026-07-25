@@ -188,8 +188,10 @@ export const ROWEL = {
   name: "Rowel Mercado",
   jobTitle: "Licensed Immigration Adviser",
   licenseNumber: "200900577",
-  iaaRegisterUrl:
-    "https://iaa.ewr.govt.nz/PublicRegister/View.aspx?adviserNumber=200900577",
+  // The legacy per-adviser register URL (iaa.ewr.govt.nz) is dead (NXDOMAIN, verified 2026-07-25).
+  // The register is now a JS app with no stable per-adviser deep link.
+  iaaRegisterSearchUrl:
+    "https://app.mbieregisters.govt.nz/iaa/ui/start/occupationIndividualRegister",
   linkedinUrl: "https://www.linkedin.com/in/rowel-mercado-1388883a/",
 } as const;
 ```
@@ -218,16 +220,16 @@ describe("SiteJsonLd", () => {
     expect(JSON.stringify(org)).toContain("Immigration Advisers Authority");
   });
 
-  it("renders Person schema for Rowel with sameAs to IAA register and LinkedIn", () => {
+  it("renders Person schema for Rowel with LinkedIn sameAs and IAA credential", () => {
     const { container } = render(<SiteJsonLd siteUrl="https://www.horizonsimmigration.com" />);
     const person = getJsonLd(container).find((d) => d["@type"] === "Person");
     expect(person).toBeDefined();
     expect(person!.name).toBe("Rowel Mercado");
-    const sameAs = person!.sameAs as string[];
-    expect(sameAs).toContain(
-      "https://iaa.ewr.govt.nz/PublicRegister/View.aspx?adviserNumber=200900577"
-    );
-    expect(sameAs).toContain("https://www.linkedin.com/in/rowel-mercado-1388883a/");
+    expect(person!.sameAs).toContain("https://www.linkedin.com/in/rowel-mercado-1388883a/");
+    const cred = person!.hasCredential as Record<string, unknown>;
+    expect(cred.credentialCategory).toBe("license");
+    expect(cred.identifier).toBe("200900577");
+    expect(JSON.stringify(cred)).toContain("Immigration Advisers Authority");
   });
 });
 ```
@@ -270,7 +272,19 @@ export function SiteJsonLd({ siteUrl }: { siteUrl: string }) {
     jobTitle: `${ROWEL.jobTitle} (IAA #${ROWEL.licenseNumber})`,
     worksFor: { "@id": `${siteUrl}/#organization` },
     url: `${siteUrl}/about`,
-    sameAs: [ROWEL.iaaRegisterUrl, ROWEL.linkedinUrl],
+    sameAs: [ROWEL.linkedinUrl],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "license",
+      identifier: ROWEL.licenseNumber,
+      name: "Licensed Immigration Adviser",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Immigration Advisers Authority (IAA), New Zealand",
+        url: "https://www.iaa.govt.nz/",
+      },
+      url: ROWEL.iaaRegisterSearchUrl,
+    },
   };
 
   return (
@@ -314,11 +328,12 @@ Verify: `curl -s http://localhost:3000 | grep -o '"@type":"Organization"'` → m
 In `components/qa/__tests__/QAJsonLd.test.tsx`, add a test (follow the existing test file's render/props pattern — reuse its existing minimal props):
 
 ```tsx
-  it("gives the Article author a sameAs pointing at the IAA register when the author is Rowel", () => {
+  it("gives the Article author Rowel's credential when the author is Rowel", () => {
     // render with liaName="Rowel Mercado" plus the file's existing required props
     // find the Article JSON-LD blob, then:
     // expect(article.author["@type"]).toBe("Person");
-    // expect(article.author.sameAs).toContain("https://iaa.ewr.govt.nz/PublicRegister/View.aspx?adviserNumber=200900577");
+    // expect(article.author.sameAs).toContain("https://www.linkedin.com/in/rowel-mercado-1388883a/");
+    // expect(article.author.jobTitle).toContain("200900577");
   });
 ```
 
@@ -335,7 +350,7 @@ In `components/qa/QAJsonLd.tsx`, add import `import { ROWEL } from "@/lib/advise
             "@type": "Person",
             name: ROWEL.name,
             jobTitle: `${ROWEL.jobTitle} (IAA #${ROWEL.licenseNumber})`,
-            sameAs: [ROWEL.iaaRegisterUrl, ROWEL.linkedinUrl],
+            sameAs: [ROWEL.linkedinUrl],
           }
         : { "@type": "Person", name: liaName },
 ```
@@ -350,7 +365,7 @@ Find the About page component: `grep -rn "Rowel" app/about components/pages | he
 Licensed Immigration Adviser — IAA #200900577
 ```
 
-and that it links to his IAA register entry (`ROWEL.iaaRegisterUrl` from `lib/adviser.ts`) with `target="_blank" rel="noopener noreferrer"`. If the page already shows a license number, verify it matches `200900577` and add the register link if missing. Note: adviser data may come from Sanity (`lia` schema) — if so, check whether the `lia` document has a license field; if the number lives in Sanity, update the document (Rowel `ab1d6c56-999e-4e5e-985e-cde4bb14416e`) instead of hardcoding, and render the register link in the component.
+and that it links to the IAA register search (`ROWEL.iaaRegisterSearchUrl` from `lib/adviser.ts`) with `target="_blank" rel="noopener noreferrer"` and visible text like "Verify on the IAA register" (the register is a search app — no stable per-adviser URL exists). If the page already shows a license number, verify it matches `200900577` and add the register link if missing. Note: adviser data may come from Sanity (`lia` schema) — if so, check whether the `lia` document has a license field; if the number lives in Sanity, update the document (Rowel `ab1d6c56-999e-4e5e-985e-cde4bb14416e`) instead of hardcoding, and render the register link in the component.
 
 Verify: `curl -s http://localhost:3000/about | grep -o "200900577"` → match found.
 
