@@ -1,5 +1,22 @@
 import Link from "next/link";
 import type { Country } from "@/lib/config";
+import { YouTubeEmbed } from "@/components/qa/YouTubeEmbed";
+
+const MASTERCLASS_VIDEO_ID = "migU1abHa5s";
+const MASTERCLASS_TITLE =
+  "Study Pathway to New Zealand — Free Horizons Masterclass for Filipino Families";
+
+const masterclassVideoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: MASTERCLASS_TITLE,
+  description:
+    "Free masterclass on migrating to New Zealand through the study pathway: how the visa system works, realistic costs and timelines, and how to choose the right pathway for your family.",
+  thumbnailUrl: [`https://i.ytimg.com/vi/${MASTERCLASS_VIDEO_ID}/maxresdefault.jpg`],
+  uploadDate: "2026-07-25",
+  contentUrl: `https://www.youtube.com/watch?v=${MASTERCLASS_VIDEO_ID}`,
+  embedUrl: `https://www.youtube-nocookie.com/embed/${MASTERCLASS_VIDEO_ID}`,
+};
 
 export default function HowItWorks({ country }: { country: Country }) {
   if (country === "au") {
@@ -66,17 +83,17 @@ export default function HowItWorks({ country }: { country: Country }) {
               </p>
             </div>
             <div className="lg:col-span-7 order-1 lg:order-2">
-              <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden bg-accent-950 border border-accent-100 group cursor-pointer">
-                <img
-                  src="https://images.unsplash.com/photo-1510251197878-a2e6d2cb590c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                  alt="Video Thumbnail"
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(masterclassVideoJsonLd),
+                }}
+              />
+              <div className="relative w-full rounded-2xl shadow-2xl overflow-hidden bg-accent-950 border border-accent-100">
+                <YouTubeEmbed
+                  videoId={MASTERCLASS_VIDEO_ID}
+                  title={MASTERCLASS_TITLE}
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 bg-brand-600 text-white rounded-2xl flex items-center justify-center text-4xl shadow-xl transform group-hover:scale-110 transition-transform">
-                    <i className="fa-solid fa-play ml-2" />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
