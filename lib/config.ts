@@ -160,6 +160,16 @@ export function getStripeLink(country: Country): string {
 }
 
 /**
+ * Flexible-amount Stripe Payment Link for existing clients paying invoices
+ * (any amount, USD). Fail-soft: returns null when unset so /pay can render a
+ * fallback message instead of crashing — unlike the booking flow, this page
+ * is only reached via direct links the team sends out.
+ */
+export function getFlexPaymentLink(): string | null {
+  return process.env.NEXT_PUBLIC_STRIPE_FLEX_PAYMENT_LINK || null;
+}
+
+/**
  * Site-wide config not tied to a specific country.
  * siteUrl falls back to https://www.horizons.nz so the build doesn't break
  * when NEXT_PUBLIC_SITE_URL isn't set (e.g. local dev, preview deploys).
