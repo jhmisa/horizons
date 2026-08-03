@@ -308,6 +308,169 @@ git commit -m "feat(pay): /pay page for flexible-amount client payments via Stri
 
 ---
 
+### Task 2b: /pay/success confirmation page (TDD)
+
+**Files:**
+- Create: `app/pay/success/page.tsx`
+- Test: `app/pay/success/__tests__/page.test.tsx`
+
+Static page (no props — Stripe's redirect carries no payment data without server-side integration, which is out of scope). Stripe's flexible link will redirect here after payment.
+
+- [ ] **Step 1: Write the failing tests**
+
+Create `app/pay/success/__tests__/page.test.tsx`:
+
+```tsx
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import PaySuccessPage, { metadata } from "../page";
+
+describe("PaySuccessPage", () => {
+  it("renders the payment received heading", () => {
+    render(<PaySuccessPage />);
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Payment received/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("lists the three next steps", () => {
+    render(<PaySuccessPage />);
+    expect(screen.getByText(/receipt from Stripe/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/match your payment to your invoice/i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/reply to your invoice email/i),
+    ).toBeInTheDocument();
+  });
+
+  it("links back to home", () => {
+    render(<PaySuccessPage />);
+    expect(screen.getByRole("link", { name: /Back to home/i })).toHaveAttribute(
+      "href",
+      "/",
+    );
+  });
+});
+
+describe("metadata", () => {
+  it("is noindexed", () => {
+    expect(metadata.robots).toEqual({ index: false, follow: false });
+  });
+});
+```
+
+- [ ] **Step 2: Run tests to verify they fail**
+
+Run: `npx vitest run app/pay/success`
+Expected: FAIL — cannot resolve `../page`.
+
+- [ ] **Step 3: Create `app/pay/success/page.tsx`**
+
+```tsx
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Payment Received | Horizons Immigration",
+  description: "Your payment to Horizons Immigration was successful.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/pay/success" },
+};
+
+const NEXT_STEPS = [
+  {
+    num: 1,
+    text: "A receipt from Stripe is on its way to your email.",
+  },
+  {
+    num: 2,
+    text: "Our team will match your payment to your invoice and confirm by email.",
+  },
+  {
+    num: 3,
+    text: "Questions? Just reply to your invoice email.",
+  },
+];
+
+export default function PaySuccessPage() {
+  return (
+    <>
+      <header className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-brand-900 text-white relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 border border-green-400/40 flex items-center justify-center text-green-400 text-3xl fade-in-up">
+            <i className="fa-solid fa-check" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 fade-in-up delay-100">
+            Payment received — thank you!
+          </h1>
+          <p className="text-xl text-brand-100 max-w-2xl mx-auto fade-in-up delay-200">
+            Your payment to Horizons Immigration was successful.
+          </p>
+        </div>
+      </header>
+
+      <section className="py-16 lg:py-20 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-8 lg:p-10">
+            <h2 className="text-2xl font-bold text-accent mb-6">
+              What happens next
+            </h2>
+            <ol className="space-y-6 mb-10">
+              {NEXT_STEPS.map((step) => (
+                <li key={step.num} className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600 font-bold shrink-0">
+                    {step.num}
+                  </div>
+                  <p className="text-accent-600 pt-2">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+
+            <Link
+              href="/"
+              className="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-lg py-4 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2"
+            >
+              Back to home
+            </Link>
+          </div>
+
+          <p className="text-center text-sm text-accent-500 mt-8">
+            Licensed Immigration Adviser: Rowel Mercado — IAA #200900577
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}
+```
+
+- [ ] **Step 4: Run tests to verify they pass**
+
+Run: `npx vitest run app/pay/success` → 4 tests PASS. Full suite `npx vitest run` → all green.
+
+- [ ] **Step 5: Build + commit**
+
+Run: `npm run build` → compiles, `/pay/success` in route list.
+
+```bash
+git add app/pay/success
+git commit -m "feat(pay): /pay/success confirmation page with next steps"
+```
+
+- [ ] **Step 6: Stripe redirect (Joey, guided)**
+
+In the Stripe dashboard, edit the **"Horizons Immigration — Client Payment"** link (verify the type shows "Customers choose what to pay" — NOT the $197 link) → "After payment" tab → "Don't show confirmation page" → URL: `https://www.horizonsimmigration.com/pay/success` → Update link. (Do this after the deploy in Task 3 so the URL resolves.)
+
+---
+
 ### Task 3: Vercel env var + deploy + live test (guided, human steps)
 
 - [ ] **Step 1: Add the env var in Vercel (Joey, guided)**

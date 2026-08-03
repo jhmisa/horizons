@@ -55,6 +55,19 @@ Visual language mirrors `/book` (dark `brand-900` header with dot pattern, white
 - `robots: { index: false, follow: false }` in the page metadata — this page is for direct-linked existing clients only.
 - Excluded from `app/sitemap.ts` (static pages are listed explicitly there; simply don't add it).
 
+### 5. Payment confirmation page (`/pay/success`) — added 2026-08-03
+
+After a successful payment, the Stripe link redirects to `https://www.horizonsimmigration.com/pay/success` (Joey sets this in the link's "After payment" tab → "Don't show confirmation page" → redirect URL).
+
+- Heading: "Payment received — thank you!"
+- Next steps (approved copy):
+  1. A receipt from Stripe is on its way to your email.
+  2. Our team will match your payment to your invoice and confirm by email.
+  3. Questions? Just reply to your invoice email.
+- "Back to home" button → `/`.
+- Same visual language; `noindex`; not in sitemap. Static page, no props/params (Stripe redirect does not carry payment data without server-side integration — out of scope).
+- The $197 booking link keeps Stripe's default confirmation (a /book success page is a possible later task).
+
 ## Out of scope (YAGNI)
 
 - Payment history/reconciliation on the site (Stripe dashboard + invoice emails are the source of truth).
