@@ -62,12 +62,6 @@ export default function PayPage({ stripeUrl }: { stripeUrl: string | null }) {
               ))}
             </ol>
 
-            <p className="text-sm text-accent-600 bg-brand-50 border border-brand-100 rounded-xl p-4 mb-8">
-              <i className="fa-solid fa-circle-info text-brand-600 mr-2" />
-              The amount in your invoice already includes the 4% card
-              processing fee — pay exactly what&rsquo;s shown.
-            </p>
-
             {stripeUrl ? (
               <a
                 href={stripeUrl}

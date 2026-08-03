@@ -20,11 +20,11 @@ describe("PayPage", () => {
     expect(screen.getByText(/Enter the amount/i)).toBeInTheDocument();
   });
 
-  it("explains the 4% fee is already included", () => {
+  it("does not mention the card processing fee (invoice email covers payment options)", () => {
     render(<PayPage stripeUrl={STRIPE_URL} />);
     expect(
-      screen.getByText(/already includes the 4% card processing fee/i),
-    ).toBeInTheDocument();
+      screen.queryByText(/card processing fee/i),
+    ).not.toBeInTheDocument();
   });
 
   it("links the pay button to the Stripe payment link", () => {

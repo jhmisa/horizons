@@ -39,7 +39,7 @@ Visual language mirrors `/book` (dark `brand-900` header with dot pattern, white
   2. Click "Pay with Stripe" below.
   3. On the Stripe page, enter that exact amount, your full name, and your email.
 - **Primary button:** "Pay with Stripe" → the flexible Payment Link (new tab not required; same-tab like /book).
-- **Fee note:** "The amount in your invoice already includes the 4% card processing fee — pay exactly what's shown."
+- ~~Fee note~~ (removed 2026-08-03: the invoice email offers multiple payment options — Stripe with the 4% fee and a no-fee alternative — with per-option amounts, so the page stays fee-silent and defers to the email)
 - **Trust elements:** "Secure payment via Stripe." Licensed Immigration Adviser line (Rowel Mercado, IAA #200900577) consistent with sitewide E-E-A-T work.
 - **Cross-link banner:** "Booking your first consultation instead? Go to the booking page →" → `/book`.
 - **If the env var is missing:** page still renders but the button is replaced with "Payment link unavailable — please use the link in your invoice email." (Same fail-soft philosophy as the existing config fallback; do not crash the page.)
