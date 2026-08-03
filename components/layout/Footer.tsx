@@ -150,6 +150,14 @@ export default async function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/pay"
+                  className="hover:text-brand-400 transition-colors"
+                >
+                  Make a Payment
+                </Link>
+              </li>
+              <li>
                 <a
                   href={config.googleReviewUrl}
                   target="_blank"
