@@ -156,8 +156,8 @@ export default function BookPage({ country }: { country: Country }) {
 
                 <p className="text-xs text-brand-300 mb-6">
                   <i className="fa-solid fa-check text-green-400 mr-1" /> $190
-                  credited toward your $2,000 processing fee if you proceed →
-                  only $1,810 due to complete.
+                  credited toward your $2,300 processing fee if you proceed →
+                  only $2,110 due to complete.
                 </p>
 
                 <a

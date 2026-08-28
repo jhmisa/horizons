@@ -158,8 +158,8 @@ Horizons Immigration is a Licensed Immigration Advisory business based in East A
 5. **Step 4: Proceed** (`#step-4`)
    - Left: Pricing timeline graphic showing:
      - A: Consultation Fee — $190
-     - B: Full Processing Fee — $2,000
-     - Result: You Pay to Proceed — $1,810 (the $190 is fully credited)
+     - B: Full Processing Fee — $2,300
+     - Result: You Pay to Proceed — $2,110 (the $190 is fully credited)
    - Right: Step number, heading "Proceed with No Surprises.", description
    - Included services:
      - Full document preparation and review
@@ -257,7 +257,7 @@ Horizons Immigration is a Licensed Immigration Advisory business based in East A
 
 ### Stripe
 - **$190 consultation booking** — Stripe Checkout session via Next.js API route
-- **$2,000 processing fee** — Separate Stripe Checkout session (triggered after consultation)
+- **$2,300 processing fee** — Separate Stripe Checkout session (triggered after consultation)
 - Webhook handler at `/api/stripe/webhook` for payment confirmation
 - Success/cancel redirect pages
 - Test mode for development

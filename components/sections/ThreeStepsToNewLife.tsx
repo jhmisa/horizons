@@ -41,7 +41,7 @@ export default function ThreeStepsToNewLife({ country }: ThreeStepsToNewLifeProp
       num: 3,
       icon: "fa-plane-departure",
       title: "Proceed",
-      desc: "If you decide to move forward with Horizons, your $190 consultation fee is credited toward the $2,000 USD processing fee. No wasted money. No hidden costs.",
+      desc: "If you decide to move forward with Horizons, your $190 consultation fee is credited toward the $2,300 USD processing fee. No wasted money. No hidden costs.",
     },
   ] as const;
 

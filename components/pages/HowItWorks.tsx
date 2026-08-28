@@ -190,8 +190,8 @@ export default function HowItWorks({ country }: { country: Country }) {
                       </div>
                     </dl>
                     <p className="mt-3 text-xs text-brand-300">
-                      $190 credited toward your $2,000 processing fee if you
-                      proceed → only $1,810 due to complete.
+                      $190 credited toward your $2,300 processing fee if you
+                      proceed → only $2,110 due to complete.
                     </p>
                   </div>
 
@@ -273,7 +273,7 @@ export default function HowItWorks({ country }: { country: Country }) {
                         <h4 className="font-bold text-accent">
                           Full Processing Fee
                         </h4>
-                        <span className="font-bold text-accent-500">$2,000</span>
+                        <span className="font-bold text-accent-500">$2,300</span>
                       </div>
                       <p className="text-xs text-accent-500">
                         Total cost of LIA services.
@@ -292,7 +292,7 @@ export default function HowItWorks({ country }: { country: Country }) {
                           You Pay to Proceed
                         </h4>
                         <span className="font-extrabold text-green-700 text-lg">
-                          $1,810
+                          $2,110
                         </span>
                       </div>
                       <p className="text-xs text-green-700">
@@ -314,7 +314,7 @@ export default function HowItWorks({ country }: { country: Country }) {
               <p className="text-lg text-accent-600 mb-6 leading-relaxed">
                 If, after your consultation, you decide to move forward with
                 Horizons, your $190 consultation fee is completely credited
-                toward the $2,000 USD processing fee.
+                toward the $2,300 USD processing fee.
               </p>
               <p className="text-lg text-accent-600 mb-8 leading-relaxed">
                 No wasted money. No hidden costs. Just complete transparency
@@ -555,7 +555,7 @@ function AustraliaHowItWorks() {
                         <h4 className="font-bold text-accent">
                           Full Processing Fee
                         </h4>
-                        <span className="font-bold text-accent-500">$2,000</span>
+                        <span className="font-bold text-accent-500">$2,300</span>
                       </div>
                       <p className="text-xs text-accent-500">
                         Total cost of migration services.
@@ -574,7 +574,7 @@ function AustraliaHowItWorks() {
                           You Pay to Proceed
                         </h4>
                         <span className="font-extrabold text-green-700 text-lg">
-                          $1,810
+                          $2,110
                         </span>
                       </div>
                       <p className="text-xs text-green-700">
@@ -596,7 +596,7 @@ function AustraliaHowItWorks() {
               <p className="text-lg text-accent-600 mb-6 leading-relaxed">
                 Once you decide to engage us, we handle visa selection,
                 document preparation, and lodgement with the Department of Home
-                Affairs. The $190 you&apos;ve paid is credited — only $1,810
+                Affairs. The $190 you&apos;ve paid is credited — only $2,110
                 USD remains to complete the full service.
               </p>
               <p className="text-lg text-accent-600 mb-8 leading-relaxed">

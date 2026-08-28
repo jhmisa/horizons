@@ -88,7 +88,7 @@ SANITY_API_TOKEN=
 ## Key Business Logic
 
 - **Booking:** Client pays $197 USD ($190 consultation fee + $7 payment processing fee) via Stripe Payment Link. Stripe captures email + name + phone. After payment, team emails a short follow-up form to gather situation details and schedule the consultation time.
-- **Processing Fee:** Separate $2,000 USD payment triggered after consultation. The $190 (not the $197) is credited, so the remaining = $1,810.
+- **Processing Fee:** Separate $2,300 USD payment triggered after consultation. The $190 (not the $197) is credited, so the remaining = $2,110.
 - **CMS Content:** Blog posts, team members, and success stories are managed in Sanity Studio by non-technical team members.
 
 ## Content & SEO Workflows
