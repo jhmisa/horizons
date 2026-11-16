@@ -49,7 +49,7 @@ export interface CountryConfig {
 const NZ_PHONE = "+6492777162";
 const NZ_PHONE_DISPLAY = "+64 9 277 7162";
 const NZ_EMAIL = "hello@horizons.nz";
-const NZ_ADDRESS = "East Auckland, New Zealand";
+const NZ_ADDRESS = "Level 10, GHD House, 21 Queen Street, Auckland 1010";
 const NZ_GOOGLE_REVIEW_URL = "https://g.page/r/CQ4kDEI8MjTmEBM/review";
 const NZ_GOOGLE_BUSINESS_URL = "https://share.google/V3QOVnyePnOEZRTnH";
 const NZ_FACEBOOK_URL = "https://www.facebook.com/consulthorizons/";
@@ -82,11 +82,11 @@ export const countryConfig: Record<Country, CountryConfig> = {
     code: "au",
     displayName: "Australia",
     locale: "en-AU",
-    // Shared team; no AU-specific contact info yet — fall back to NZ.
-    phone: NZ_PHONE,
-    phoneDisplay: NZ_PHONE_DISPLAY,
+    // Sydney office (see lib/offices.ts). Shared inbox with NZ.
+    phone: "+61283877589",
+    phoneDisplay: "+61 2 8387 7589",
     email: NZ_EMAIL,
-    address: NZ_ADDRESS,
+    address: "Level 5, 7 Eden Park Drive, Macquarie Park NSW 2113",
     googleReviewUrl: NZ_GOOGLE_REVIEW_URL,
     googleBusinessUrl: NZ_GOOGLE_BUSINESS_URL,
     facebookUrl: NZ_FACEBOOK_URL,

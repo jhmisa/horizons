@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { getCountryConfig, type Country } from "@/lib/config";
+import { OFFICES } from "@/lib/offices";
 
 export default async function Footer() {
   const cookieStore = await cookies();
@@ -180,10 +181,6 @@ export default async function Footer() {
               Contact Us
             </h4>
             <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <i className="fa-solid fa-location-dot mt-1 text-brand-500" />
-                <span>{config.address}</span>
-              </li>
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope text-brand-500" />
                 <a
@@ -203,6 +200,55 @@ export default async function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Our Offices */}
+        <div className="border-t border-accent-800 pt-10 pb-10">
+          <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">
+            Our Offices
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            {OFFICES.map((office) => (
+              <div key={office.code}>
+                <p className="text-white font-semibold mb-2">
+                  <span aria-hidden="true" className="mr-2">
+                    {office.flag}
+                  </span>
+                  {office.label}
+                </p>
+                <a
+                  href={office.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block leading-relaxed mb-2 hover:text-brand-400 transition-colors"
+                >
+                  {office.lines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </a>
+                <p>
+                  Tel:{" "}
+                  <a
+                    href={office.tel.href}
+                    className="hover:text-brand-400 transition-colors"
+                  >
+                    {office.tel.display}
+                  </a>
+                </p>
+                <p>
+                  Mobile:{" "}
+                  <a
+                    href={office.mobile.href}
+                    className="hover:text-brand-400 transition-colors"
+                  >
+                    {office.mobile.display}
+                  </a>
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 

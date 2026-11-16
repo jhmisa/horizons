@@ -125,6 +125,25 @@ const ADVISERS: Adviser[] = [
   },
 ];
 
+// Advisers for Australia and Canada. No licence numbers yet.
+// TODO(joey): swap placeholder photos for real ones; add MARN / CICC numbers if available.
+const INTERNATIONAL = [
+  {
+    name: "Atty. Mark Racca",
+    role: "Immigration Lawyer",
+    flag: "🇦🇺",
+    country: "Australia",
+    image: "/images/Team/placeholder.svg",
+  },
+  {
+    name: "Melvin Almeria",
+    role: "Regulated Canadian Immigration Consultant (RCIC)",
+    flag: "🇨🇦",
+    country: "Canada",
+    image: "/images/Team/placeholder.svg",
+  },
+] as const;
+
 const SUPPORT: Support[] = [
   {
     name: "Marie Quintos",
@@ -354,6 +373,47 @@ export default function AboutPage() {
                   <div className="inline-flex items-center gap-1.5 py-1 px-2 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-[10px] font-medium leading-none">
                     <span aria-hidden="true">🇳🇿</span>
                     <span>IAA No. {member.licence}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. Australia & Canada */}
+      <section className="pb-20 bg-[#FAFAFA]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">
+              Australia &amp; Canada
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Our advisers for Australian and Canadian immigration.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-6 max-w-xl mx-auto">
+            {INTERNATIONAL.map((member) => (
+              <div
+                key={member.name}
+                className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden"
+              >
+                <div className="aspect-square overflow-hidden bg-slate-100">
+                  <img
+                    src={member.image}
+                    alt={`${member.name}, ${member.role}`}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: "50% 0%" }}
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-brand-600 text-xs mb-2">{member.role}</p>
+                  <div className="inline-flex items-center gap-1.5 py-1 px-2 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-[10px] font-medium leading-none">
+                    <span aria-hidden="true">{member.flag}</span>
+                    <span>{member.country}</span>
                   </div>
                 </div>
               </div>

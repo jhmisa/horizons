@@ -99,31 +99,8 @@ const stories = [
       "Grace came to Horizons as an international student and, with the team's guidance, secured her Post Study Work Visa. She celebrated the approval with the team at our Auckland office - congratulations, Grace!",
     ],
   },
-  {
-    slug: "sarangay-family",
-    clientFirstName: "The Sarangay Family",
-    destination: "Auckland",
-    photo: "a0299e_2e157f1c20074bf7bbd67a9ad8e842d8~mv2.jpg",
-    photoName: "sarangay-family.jpg",
-    summary:
-      "Finally! Our visa was approved! Thank you so much for all your efforts, for the time and patience you spent in dealing with the whole process.",
-    story: [
-      "Finally! Our visa was approved! Thank you so much for all your efforts. For the time and patience, you spent in dealing with the whole process. We are very much grateful for everything you've done for us. Thank You Horizons New Zealand Team. We are very fortunate for this opportunity.",
-    ],
-  },
-  {
-    slug: "eugene-and-chiqui",
-    clientFirstName: "Eugene & Chiqui",
-    destination: "Auckland",
-    photo: "a0299e_d1163e218308409aa198eaadbd44f74d~mv2.jpg",
-    photoName: "eugene-chiqui-thank-you.jpg",
-    summary:
-      "To Horizons Team — thank you for all your kind assistance. God bless! From Eugene and Chiqui.",
-    story: [
-      "“To Horizons Team, thank you for all your kind assistance. God bless! From Eugene and Chiqui.”",
-      "We received a wonderful gift from our clients Eugene and Chiqui - thank you! Do not leave it to amateurs: work with a Licensed Immigration Adviser. Let our experience be your guide.",
-    ],
-  },
+  // Sarangay Family and Eugene & Chiqui removed 2026-11-17 at Rowel's request
+  // (photos are of Secure Visa team members). Do not re-add.
   {
     slug: "efren",
     clientFirstName: "Efren",

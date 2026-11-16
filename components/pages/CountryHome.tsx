@@ -8,6 +8,8 @@ import { GoogleReviewsCarousel } from "@/components/reviews/GoogleReviewsCarouse
 import { YouTubeEmbed } from "@/components/qa/YouTubeEmbed";
 import ThreeStepsToNewLife from "@/components/sections/ThreeStepsToNewLife";
 import WhyItMatters from "@/components/sections/WhyItMatters";
+import AdviserSpotlight from "@/components/sections/AdviserSpotlight";
+import { getOffice } from "@/lib/offices";
 import type { Country } from "@/lib/config";
 import type { PostCard } from "@/types/post";
 
@@ -425,27 +427,21 @@ function AustraliaHome() {
 
       <WhyItMatters country="au" />
 
-      {/* BE ONE OF OUR FIRST AU CLIENTS */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
-            Be one of our first Australia clients
-          </h2>
-          <p className="text-lg text-accent-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            For two decades, we&apos;ve helped Filipino families settle in New
-            Zealand. Now we&apos;re bringing that expertise to Australia
-            migration. Join the first cohort — book a consultation and let&apos;s
-            map your pathway.
-          </p>
-          <Link
-            href="/au/book"
-            className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-10 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-          >
-            Book a Consultation
-            <i className="fa-solid fa-arrow-right ml-2" />
-          </Link>
-        </div>
-      </section>
+      {/* AUSTRALIA ADVISER + SYDNEY OFFICE */}
+      <AdviserSpotlight
+        eyebrow="Your Australia Team"
+        heading="Meet your Australia immigration lawyer"
+        person={{
+          name: "Atty. Mark Racca",
+          title: "Immigration Lawyer, Australia",
+          // TODO(joey): swap for Mark's real photo when received.
+          image: "/images/Team/placeholder.svg",
+          blurb:
+            "Atty. Mark Racca is our Immigration Lawyer for Australia, working alongside the Horizons team to guide your Australian visa application.",
+        }}
+        office={getOffice("au")}
+        bookHref="/au/book"
+      />
 
       {/* FINAL CTA */}
       <section
@@ -607,27 +603,20 @@ function CanadaHome() {
 
       <WhyItMatters country="ca" />
 
-      {/* BE ONE OF OUR FIRST CA CLIENTS */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6">
-            Be one of our first Canada clients
-          </h2>
-          <p className="text-lg text-accent-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            For two decades, we&apos;ve helped Filipino families settle in New
-            Zealand. Now we&apos;re bringing that expertise to Canada
-            migration. Join the first cohort — book a consultation and let&apos;s
-            map your pathway.
-          </p>
-          <Link
-            href="/ca/book"
-            className="inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-10 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-          >
-            Book a Consultation
-            <i className="fa-solid fa-arrow-right ml-2" />
-          </Link>
-        </div>
-      </section>
+      {/* CANADA ADVISER */}
+      <AdviserSpotlight
+        eyebrow="Your Canada Team"
+        heading="Meet your Canada immigration consultant"
+        person={{
+          name: "Melvin Almeria",
+          title: "Regulated Canadian Immigration Consultant (RCIC)",
+          // TODO(joey): swap for Melvin's real photo when received.
+          image: "/images/Team/placeholder.svg",
+          blurb:
+            "Melvin Almeria is our Regulated Canadian Immigration Consultant, working alongside the Horizons team to guide your Canadian immigration application.",
+        }}
+        bookHref="/ca/book"
+      />
 
       {/* FINAL CTA */}
       <section
